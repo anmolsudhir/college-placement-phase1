@@ -1,5 +1,4 @@
-import './App.css';
-import { Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
+import './styles/styles.css';
 
 function App() {
   return (
