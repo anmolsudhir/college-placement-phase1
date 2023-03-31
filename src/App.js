@@ -1,9 +1,10 @@
 import './styles/styles.css';
+import Form from './pages/Form.js'
 
 function App() {
   return (
     <>
-      App
+      <Form/>
     </>
   );
 }
