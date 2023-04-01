@@ -8,6 +8,8 @@
 
 .sidebar{
     z-index: 100;
+    color: aliceblue;
+    cursor: pointer;
     background-color: black;
     height: 100%;
 }
@@ -28,7 +30,17 @@
 }
 
 .fade{
-    animation: section-slide 0.5s;
+    animation: section-slide 1s;
+}
+
+.fade-in {
+    transform-origin: left;
+    animation: sidebar-in 0.5s ease forwards;
+}
+
+.fade-out {
+    transform-origin: left;
+    animation: sidebar-out 0.5s ease forwards;
 }
 
 @keyframes section-slide {
@@ -37,7 +49,28 @@
     }
 
     to{
-        transform: translateX(-50%);
+        transform: scale(-50%);
         opacity: 0%;
     }
+}
+
+
+@keyframes sidebar-in {
+    from {
+        transform: scaleX(150%);
+    }
+
+    to {
+        transform: scaleX(100%);
+    }
+}
+
+@keyframes sidebar-out {
+    from {
+            transform: scaleX(100%);
+        }
+    
+        to {
+            transform: scaleX(150%);
+        }
 }
