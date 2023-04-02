@@ -9,12 +9,10 @@ function Form() {
     const [clicked, setClicked] = useState(false)
 
     const handleMouseEnter = () => {
-        console.log('Mouse Enter')
         setCollapsed(!collapsed)
     }
 
     const handleMouseLeave = () => {
-        console.log('Mouse Leave')
         setCollapsed(!collapsed)
     }
 
