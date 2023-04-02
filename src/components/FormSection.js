@@ -1,9 +1,12 @@
 import React from 'react'
 
-function FormSection(clicked) {
-   let isVisble = [false, false, false, false]
+function FormSection(clName) {
+
   return (
-    <div className={clicked.clicked ? 'form-section fade' : 'form-section'}>
+    <div className='form-section'>
+        {/* <div className = 'section-heading'>
+            Personal Info
+        </div> */}
     </div>
   )
 }

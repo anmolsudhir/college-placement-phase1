@@ -1,13 +1,19 @@
 import React from 'react'
-import { useEffect } from 'react'
+import { useState } from 'react'
 
 function SideBar(props) {
-    // useEffect(() => {
-    //   console.log('re-rendered')
-    // }, [props.collapsed])
-    
+  const [collapsed, setCollapsed] = useState(true)
+  
+  const handleMouseEvent = () => {
+    setCollapsed(!collapsed)
+  }
+
   return (
-    <div > Hello </div>
+    <div className='sidebar-content' onMouseLeave={handleMouseEvent} onMouseEnter={handleMouseEvent}> 
+      {
+        collapsed ?  'Progress Bar' : 'List'
+      }
+    </div>
   )
 }
 
