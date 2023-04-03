@@ -1,0 +1,2 @@
+npm i -y
+npm i react-bootstrap bootstrap sass
