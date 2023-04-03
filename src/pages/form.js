@@ -7,18 +7,9 @@ import FormSection from '../components/FormSection'
 function Form() {
 
   return (
-    <div >
-      <Container fluid>
-      <Col>
-      <Row>
+    <div className='containers'>
         <TopBar/>
-      </Row>
-      <Row>
         <FormSection/>
-      </Row>
-      </Col>
-      </Container>
-      
     </div>
   )
 }

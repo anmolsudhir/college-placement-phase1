@@ -1,15 +1,15 @@
 import React from 'react'
-import '../styles/styles.scss'
 import ImageRadio from './radioImage';
 import ProgressBar from './ProgressBar.jsx';
-const ap=2;
+const ap=22;
+const gp=88;
 
 function TopBar(props) {
 
   return (
-    <div className='sidebar'> 
-         <ImageRadio completed={ap} total={ap} />
-         <ProgressBar/>    
+    <div className='topbar'> 
+         <ImageRadio completed={ap} total={gp} />
+         <ProgressBar completed={ap} total={gp}/>    
     </div>
   )
 }
