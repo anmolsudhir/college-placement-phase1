@@ -1,11 +1,19 @@
 .innerProgressBar {
   background-color: green;
   height: 100%;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
 
 .outerProgressBar {
-  width: 75px;
-  height: 30px;
+  position: relative;
+  width: 150px;
+  height: 5px;
+  background-color: white;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
 
 .topbar {
