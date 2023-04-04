@@ -84,11 +84,11 @@
 }
 
 .next{
-    animation: next1-ani 0.5s ease-in-out, next2-ani 0.5s ease-in-out ;
+    animation: next1-ani 0.15s ease-in-out, next2-ani 0.15s 0.15s ease-in-out;
 }
 
 .prev{
-    animation: prev1-ani 0.5s ease-in-out, prev2-ani 0.5s ease-in-out ;
+    animation: prev1-ani 0.15s ease-in-out, prev2-ani 0.15s 0.15s ease-in-out;
 }
 
 @keyframes next1-ani {
