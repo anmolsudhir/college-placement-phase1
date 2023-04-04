@@ -75,13 +75,11 @@
 }
 
 .next{
-    animation: next1-ani 1s ease forwards;
-    animation: next2-ani 1s ease forwards;;
+    animation: next1-ani 0.5s ease-in-out, next2-ani 0.5s ease-in-out ;
 }
 
 .prev{
-    animation: prev1-ani 1s ease forwards;
-    animation: prev2-ani 1s ease forwards;
+    animation: prev1-ani 0.5s ease-in-out, prev2-ani 0.5s ease-in-out ;
 }
 
 @keyframes next1-ani {
@@ -95,11 +93,11 @@
 }
 
 @keyframes next2-ani {
-    0% {
+    from {
             transform: translateX(100%);
     }
     
-    25% {
+    to {
             transform: translateX(0%);
     }
 }
