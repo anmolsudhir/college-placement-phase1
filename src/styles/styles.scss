@@ -27,14 +27,14 @@
     position: absolute;
     width: 100%;
     height: 12%;
-    background-color: rgba(220, 220, 220, 0.4);
+    background-color: rgba(220, 220, 220, 0.1);
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     padding: 0.5%;
-    backdrop-filter: blur(20px);
-    box-shadow: 0px 0px 25px 30px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-section{
@@ -65,7 +65,7 @@
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
-    padding: 10rem 4rem 4rem 4rem;
+    padding: 10rem 4rem 0rem 4rem;
 }
 
 .form-btn-group{
@@ -74,7 +74,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 3rem;
+    padding: 3rem 0 3rem 0;
 }
 
 .form-slide{
@@ -91,22 +91,21 @@
 }
 
 .side-bar{
-    position: absolute;
-    background-color: #E8E8E8;
+    background-color: #F1F1F1;
     border-radius: 0 0.5rem 0.5rem 0;
     top: 130px;
     left: 0;
-    width: 2%;
-    height: 88%;
+    width: 15%;
+    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: width 0.35s ease-in-out;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: solid;
+    border-color: #DCDCDC;
+    border-width: 0 2px 0 0;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.025);
-}
-
-.side-bar:hover{
-    width: 10%;
+    padding: 10rem 1rem 0 1rem;
 }
 
 .next{
@@ -162,7 +161,9 @@
     width: 120px;
     background-color: #99BF14;
     border: none;
+    font-size: 1.5rem;
     color: white;
+    border-radius: 0.5rem;
 }
 
 .my-btn:hover{
@@ -185,4 +186,34 @@
     left: 0;
     height: 3px;
     background-color: #72BFFE;
+}
+
+.side-bar-content{
+    height: 7%;
+    width: 100%;
+    background-color: #DCDCDC;
+    margin: 1rem 0 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1rem;
+    transition: all 0.5s ease;
+    padding: 1rem;
+}
+
+.side-bar-content:hover{
+    background-color: #99BF14;
+    color: #F1F1F1;
+}
+
+.label{
+    transition: transform 0.5s ease-in-out;
+}
+
+.label-1{
+    transform: translateX(0%);
+}
+
+.label-2 {
+    transform: translateX(2rem);
 }

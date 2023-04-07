@@ -9,8 +9,6 @@ const gp=88;
 function TopBar(props) {
   return (
     <div className='topbar'> 
-         {/* <ImageRadio completed={ap} total={gp} />
-         <ProgressBar completed={ap} total={gp}/>*/}
         <div className='logo'>
           <Image src={LOGO} style={{height:"10%", width:"10%"}}></Image>
           <span style={{marginLeft:"1%", fontSize:"48px", fontWeight:"700", color:"#99BF14"}}>CMRIT PLACEMENT PORTAL</span>

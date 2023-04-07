@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
-import { Button } from 'react-bootstrap'
+import SideBar from './SideBar'
 import FormSlide from './FormSlide'
 
 function FormSection() {
@@ -61,7 +61,7 @@ function FormSection() {
         className="progress-bar"
         style={{ width: `${scrollPosition}%` }}
       ></div>
-      <div className='side-bar'>Hello</div>
+      <SideBar></SideBar>
       <div className={`form-section-content`} ref={componentRef}>
           <FormSlide props = {idx+1} classes={transit}/>
           <FormSlide props = {idx+1} classes={transit}/>
