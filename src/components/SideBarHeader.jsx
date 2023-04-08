@@ -15,7 +15,7 @@ function SideBarHeader({label, content, handleScroll, idx}) {
     }
 
     const setScrollPosition = () => {
-        handleScroll(idx*935)
+        handleScroll(idx*930)
     }
 
     const cont = content.map((elem) => <div key={elem.label} onClick={setScrollPosition} className='side-bar-elem'>{elem.label}</div>)
