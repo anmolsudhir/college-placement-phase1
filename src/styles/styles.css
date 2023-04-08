@@ -213,11 +213,12 @@
   text-align: center;
   background-color: #DCDCDC;
   margin-bottom: 1rem;
+  transition: all 0.25s ease;
 }
 
 .side-bar-elem {
   margin: 0.5rem;
-  transition: all 0.15s ease;
+  transition: all 0.15s ease-out;
 }
 
 .side-bar-elem:hover {
@@ -225,10 +226,10 @@
   font-weight: 800;
 }
 
-.something {
+.side-bar-container {
   width: 100%;
 }
-.something:hover .side-bar-content {
+.side-bar-container:hover .side-bar-content {
   cursor: pointer;
   margin: 1rem 0 0 0;
   border-radius: 1rem 1rem 0 0;
@@ -236,7 +237,7 @@
   color: #F1F1F1;
   font-weight: 800;
 }
-.something:hover .content {
+.side-bar-container:hover .content {
   padding-bottom: 1rem;
   border-radius: 0 0 1rem 1rem;
 }

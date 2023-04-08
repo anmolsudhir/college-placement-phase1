@@ -1,8 +1,9 @@
 import React from 'react'
 
 function FormSlide({props, classes}) {
+  console.log(props)
   return (
-    <div className={`form-slide ${classes}`}>{props}</div>
+    <div className={`form-slide ${classes}`}>{props[0].header}</div>
   )
 }
 

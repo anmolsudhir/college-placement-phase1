@@ -223,19 +223,21 @@
     text-align: center;
     background-color: #DCDCDC;
     margin-bottom: 1rem;
+    transition: all 0.25s ease;
 }
 
 .side-bar-elem{
     margin: 0.5rem;
-    transition: all 0.15s ease;
+    transition: all 0.15s ease-out;
 }
 
-.side-bar-elem:hover{
+.side-bar-elem:hover {
     cursor: pointer;
     font-weight: 800;
 }
 
-.something{
+
+.side-bar-container{
     width: 100%;
     &:hover{
         .side-bar-content{

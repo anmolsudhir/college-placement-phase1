@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import EXPAND from '../assests/images/expand_more_FILL0_wght100_GRAD-25_opsz48.svg'
 
-function SideBarHeader({label, content}) {
+function SideBarHeader({label, content, handleScroll, idx}) {
 
     const [hover, setHover] = useState(false)
     const [transit, setTransit] = useState(null)
@@ -14,15 +14,19 @@ function SideBarHeader({label, content}) {
         setHover(false)
     }
 
-    const cont = content.map((elem) => <div className='side-bar-elem'>{elem.label}</div>)
+    const setScrollPosition = () => {
+        handleScroll(idx*935)
+    }
+
+    const cont = content.map((elem) => <div key={elem.label} onClick={setScrollPosition} className='side-bar-elem'>{elem.label}</div>)
 
   return (
-    <div className='something'>
-        <div className='side-bar-content' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className='side-bar-container' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div className='side-bar-content'>
             <span className={`label ${transit}` }>{label}</span>
-            {!hover && <img src={EXPAND}></img>}
+            {!hover && <img src={EXPAND} alt='expand img'></img>}
         </div>
-        <div className='content' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div className='content'>
             {hover && cont}
         </div>
     </div>

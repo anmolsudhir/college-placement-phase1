@@ -29,10 +29,6 @@ function FormSection() {
   }, []);
 
   const handlePrevClick = () => {
-    componentRef.current.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
     setTransit("prev")
     if(idx - 1 >= 0){
       setDisabledNext(false)
@@ -43,10 +39,6 @@ function FormSection() {
   }
 
   const handleNextClick = () => {
-    componentRef.current.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
     setTransit("next")
     if(idx + 1 < 2){
       setDisabledPrev(false)
@@ -56,18 +48,24 @@ function FormSection() {
     console.log(idx)
   }
 
+  const handleScroll = (top) => {
+    componentRef.current.scrollTo({
+      top : top,
+      behavior : "smooth"
+    })
+  }
+
+  const slides = info.map((elem, idx) => <FormSlide key={idx*2} props={elem} classes={transit}></FormSlide>)
+
   return (
     <div className='form-section'>
       <div
         className="progress-bar"
         style={{ width: `${scrollPosition}%` }}
       ></div>
-      <SideBar info = {info}></SideBar>
+      <SideBar info = {info} handleScroll = {handleScroll}></SideBar>
       <div className={`form-section-content`} ref={componentRef}>
-          <FormSlide props = {idx+1} classes={transit}/>
-          <FormSlide props = {idx+1} classes={transit}/>
-          <FormSlide props = {idx+1} classes={transit}/>
-          <FormSlide props = {idx+1} classes={transit}/>
+          {slides}
         <div className='form-btn-group'>
           <button className='my-btn' disabled={disabledPrev} onClick={handlePrevClick}>Previous</button>
           <button className='my-btn' disabled={disabledNext} onClick={handleNextClick}>Next</button>
