@@ -6,8 +6,8 @@ function TopBar(props) {
   return (
     <div className='topbar'> 
         <div className='logo'>
-          <Image src={LOGO} style={{height:"10%", width:"10%"}}></Image>
-          <span style={{marginLeft:"1%", fontSize:"48px", fontWeight:"700", color:"#99BF14"}}>CMRIT PLACEMENT PORTAL</span>
+          <img src={LOGO} style={{height:"3.5rem", width:"3.5rem", alignItems:"center", justifyContent:"center"}}/>
+          <span style={{marginLeft:"1%", fontSize:"2.5rem", fontWeight:"700", color:"#99BF14"}}>CMRIT PLACEMENT PORTAL</span>
         </div>
     </div>
   )
