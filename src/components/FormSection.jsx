@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import SideBar from './SideBar'
 import FormSlide from './FormSlide'
+import info from '../assests/info/info'
 
 function FormSection() {
 
@@ -8,8 +9,8 @@ function FormSection() {
   const [transit, setTransit] = useState(null)
   const [disabledNext, setDisabledNext] = useState(false)
   const [disabledPrev, setDisabledPrev] = useState(true)
-  const componentRef = useRef(null);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const componentRef = useRef(null);
 
   useEffect(() => {
     const updateScrollPosition = () => {
@@ -61,7 +62,7 @@ function FormSection() {
         className="progress-bar"
         style={{ width: `${scrollPosition}%` }}
       ></div>
-      <SideBar></SideBar>
+      <SideBar info = {info}></SideBar>
       <div className={`form-section-content`} ref={componentRef}>
           <FormSlide props = {idx+1} classes={transit}/>
           <FormSlide props = {idx+1} classes={transit}/>

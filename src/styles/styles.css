@@ -104,6 +104,7 @@
   border-width: 0 2px 0 0;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.025);
   padding: 10rem 1rem 0 1rem;
+  overflow: hidden;
 }
 
 .next {
@@ -167,7 +168,7 @@
 .logo {
   display: flex;
   flex-direction: row;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .progress-bar {
@@ -179,25 +180,20 @@
 }
 
 .side-bar-content {
-  height: 7%;
+  height: auto;
   width: 100%;
   background-color: #DCDCDC;
-  margin: 1rem 0 1rem 0;
+  margin: 1rem 0 0rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 1rem;
-  transition: all 0.5s ease;
+  transition: all 0.25s ease;
   padding: 1rem;
 }
 
-.side-bar-content:hover {
-  background-color: #99BF14;
-  color: #F1F1F1;
-}
-
 .label {
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.25s ease-in-out;
 }
 
 .label-1 {
@@ -206,6 +202,43 @@
 
 .label-2 {
   transform: translateX(2rem);
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #DCDCDC;
+  margin-bottom: 1rem;
+}
+
+.side-bar-elem {
+  margin: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.side-bar-elem:hover {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.something {
+  width: 100%;
+}
+.something:hover .side-bar-content {
+  cursor: pointer;
+  margin: 1rem 0 0 0;
+  border-radius: 1rem 1rem 0 0;
+  background-color: #99BF14;
+  color: #F1F1F1;
+  font-weight: 800;
+}
+.something:hover .content {
+  padding-bottom: 1rem;
+  border-radius: 0 0 1rem 1rem;
 }
 
 /*# sourceMappingURL=styles.css.map */
