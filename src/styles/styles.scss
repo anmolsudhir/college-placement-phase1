@@ -80,7 +80,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 3rem 0 3rem 0;
 }
 
@@ -118,58 +118,10 @@
     overflow: hidden;
 }
 
-.next{
-    animation: next1-ani 0.15s ease-in-out, next2-ani 0.15s 0.15s ease-in-out;
-}
-
-.prev{
-    animation: prev1-ani 0.15s ease-in-out, prev2-ani 0.15s 0.15s ease-in-out;
-}
-
-@keyframes next1-ani {
-    from{
-        transform: translateX(0%);
-    }
-
-    to{
-        transform: translateX(-100%);
-    }
-}
-
-@keyframes next2-ani {
-    from {
-            transform: translateX(100%);
-    }
-    
-    to {
-            transform: translateX(0%);
-    }
-}
-
-@keyframes prev1-ani {
-    from {
-        transform: translateX(0%);
-    }
-
-    to {
-        transform: translateX(100%);
-    }
-}
-
-@keyframes prev2-ani {
-    from {
-        transform: translateX(-100%);
-    }
-
-    to {
-        transform: translateX(0%);
-    }
-}
-
 .my-btn{
     height : 3rem;
     width: 6rem;
-    background-color: #99BF14;
+    background-color: #b8cd64;
     border: none;
     font-size: 1rem;
     color: white;
@@ -178,7 +130,7 @@
 }
 
 .my-btn:hover{
-    background-color: #7f9d13;
+    background-color: #99BF14;
     transform: translateY(-10%);
 }
 
@@ -223,7 +175,7 @@
 }
 
 .label-2 {
-    transform: translateX(2rem);
+    transform: translateX(1.5rem);
 }
 
 .content{
@@ -256,8 +208,8 @@
             cursor: pointer;
             margin: 1rem 0 0 0;
             border-radius: 1rem 1rem 0 0;
-            background-color: #99BF14;
-            color: #F1F1F1;
+            background-color: #c5d77f;
+            color: #969696;
             font-weight: 800;
         }
         .content{
@@ -306,7 +258,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    //padding: 5rem;
 }
 
 .elem{
@@ -327,15 +278,15 @@
     //transition: all 0.15s ease-in-out;
 }
 
+.label-inp {
+    transition: all 0.25s ease;
+}
+
 .elem:hover{
     cursor: pointer;
-    .label{ font-weight: 400;}
+    .label-inp{ font-weight: 400;}
 }
 
-.label:hover{
+.label-inp:hover{
     cursor: pointer;
-}
-
-.label{
-    transition: all 0.1s ease;
 }

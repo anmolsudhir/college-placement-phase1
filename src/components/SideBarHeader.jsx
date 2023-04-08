@@ -24,7 +24,7 @@ function SideBarHeader({label, content, handleScroll, idx}) {
     <div className='side-bar-container' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <div className='side-bar-content'>
             <span className={`label ${transit}` }>{label}</span>
-            {!hover && <img src={EXPAND} alt='expand img'></img>}
+            {!hover && <img src={EXPAND} alt='expand img' style={{width:"1.5rem"}}></img>}
         </div>
         <div className='content'>
             {hover && cont}

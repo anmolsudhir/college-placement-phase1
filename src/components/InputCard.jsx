@@ -8,7 +8,7 @@ function InputCard({elem}) {
 
   return (
     <div className='elem'>
-        {<label className='label' for={elem.label}>{elem.label}:</label>}
+        {<label className='label-inp' htmlFor={elem.label}>{elem.label}:</label>}
         <input onFocus={handleClick} placeholder={elem.label} className='my-inp' name={elem.label} id={elem.label} label={elem.label}/>
     </div>
   )

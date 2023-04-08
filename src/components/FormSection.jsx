@@ -4,11 +4,7 @@ import FormSlide from './FormSlide'
 import info from '../assests/info/info'
 
 function FormSection() {
-
-  const [idx, setIdx] = useState(0)
   const [transit, setTransit] = useState(null)
-  const [disabledNext, setDisabledNext] = useState(false)
-  const [disabledPrev, setDisabledPrev] = useState(true)
   const [scrollPosition, setScrollPosition] = useState(0);
   const componentRef = useRef(null);
 
@@ -27,26 +23,6 @@ function FormSection() {
       componentRef.current.removeEventListener("scroll", updateScrollPosition);
     };
   }, []);
-
-  const handlePrevClick = () => {
-    setTransit("prev")
-    if(idx - 1 >= 0){
-      setDisabledNext(false)
-      setIdx(idx-1)
-    }
-    if(idx) setDisabledPrev(true)
-    console.log(idx)
-  }
-
-  const handleNextClick = () => {
-    setTransit("next")
-    if(idx + 1 < 2){
-      setDisabledPrev(false)
-      setIdx(idx+1)
-    }
-    if(!idx) setDisabledNext(true)
-    console.log(idx)
-  }
 
   const handleScroll = (top) => {
     componentRef.current.scrollTo({
@@ -67,8 +43,7 @@ function FormSection() {
       <div className={`form-section-content`} ref={componentRef}>
           {slides}
         <div className='form-btn-group'>
-          <button className='my-btn' disabled={disabledPrev} onClick={handlePrevClick}>Previous</button>
-          <button className='my-btn' disabled={disabledNext} onClick={handleNextClick}>Next</button>
+          <button className='my-btn'>Verify</button>
         </div>
       </div>
     </div>
