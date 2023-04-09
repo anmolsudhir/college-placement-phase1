@@ -7,6 +7,18 @@ function FormSection() {
   const [transit, setTransit] = useState(null)
   const [scrollPosition, setScrollPosition] = useState(0);
   const componentRef = useRef(null);
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const ref4 = useRef(null);
+  const ref5 = useRef(null);
+
+  let refv = []
+  refv.push(ref1)
+  refv.push(ref2)
+  refv.push(ref3)
+  refv.push(ref4)
+  refv.push(ref5)
 
   useEffect(() => {
     const updateScrollPosition = () => {
@@ -24,14 +36,18 @@ function FormSection() {
     };
   }, []);
 
-  const handleScroll = (top) => {
+  function handleScroll(slideIdx, cardIdx) {
     componentRef.current.scrollTo({
-      top : top,
+      top : (refv[slideIdx].current.children[1].children[cardIdx].offsetTop - 110),
       behavior : "smooth"
     })
+    setTimeout(() => 
+      refv[slideIdx].current.children[1].children[cardIdx].children[1].focus(), 
+      1000
+    ) 
   }
 
-  const slides = info.map((elem, idx) => <FormSlide key={idx*2} props={elem} classes={transit}></FormSlide>)
+  const slides = info.map((elem, idx) => <FormSlide refv={refv} idx={idx} key={idx*2} props={elem} classes={transit}></FormSlide>)
 
   return (
     <div className='form-section'>
