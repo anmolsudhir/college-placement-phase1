@@ -2,12 +2,12 @@ import React from 'react'
 import TopBar from '../components/TopBar';
 import FormSection from '../components/FormSection'
 
-function Form() {
+function Form({theme, toggleTheme}) {
 
   return (
     <div className='containers'>
-      <TopBar/>
-      <FormSection/>
+      <TopBar theme={theme} toggleTheme={toggleTheme}/>
+      <FormSection theme={theme}/>
     </div>
   )
 }

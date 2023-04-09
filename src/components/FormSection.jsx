@@ -3,7 +3,7 @@ import SideBar from './SideBar'
 import FormSlide from './FormSlide'
 import info from '../assests/info/info'
 
-function FormSection() {
+function FormSection({theme}) {
   const [transit, setTransit] = useState(null)
   const [scrollPosition, setScrollPosition] = useState(0);
   const componentRef = useRef(null);
@@ -37,12 +37,13 @@ function FormSection() {
   }, []);
 
   function handleScroll(slideIdx, cardIdx) {
+    const child = refv[slideIdx].current.children[1].children[cardIdx]
     componentRef.current.scrollTo({
-      top : (refv[slideIdx].current.children[1].children[cardIdx].offsetTop - 110),
+      top : (child.offsetTop - 110),
       behavior : "smooth"
     })
     setTimeout(() => 
-      refv[slideIdx].current.children[1].children[cardIdx].children[1].focus(), 
+      child.children[1].focus(), 
       1000
     ) 
   }
@@ -55,7 +56,7 @@ function FormSection() {
         className="progress-bar"
         style={{ width: `${scrollPosition}%` }}
       ></div>
-      <SideBar info = {info} handleScroll = {handleScroll}></SideBar>
+      <SideBar theme={theme} info = {info} handleScroll = {handleScroll}></SideBar>
       <div className={`form-section-content`} ref={componentRef}>
           {slides}
         <div className='form-btn-group'>

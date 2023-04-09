@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
-import EXPAND from '../assests/images/expand_more_FILL0_wght100_GRAD-25_opsz48.svg'
+import EXPAND_LIGHT from '../assests/images/expand_more_FILL0_wght100_GRAD-25_opsz48.svg'
+import EXPAND_DARK from '../assests/images/down-arrow.png'
 
-function SideBarHeader({label, content, handleScroll, idx}) {
+function SideBarHeader({theme, label, content, handleScroll, idx}) {
     const [cardIdx, setCardIdx] = useState(0)
     const [hover, setHover] = useState(false)
     const [transit, setTransit] = useState(null)
@@ -24,7 +25,7 @@ function SideBarHeader({label, content, handleScroll, idx}) {
     <div className='side-bar-container' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <div className='side-bar-content'>
             <span className={`label ${transit}` }>{label}</span>
-            {!hover && <img src={EXPAND} alt='expand img' style={{width:"1.5rem"}}></img>}
+            {!hover && <img src={theme === 'light' ? EXPAND_LIGHT : EXPAND_DARK} alt='expand img' style={{width:"1.5rem"}}></img>}
         </div>
         <div className='content'>
             {hover && cont}
