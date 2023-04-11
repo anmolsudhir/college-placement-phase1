@@ -3,7 +3,6 @@ import EXPAND_LIGHT from '../assests/images/expand_more_FILL0_wght100_GRAD-25_op
 import EXPAND_DARK from '../assests/images/down-arrow.png'
 
 function SideBarHeader({theme, label, content, handleScroll, idx}) {
-    const [cardIdx, setCardIdx] = useState(0)
     const [hover, setHover] = useState(false)
     const [transit, setTransit] = useState(null)
     const handleMouseEnter = () => {

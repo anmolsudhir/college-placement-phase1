@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import InputCard from './InputCard'
 
 function FormSlide({props, classes, refv, idx}) {

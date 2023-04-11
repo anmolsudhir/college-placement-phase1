@@ -7,11 +7,11 @@ function TopBar({theme, toggleTheme}) {
   return (
     <div className='topbar'> 
         <div className='logo'>
-          <img src={LOGO} style={{height:"3.5rem", width:"3.5rem", alignItems:"center", justifyContent:"center"}}/>
-          <span style={{marginLeft:"1%", fontSize:"2.5rem", fontWeight:"700", color:"#99BF14"}}>CMRIT PLACEMENT PORTAL</span>
+          <img className='logo-img' alt='logo' src={LOGO} style={{height:"3.5rem", width:"3.5rem", alignItems:"center", justifyContent:"center"}}/>
+          <span className='logo-text' >CMRIT PLACEMENT PORTAL</span>
         </div>
         <div className={`theme-btn ${theme}-back`} onClick={toggleTheme}>
-          <img style={{width:"1.25rem", }} src={theme === 'light' ? DARK : LIGHT}/>
+          <img style={{width:"100%", padding:"0.75rem"}} alt='button theme' src={theme === 'light' ? DARK : LIGHT}/>
         </div>
     </div>
   )
