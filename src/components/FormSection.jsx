@@ -4,7 +4,6 @@ import FormSlide from './FormSlide'
 import info from '../assests/info/info'
 
 function FormSection({theme}) {
-  const [transit, setTransit] = useState(null)
   const [scrollPosition, setScrollPosition] = useState(0);
   const componentRef = useRef(null);
   const ref1 = useRef(null);
@@ -31,8 +30,9 @@ function FormSection({theme}) {
     };
 
     componentRef.current.addEventListener("scroll", updateScrollPosition);
+    let temp = componentRef
     return () => {
-      componentRef.current.removeEventListener("scroll", updateScrollPosition);
+      temp.current.removeEventListener("scroll", updateScrollPosition);
     };
   }, []);
 
@@ -48,7 +48,7 @@ function FormSection({theme}) {
     ) 
   }
 
-  const slides = info.map((elem, idx) => <FormSlide refv={refv} idx={idx} key={idx*2} props={elem} classes={transit}></FormSlide>)
+  const slides = info.map((elem, idx) => <FormSlide refv={refv} idx={idx} key={idx*2} props={elem}></FormSlide>)
 
   return (
     <div className='form-section'>

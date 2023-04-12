@@ -2,6 +2,7 @@ import React from 'react'
 import LOGO from '../assests/images/logo-cmr-cropped-removebg-preview.png'
 import LIGHT from '../assests/images/brightness.png'
 import DARK from '../assests/images/sleep-mode.png'
+import MENU from '../assests/images/menu-bar.png'
 
 function TopBar({theme, toggleTheme}) {
   return (
@@ -11,7 +12,10 @@ function TopBar({theme, toggleTheme}) {
           <span className='logo-text' >CMRIT PLACEMENT PORTAL</span>
         </div>
         <div className={`theme-btn ${theme}-back`} onClick={toggleTheme}>
-          <img style={{width:"100%", padding:"0.75rem"}} alt='button theme' src={theme === 'light' ? DARK : LIGHT}/>
+          <img className={`theme-img`} alt='button theme' src={theme === 'light' ? DARK : LIGHT}/>
+        </div>
+        <div className={`side-bar-btn ${theme}-back-menu`}>
+          <img className={`theme-img`} alt='button theme' src={MENU}/>
         </div>
     </div>
   )
