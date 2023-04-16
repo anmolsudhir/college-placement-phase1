@@ -6,23 +6,27 @@ const info = [
                       [
                         {
                           label : "USN",
-                          type : "alnum"
+                          type : "text",
+                          regex : /\d[A-Z]{2}[0-9]{2}[A-Z]{2}[A-Z]?[0-9]{3}/
                         },
                         {
                           label : "Mobile Number",
-                          type : "number"
+                          type : "tel",
+                          regex : /[0-9]{10}/
                         },
                         {
                           label : "Whatsapp Number",
-                          type : "number"
+                          type : "tel",
+                          regex : /[0-9]{10}/
                         },
                         {
                           label : "Gender",
-                          type : "alpha"
+                          type : "radio",
+                          list : ["Male", "Female", "Other"]
                         },
                         {
                           label : "Date of Birth",
-                          type : "special"
+                          type : "date"
                         }
                       ]
                     }
@@ -34,23 +38,26 @@ const info = [
                       [
                         {
                           label : "Personal Mail",
-                          type : "alnum"
+                          type : "pemail",
+                          regex : /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/
                         },
                         {
                           label : "College Mail",
-                          type : "alnum"
+                          type : "cemail",
+                          regex : /[a-z]{4}[0-9]{2}[a-z]{2}/
                         },
                         {
                           label : "Parents Phone",
-                          type : "number"
+                          type : "tel",
+                          regex : /[0-9]{10}/
                         },
                         {
                           label : "Communication Address",
-                          type : "alnum"
+                          type : "addr"
                         },
                         {
                           label : "Permanent Address",
-                          type : "alnum"
+                          type : "addr"
                         }
                       ]
                     }
@@ -62,27 +69,31 @@ const info = [
                       [
                         {
                           label : "Pursuing Degree",
-                          type : "alnum"
+                          type : "select",
+                          list : ['BTech','MBA', 'MTech']
                         },
                         {
                           label : "Department",
-                          type : "alnum"
+                          type : "select",
+                          list : ['CSE','ISE', "AI"]
                         },
                         {
                           label : "Year of Joining",
-                          type : "number"
+                          type : "select",
+                          list : ['2020','2021', '2022', '2023']
                         },
                         {
                           label : "Type of Entry",
-                          type : "alnum"
+                          type : "select",
+                          list : ['Regular','Lateral']
                         },
                         {
                           label : "10th Result",
-                          type : "alnum"
+                          type : "res"
                         },
                         {
                           label : "12th Result",
-                          type : "alnum"
+                          type : "res"
                         },
                         // {
                         //   label : "PG Specialization",
@@ -114,15 +125,16 @@ const info = [
                       [
                         {
                           label : "Career choice",
-                          type : "alnum"
+                          type : "text"
                         },
                         {
                           label : "Are you Interested in CMRIT Placement",
-                          type : "alnum"
+                          type : "radio",
+                          list : ["Yes", "No"]
                         },
                         {
                           label : "Type of job interested in",
-                          type : "alnum"
+                          type : "text"
                         }
                       ]
                     },
@@ -134,23 +146,26 @@ const info = [
                       [
                         {
                           label : "Current Backlog",
-                          type : "alnum"
+                          type : "number"
                         },
                         {
-                          label : "Backlog histor",
-                          type : "alnum"
+                          label : "Backlog history",
+                          type : "number"
                         },
                         {
                           label : "Year Back",
-                          type : "alnum"
+                          type : "radio",
+                          list : ["Yes", "No"]
                         },
                         {
                           label : "Gap in Career",
-                          type : "alnum"
+                          type : "radio",
+                          list : ["Yes", "No"]
                         },
                         {
                           label : "Gap at CMRIT",
-                          type : "alnum"
+                          type : "radio",
+                          list : ["Yes", "No"]
                         }
                       ]
                     }

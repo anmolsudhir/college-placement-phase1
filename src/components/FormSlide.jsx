@@ -2,7 +2,7 @@ import React from 'react'
 import InputCard from './InputCard'
 
 function FormSlide({props, refv, idx}) {
-  let elems = props[0].content.map((elem) => <InputCard key={`${elem.label}${idx}`} elem={elem}></InputCard>)
+  let elems = props[0].content.map((elem) => <InputCard key={`${elem.label}${idx}`} element={elem}></InputCard>)
 
   return (
     <div ref={refv[idx]} className={`form-slide`}>

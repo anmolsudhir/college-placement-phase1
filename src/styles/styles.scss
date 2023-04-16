@@ -15,6 +15,13 @@
 
 #light .containers .form-section .form-section-content .form-slide .inputs .elem .my-inp{
     background-color: #c5d77f;
+    color: #777777;
+}
+
+#light .containers .form-section .form-section-content .form-slide .inputs .elem .my-inp:focus {
+    border: none;
+    outline: #b6c37e solid 1px;
+    box-shadow: 0 0 5px 1px rgba($color: #5f7117, $alpha: 0.1);
 }
 
 #light .containers .side-bar .side-bar-container .side-bar-content{
@@ -66,6 +73,12 @@
 #dark .containers .form-section .form-section-content .form-slide .inputs .elem .my-inp::placeholder {
     color: #999999;
     font-weight: 200;
+}
+
+#dark .containers .form-section .form-section-content .form-slide .inputs .elem .my-inp:focus {
+    border: none;
+    outline: #526317 solid 1px;
+    box-shadow: 0 0 5px 1px rgba($color: #3e4b10, $alpha: 0.3);
 }
 
 #dark .containers .side-bar .side-bar-container .side-bar-content {
@@ -313,18 +326,11 @@
     border-width: 0.1rem 0.1rem 0.1rem 0.1rem;
     margin: 1rem 0 1rem 0;
     width: 100%;
-    //font-size: 1rem;
     font-size: clamp(1rem, 2vw, 1rem);
     border: none;
     padding: 0.5rem;
-    //font-weight: 500;
+    border-radius: 0.5rem;
     transition: all 0.15s ease;
-}
-
-.my-inp:focus{
-    border-width: 0 0 1px 0;
-    border: none;
-    outline: none;
 }
 
 .header{
@@ -372,7 +378,10 @@
 
 .elem:hover{
     cursor: pointer;
-    .label-inp{ font-weight: 400;}
+    .label-inp{ 
+        font-weight: 400;
+        transform: translateX(0.25rem);
+    }
 }
 
 .label-inp:hover{
@@ -445,7 +454,7 @@
     }
 
     .my-inp{
-        margin: 0;
+        margin: 0.3rem 0 0 0;
     }
 }
 
@@ -468,4 +477,16 @@
         margin: 0.5rem;
         padding: 0.5rem;
     }
+}
+
+.my-inp:active{
+    outline: none;
+}
+
+input[type="date"]{
+    background-color: #000000;
+}
+
+::-webkit-calendar-picker-indicator{
+    cursor: pointer;
 }

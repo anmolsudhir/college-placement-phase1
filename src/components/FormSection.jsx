@@ -42,10 +42,10 @@ function FormSection({theme}) {
       top : (child.offsetTop - 110),
       behavior : "smooth"
     })
-    setTimeout(() => 
-      child.children[1].focus(), 
-      1000
-    ) 
+    // setTimeout(() => 
+    //   child.children[1].focus(), 
+    //   1000
+    // ) 
   }
 
   const slides = info.map((elem, idx) => <FormSlide refv={refv} idx={idx} key={idx*2} props={elem}></FormSlide>)

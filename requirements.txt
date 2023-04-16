@@ -1,2 +1,3 @@
-npm i -y
-npm i react-bootstrap bootstrap sass
+npm i
+npm i sass
+npm install @mui/material @emotion/react @emotion/styled
