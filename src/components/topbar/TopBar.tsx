@@ -1,27 +1,19 @@
-import styled from 'styled-components'
-
-const StyledDiv = styled.div`
-    --dark : #000;
-    --light : #fff;
-    position: absolute;
-    display: flex;
-    top: 0;
-    left: 0;
-    align-items : center;
-    justify-content: space-between;
-    background-color: ${(props : any) => props.$theme === 'light' ? "var(--light)": 'var(--dark)'};
-    width: 100%;
-    height: 6rem;
-    transition: all 0.25s ease;
-`;
+import {LogoContainer, LogoText, MenuBtn, ThemeBtn, TopBarContainer} from './styles'
+import Image from 'next/image';
 
 export default function TopBar({theme, handleTheme }){
-    // const css = theme === 'dark' ? stylesDark : styles; 
     return (            
-        <StyledDiv $theme={theme}>
-            <span>Hey</span>
-            <button onClick={()=> {handleTheme()}}>Click</button>
-            <span>Hi</span>
-        </StyledDiv>
+        <TopBarContainer $theme={theme}>
+            <LogoContainer>
+                <Image style={{padding:"0.5rem"}} src='/logo-cmr-cropped-removebg-preview.png' alt='logo' width={50} height={50}/>
+                <LogoText>CMRIT PLACEMENT PORTAL</LogoText>
+            </LogoContainer>
+            <ThemeBtn $theme={theme} onClick={handleTheme}>
+                <Image style={{padding:"0.5rem"}} src={theme === 'dark' ? '/brightness.png' : '/sleep-mode.png'} alt='logo' width={22} height={22}/>
+            </ThemeBtn>
+            <MenuBtn $theme={theme}>
+                <Image style={{padding:"0.5rem"}} src='/menu-bar.png' alt='logo' width={22} height={22}/>
+            </MenuBtn>
+        </TopBarContainer>
     );
 }
