@@ -1,16 +1,7 @@
 import { useState } from 'react'
 import TopBar from '@/components/topbar/TopBar'
-import styled from 'styled-components'
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: ${(props : any) => props.$theme === 'light' ? '#F1F1F1' : '#0f0f0f'};
-`
+import FormSection from '@/components/formsection/FormSection'
+import { Container } from './styles'
 
 export default function Form (){
 
@@ -22,5 +13,6 @@ export default function Form (){
 
   return  <Container $theme={theme}>
             <TopBar handleTheme={handleTheme} theme={theme}/>
+            <FormSection theme={theme}/>
           </Container>
 }
