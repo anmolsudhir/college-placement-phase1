@@ -9,4 +9,11 @@ export const FormSectionContentDiv = styled.div`
     align-items: center;
     overflow-x: hidden;
     padding: 7rem 4rem 0rem 4rem;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+
+    @media screen and (max-width:720px){
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 `

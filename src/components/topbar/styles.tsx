@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const TopBarContainer = styled.div`
     --dark : rgba(50, 50, 50, 0.1);
     --light : rgba(220, 220, 220, 0.1);
-    z-index: 1;
+    z-index: 100;
     position: absolute;
     top:0;
     width: 100%;
@@ -20,15 +20,15 @@ export const TopBarContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     box-sizing: inherit;
 `
 export const ThemeBtn = styled.div`
-    width: 3rem;
-    height: 55%;
+    width: clamp(3rem, 3rem + 0vh , 3rem);
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,23 +37,28 @@ export const ThemeBtn = styled.div`
     border-radius: 0.5rem;
     box-sizing: inherit;
     background-color: ${(props : any) => props.$theme === 'light' ? 'rgba(220, 220, 220, 1)' : 'rgba(28, 28, 28, 1)'};
-    box-shadow: 0 0 0.5rem 0.5rem ${(props : any) => props.$theme === 'light' ? 'rgba(47, 47, 47, 0.15)' : 'rgba(0, 0, 0, 0.2)'};
+    box-shadow: 0 0 1.5rem 0.5rem ${(props : any) => props.$theme === 'light' ? 'rgba(47, 47, 47, 0.25)' : 'rgba(0, 0, 0, 0.2)'};
+    transition: transform 0.25s ease;
     &:hover{    
         transform: ${(props : any) => props.$theme === 'light' ? `rotate(45deg)` : `rotate(-45deg)`};
     }
 
     @media screen and (max-width : 720px){
+        &:hover{    
+            transform: none;
+        }
+        margin : 0.5rem 0.5rem;
         height:auto;
     }
 
 `
 
 export const LogoText = styled.span`
+    user-select: none;
     margin-left: 1%;
-    font-size: 4rem;
     color:#99BF14;
     font-weight: 500;
-    font-size: clamp(0.7rem, 2.5rem + 0vw, 2.5rem);
+    font-size: clamp(0.1rem, 2.5rem + 0vw, 2.5rem);
     @media screen and (max-width : 720px){
         display: none;
     }
@@ -70,9 +75,10 @@ export const MenuBtn = styled.div`
     border-radius: 0.5rem;
     box-sizing: inherit;
     background-color: ${(props : any) => props.$theme === 'light' ? 'rgba(220, 220, 220, 1)' : 'rgba(28, 28, 28, 1)'};
-    box-shadow: 0 0 0.5rem 0.5rem ${(props : any) => props.$theme === 'light' ? 'rgba(47, 47, 47, 0.15)' : 'rgba(0, 0, 0, 0.2)'};
+    box-shadow: 0 0 1.5rem 0.5rem ${(props : any) => props.$theme === 'light' ? 'rgba(47, 47, 47, 0.25)' : 'rgba(0, 0, 0, 0.2)'};
     @media screen and (max-width : 720px){
         display: flex;
-        height: auto;
+        margin : 0.5rem 1rem;
+        height:auto;
     }
 `
