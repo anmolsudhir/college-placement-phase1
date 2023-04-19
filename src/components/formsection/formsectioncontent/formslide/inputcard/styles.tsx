@@ -51,15 +51,16 @@ export const InfoDiv = styled.div`
     align-items: flex-start;
     justify-content: flex-end;
     transition: all 0.15s ease;
-    backdrop-filter : blur(100px);
-    border-radius: 0.5rem;
+    backdrop-filter : blur(50px);
+    border-radius: 1rem;
     box-sizing: inherit;
     ${props => props.$active ? `
+        right : 0;
+        top : 0;
         box-shadow: 0 0 0.35rem 0.05rem rgba(0, 0, 0, 0.1);
         width : 85%;
-        //width : fit-content;
         padding : 1rem;
-        background-color : rgba(255, 255, 255, 0.5);
+        background-color : rgba(255, 255, 255, 0.25);
     ` : `
         padding : 0;
     `}
@@ -73,7 +74,7 @@ export const InfoText = styled.div`
     position: relative;
     width : 100%;
     height: 100%;
-    color: #6c6c6c;
+    color: ${props => props.$theme === 'light' ? '#6c6c6c' : '#2b2b2b'};
     font-weight: 100;
     padding: 0 0.5rem 0 0;
     box-sizing: inherit;
