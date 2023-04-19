@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const InputCardElem = styled.div`
+    position: relative;
     margin: 1rem;
     display: flex;
     flex-direction: column;
@@ -35,6 +36,49 @@ export const InputLabel = styled.div`
 
     @media screen and (max-width : 720px){
         font-size: clamp(1rem, 5vw, 2rem);
+    }
+`
+
+
+export const InfoDiv = styled.div`
+    position : absolute;
+    z-index: 10;
+    display: flex;
+    right : 1rem;
+    top : 1rem;
+    padding: 0.25rem;
+    cursor : default;
+    align-items: flex-start;
+    justify-content: flex-end;
+    transition: all 0.15s ease;
+    backdrop-filter : blur(100px);
+    border-radius: 0.5rem;
+    box-sizing: inherit;
+    ${props => props.$active ? `
+        box-shadow: 0 0 0.35rem 0.05rem rgba(0, 0, 0, 0.1);
+        width : 85%;
+        //width : fit-content;
+        padding : 1rem;
+        background-color : rgba(255, 255, 255, 0.5);
+    ` : `
+        padding : 0;
+    `}
+`
+
+export const InfoText = styled.div`
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    position: relative;
+    width : 100%;
+    height: 100%;
+    color: #6c6c6c;
+    font-weight: 100;
+    padding: 0 0.5rem 0 0;
+    box-sizing: inherit;
+    @media screen and (max-width:720px){
+        font-weight: 300;
     }
 `
 
