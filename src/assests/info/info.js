@@ -7,6 +7,7 @@ const info = [
                         {
                           label : "Name",
                           type : "text",
+                          regex : /[^a-z]/,
                           info : "Write Full Name in CAPITAL letters with spaces between first name and last name and it must be as per 10th marks card"
                         },
                         {

@@ -38,7 +38,7 @@ export const ThemeBtn = styled.div`
     box-sizing: inherit;
     background-color: ${(props : any) => props.$theme === 'light' ? 'rgba(220, 220, 220, 1)' : 'rgba(28, 28, 28, 1)'};
     box-shadow: 0 0 1.5rem 0.5rem ${(props : any) => props.$theme === 'light' ? 'rgba(47, 47, 47, 0.25)' : 'rgba(0, 0, 0, 0.2)'};
-    transition: transform 0.25s ease;
+    transition: all 0.25s ease;
     &:hover{    
         transform: ${(props : any) => props.$theme === 'light' ? `rotate(45deg)` : `rotate(-45deg)`};
     }

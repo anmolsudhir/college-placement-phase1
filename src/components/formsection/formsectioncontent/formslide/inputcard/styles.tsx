@@ -17,7 +17,7 @@ export const InputCardElem = styled.div`
     transition: all 0.15s ease;
     box-sizing: inherit;
     &:hover{
-        cursor: pointer;
+        //cursor: pointer;
         .label{
             cursor: pointer;
             font-weight: 500;

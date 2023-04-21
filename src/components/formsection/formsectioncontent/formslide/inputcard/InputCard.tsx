@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { InfoDiv, InfoText, Input, InputCardElem, InputLabel } from "./styles"
 import Image from "next/image"
+import Text from "@/components/inputs/text/Text"
+import TeleInput from "@/components/inputs/tel/TeleInp"
+import Radio from "@/components/inputs/radio/Radio"
 
 
 function InputCard({theme, element}) {
@@ -10,12 +13,13 @@ function InputCard({theme, element}) {
 
   return (
     <InputCardElem onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} $theme={theme}>
-      < InputLabel $theme={theme} className="label">{element.label}</InputLabel>
       {hover && <InfoDiv $theme={theme} onClick={() => setActive(!active)} onMouseLeave={() => setActive(false)} $active={active}>
         {active && <InfoText $theme={theme}>{element.info}</InfoText>}
         <Image style={{cursor : "pointer"}} src={theme === 'light' ? '/information-button-dark.png' :'/information-button.png'} alt="info" width={15} height={15}/>
       </InfoDiv>}
-      <Input onChange={(e) => {if(e.target.value.match(element.regex)) setValid(true); else setValid(false)}} $theme={theme} $type={element.type} $placeholder={element.label}/>
+      {/* <Text theme={theme} element={element}/> */}
+      {/* <TeleInput theme={theme} element={element} ></TeleInput> */}
+      <Radio theme={theme} element={element}></Radio>
     </InputCardElem>
   )
 }
