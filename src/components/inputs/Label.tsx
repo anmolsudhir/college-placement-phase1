@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Label = styled.label`
+export const Label = styled.label.attrs({className : 'label'})`
     user-select: none;
     font-size: clamp(1rem, 4vw, 1rem);
     font-weight: 350;

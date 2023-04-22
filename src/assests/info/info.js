@@ -49,13 +49,13 @@ const info = [
                       [
                         {
                           label : "Personal Mail",
-                          type : "pemail",
+                          type : "mail",
                           regex : /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
                           info : "Enter your college e-mail ID. It must be of form branch.usn.name@gmail.com"
                         },
                         {
                           label : "College Mail",
-                          type : "cemail",
+                          type : "mail",
                           regex : /[a-z]{4}[0-9]{2}[a-z]{2}/,
                           info : "Enter your personal e-mail ID. (Ex ansu20cs@cmrit.ac.in)"
                         },
@@ -103,7 +103,7 @@ const info = [
                         },
                         {
                           label : "Type of Entry",
-                          type : "select",
+                          type : "radio",
                           list : ['Regular','Lateral'],
                           info : "Select your type of entry"
                         },

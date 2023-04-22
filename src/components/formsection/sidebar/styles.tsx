@@ -15,7 +15,7 @@ export const SideBarContainer = styled.div`
     border-width: 0 2px 0 0;
     box-shadow: ${(props : any) => props.$theme === 'light' ? '0 0 5px 5px rgba(0, 0, 0, 0.025)' : '0 0 5px 5px rgba(0, 0, 0, 0.05)'};
     padding: 8rem 1rem 0 1rem;
-    overflow: scroll;
+    overflow: auto;
     box-sizing: border-box;
     background-color: ${(props : any) => props.$theme === 'light' ? '#f1f1f1' : '#0f0f0f'};
     @media screen and (max-width : 720px) {
@@ -51,30 +51,6 @@ export const SideBarContainer = styled.div`
         `}
     }
 `
-
-export const SideBarElem = styled.div`
-    user-select: none;
-    margin: 0.5rem 0;
-    width: 100%;
-    box-sizing: inherit;
-
-    &:hover{
-        .side-bar-content {
-            cursor: pointer;
-            border-radius: 1rem 1rem 0 0;
-            ${props => props.$theme === 'light' ? `
-                background-color: #c5d77f;
-                font-weight: 700;
-                color: #5d5d5d;
-            ` : `
-                background-color: #7d951d;
-                font-weight: 700;
-                color: #c4c4c4;
-            `}
-        }
-    }
-    `
-
 export const SideBarHeader = styled.div`
     user-select: none;
     height: 3rem;
@@ -102,6 +78,29 @@ export const SideBarHeader = styled.div`
         font-size : 1rem
     }
 `
+
+export const SideBarElem = styled.div`
+    user-select: none;
+    margin: 0.5rem 0;
+    width: 100%;
+    box-sizing: inherit;
+
+    &:hover{
+        ${SideBarHeader} {
+            cursor: pointer;
+            border-radius: 1rem 1rem 0 0;
+            ${props => props.$theme === 'light' ? `
+                background-color: #c5d77f;
+                font-weight: 700;
+                color: #5d5d5d;
+            ` : `
+                background-color: #7d951d;
+                font-weight: 700;
+                color: #c4c4c4;
+            `}
+        }
+    }
+    `
 
 export const ContentContainer = styled.div`
     transition: animation 0.25s ease;
@@ -161,7 +160,7 @@ export const Content = styled.div`
     }
 `
 
-export const Modal = styled.div`
+export const Modal = styled.div.attrs({draggable : true})`
     z-index: 98;
     position: absolute;
     top: 0;

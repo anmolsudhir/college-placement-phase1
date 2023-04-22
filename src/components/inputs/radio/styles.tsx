@@ -35,21 +35,22 @@ export const RadioLabel = styled.label`
   padding: 0.5rem 0.5rem;
   border-radius: 0.25rem;
   width: 100%;
-
-  input[type="radio"]:checked + & {
-    color: white;
-    background-color: ${props => props.$theme === 'light' ? 'rgb(161, 177, 95)' : 'rgb(125, 144, 41)'};
-  }
+  transition: all 0.25s ease;
 `
 
 export const RadioOption = styled.input.attrs(props => (
     {
         type : 'radio',
-        id : props.$id,
+        value : props.name,
         name : props.$name
     }
 ))`
   opacity: 0;
   position: absolute;
   pointer-events: none;
+
+  &:checked + ${RadioLabel} {
+    color: white;
+    background: ${props => props.$theme === 'light' ? 'rgb(157, 175, 88)' : 'rgb(113, 130, 37)'};
+  }
 `

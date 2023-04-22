@@ -4,22 +4,63 @@ import Image from "next/image"
 import Text from "@/components/inputs/text/Text"
 import TeleInput from "@/components/inputs/tel/TeleInp"
 import Radio from "@/components/inputs/radio/Radio"
+import Date from "@/components/inputs/date/Date"
+import MailInput from "@/components/inputs/mail/Mail"
+import NumberInp from "@/components/inputs/number/Number"
+import Select from "@/components/inputs/select/Select"
+import Address from "@/components/inputs/address/Address"
 
 
 function InputCard({theme, element}) {
   const [active, setActive] = useState(false)
   const [hover, setHover] = useState(false)
-  const [valid, setValid] = useState(true)
+
+  const arr = [
+    {
+      type : 'text',
+      comp : <Text theme={theme} element={element}/>
+    },
+    {
+      type : 'tel',
+      comp : <TeleInput theme={theme} element={element} ></TeleInput>
+    },
+    {
+      type : 'radio',
+      comp : <Radio theme={theme} element={element}></Radio>
+    },
+    {
+      type : 'date',
+      comp : <Date element={element} theme={theme} />
+    },
+    {
+      type : 'mail',
+      comp : <MailInput theme={theme} element={element}></MailInput>
+    },
+    {
+      type : 'number',
+      comp : <NumberInp theme={theme} element={element}></NumberInp>
+    },
+    {
+      type : 'select',
+      comp : <Select theme={theme} element={element} />
+    },
+    {
+      type : 'res',
+      comp : <Text theme={theme} element={element}/>
+    },
+    {
+      type : 'addr',
+      comp : <Address theme={theme} element={element}></Address>
+    }
+  ]
 
   return (
     <InputCardElem onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} $theme={theme}>
-      {hover && <InfoDiv $theme={theme} onClick={() => setActive(!active)} onMouseLeave={() => setActive(false)} $active={active}>
+      {hover && <InfoDiv $theme={theme} onMouseDown={(e) => e.preventDefault()} onClick={() => setActive(!active)} onMouseLeave={() => setActive(false)} $active={active}>
         {active && <InfoText $theme={theme}>{element.info}</InfoText>}
         <Image style={{cursor : "pointer"}} src={theme === 'light' ? '/information-button-dark.png' :'/information-button.png'} alt="info" width={15} height={15}/>
       </InfoDiv>}
-      {/* <Text theme={theme} element={element}/> */}
-      {/* <TeleInput theme={theme} element={element} ></TeleInput> */}
-      <Radio theme={theme} element={element}></Radio>
+      {arr.find((e) => e.type === element.type) && arr.find((e) => e.type === element.type).comp}
     </InputCardElem>
   )
 }

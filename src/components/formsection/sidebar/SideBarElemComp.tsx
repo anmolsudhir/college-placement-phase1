@@ -21,8 +21,8 @@ export default function SideBarElemComp({theme, handleScroll, idx, label, conten
 
     return (
         <>
-        <SideBarElem onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} $theme={theme}>
-            <SideBarHeader  className='side-bar-content' $theme={theme}>
+        <SideBarElem onClick={() => (!hover && setHover(!hover))} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  $theme={theme}>
+            <SideBarHeader $theme={theme}>
                 {label}
                 {!hover && <Image style={{pointerEvents:'none'}} src={theme === 'light' ? '/expand_more_FILL0_wght100_GRAD-25_opsz48.svg' : '/down-arrow.png'} alt='arrow' width={20} height={20} ></Image>}
             </SideBarHeader>

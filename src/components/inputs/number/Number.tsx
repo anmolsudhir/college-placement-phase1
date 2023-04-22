@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { TextInput } from "./styles";
 import { Label } from "../Label";
+import { Input, InputDiv } from "./styles";
+import { useState } from "react";
 
-export default function Text({theme, element}){
+export default function NumberInp({theme, element}){
     const [isValid, setIsValid] = useState(true)
     const handleValidation = (e) => {
         if(e.target.value.match(element.regex))
@@ -13,8 +13,9 @@ export default function Text({theme, element}){
     return (
         <>
             <Label $theme={theme} className='label'>{element.label}</Label>
-            <TextInput $type={element.type} onChange={handleValidation} $isValid={isValid} $theme = {theme} $placeholder={element.label}/>
-            {!isValid && <div style={{color:"#FF851B"}}>Not Valid</div>}
+            <InputDiv>
+                <Input onChange={handleValidation} $type={element.type} $placeholder = {element.label} $theme={theme}></Input>
+            </InputDiv>
         </>
     )
 }
