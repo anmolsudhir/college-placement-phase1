@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TextInput } from "./styles";
 import { Label } from "../Label";
+import { Invalid } from "../Invalid";
 
 export default function Text({theme, element}){
     const [isValid, setIsValid] = useState(true)
@@ -14,7 +15,7 @@ export default function Text({theme, element}){
         <>
             <Label $theme={theme} className='label'>{element.label}</Label>
             <TextInput $type={element.type} onChange={handleValidation} $isValid={isValid} $theme = {theme} $placeholder={element.label}/>
-            {!isValid && <div style={{color:"#FF851B"}}>Not Valid</div>}
+            {!isValid && <Invalid $theme={theme}>Invalid Input. Please check with info given at the top right corner</Invalid>}
         </>
     )
 }

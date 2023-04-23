@@ -7,25 +7,25 @@ const info = [
                         {
                           label : "Name",
                           type : "text",
-                          regex : /[^a-z]/,
+                          regex : /^[A-Z]+\s[A-Z]+$/,
                           info : "Write Full Name in CAPITAL letters with spaces between first name and last name and it must be as per 10th marks card"
                         },
                         {
                           label : "USN",
                           type : "text",
-                          regex : /\d[A-Z]{2}[0-9]{2}[A-Z]{2}[A-Z]?[0-9]{3}/,
+                          regex : /^\d[A-Z]{2}[0-9]{2}[A-Z]{2}[A-Z]?[0-9]{3}$/,
                           info : "Write Full USN in CAPITAL letters. (Ex 1CR19CS001)"
                         },
                         {
                           label : "Mobile Number",
                           type : "tel",
-                          regex : /[0-9]{10}/,
+                          regex : /^[6-9][0-9]{9}$/,
                           info : "Do not enter +91, the mobile number must be 10 digits, check again after typing"
                         },
                         {
                           label : "Whatsapp Number",
                           type : "tel",
-                          regex : /[0-9]{10}/,
+                          regex : /^[6-9][0-9]{9}$/,
                           info : "Do not enter +91, the mobile number must be 10 digits, check again after typing"
                         },
                         {
@@ -56,13 +56,13 @@ const info = [
                         {
                           label : "College Mail",
                           type : "mail",
-                          regex : /[a-z]{4}[0-9]{2}[a-z]{2}/,
+                          regex : /^[a-z]{4}[0-9]{2}[a-z]{2}$/,
                           info : "Enter your personal e-mail ID. (Ex ansu20cs@cmrit.ac.in)"
                         },
                         {
                           label : "Parents Phone",
                           type : "tel",
-                          regex : /[0-9]{10}/,
+                          regex : /^[6-9][0-9]{9}$/,
                           info : "Do not enter +91, the mobile number must be 10 digits, check again after typing"
                         },
                         {

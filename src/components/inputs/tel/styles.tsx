@@ -10,7 +10,7 @@ export const InputDiv = styled.div`
 
 export const Phone = styled.div`
     border-width: 0.1rem 0.1rem 0.1rem 0.1rem;
-    margin: 2rem 0.5rem 1rem 0;
+    margin: 1rem 0.5rem 0rem 0;
     font-size: clamp(1rem, 2vw, 1rem);
     border: none;
     padding: 1rem;
@@ -26,7 +26,6 @@ export const Phone = styled.div`
     @media screen and (max-width:720px) {
         font-weight: 400;
         padding: 0.75rem;
-        margin: 1rem 0.25rem 1rem 0;
     }
 `
 
@@ -37,7 +36,7 @@ export const Input = styled.input.attrs(props => (
     }
 ))`
     border-width: 0.1rem 0.1rem 0.1rem 0.1rem;
-    margin: 2rem 0 1rem 0;
+    margin: 1rem 0 0 0;
     width: 100%;
     font-size: clamp(1rem, 2vw, 1rem);
     border: none;
@@ -45,10 +44,10 @@ export const Input = styled.input.attrs(props => (
     border-radius: 0.5rem;
     transition: all 0.15s ease;
     box-sizing: inherit;
-    background-color: ${props => props.$theme === 'light' ? '#ccdf88' : '#526317'};
+    background-color: ${props => props.$theme === 'light' ? `${props.$isValid ? '#ccdf88' : '#dfd188'} ` : `${props.$isValid ? '#526317' : '#635e17'} `};
     color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
-    outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
+    outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#afc36a solid 1px' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#404d12 solid 1px' : '#fa6c2a solid 1px'} `};
 
     &:active{
         outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
@@ -67,6 +66,5 @@ export const Input = styled.input.attrs(props => (
     @media screen and (max-width:720px) {
         font-weight: 400;
         padding: 0.75rem;
-        margin: 1rem 0;
     }
 `

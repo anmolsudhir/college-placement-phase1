@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const AddressArea = styled.textarea.attrs(props => ({rows : 6, placeholder : props.$placeholder}))`
     border-width: 0.1rem 0.1rem 0.1rem 0.1rem;
-    margin: 2rem 0 1rem 0;
+    margin: 1rem 0 0 0;
     width: 100%;
     resize: none;
     font-size: clamp(1rem, 2vw, 1rem);
@@ -33,6 +33,5 @@ export const AddressArea = styled.textarea.attrs(props => ({rows : 6, placeholde
     @media screen and (max-width:720px) {
         font-weight: 400;
         padding: 0.75rem;
-        margin: 1rem 0;
     }
 `

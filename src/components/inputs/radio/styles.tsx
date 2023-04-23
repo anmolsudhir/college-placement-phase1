@@ -7,7 +7,7 @@ export const RadioDiv = styled.div`
     justify-content: space-around;
     flex-direction: row;
     border-width: 0.1rem 0.1rem 0.1rem 0.1rem;
-    margin: 2rem 0 1rem 0;
+    margin: 1rem 0 0 0;
     width: 100%;
     font-size: clamp(1rem, 2vw, 1rem);
     border: none;
@@ -23,7 +23,6 @@ export const RadioDiv = styled.div`
     @media screen and (max-width:720px) {
         font-weight: 400;
         padding: 0.25rem;
-        margin: 1rem 0;
     }
 `
 
