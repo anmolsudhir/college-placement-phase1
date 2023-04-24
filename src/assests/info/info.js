@@ -7,25 +7,25 @@ const info = [
                         {
                           label : "Name",
                           type : "text",
-                          regex : /^[A-Z]+\s[A-Z]+$/,
+                          regex : /^[A-Z]+[A-Z\s]*$/,
                           info : "Write Full Name in CAPITAL letters with spaces between first name and last name and it must be as per 10th marks card"
                         },
                         {
                           label : "USN",
                           type : "text",
-                          regex : /^\d[A-Z]{2}[0-9]{2}[A-Z]{2}[A-Z]?[0-9]{3}$/,
+                          regex : /^\d[A-Z]{2}[0-9]{2}[A-Z]{2}[A-Z]?[0-9]{3}\s*$/,
                           info : "Write Full USN in CAPITAL letters. (Ex 1CR19CS001)"
                         },
                         {
                           label : "Mobile Number",
                           type : "tel",
-                          regex : /^[6-9][0-9]{9}$/,
+                          regex : /^[6-9][0-9]{9}\s*$/,
                           info : "Do not enter +91, the mobile number must be 10 digits, check again after typing"
                         },
                         {
                           label : "Whatsapp Number",
                           type : "tel",
-                          regex : /^[6-9][0-9]{9}$/,
+                          regex : /^[6-9][0-9]{9}\s*$/,
                           info : "Do not enter +91, the mobile number must be 10 digits, check again after typing"
                         },
                         {
@@ -50,19 +50,19 @@ const info = [
                         {
                           label : "Personal Mail",
                           type : "mail",
-                          regex : /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
+                          regex : /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\s*$/,
                           info : "Enter your college e-mail ID. It must be of form branch.usn.name@gmail.com"
                         },
                         {
                           label : "College Mail",
                           type : "mail",
-                          regex : /^[a-z]{4}[0-9]{2}[a-z]{2}$/,
+                          regex : /^[a-z]{4}[0-9]{2}[a-z]{2}\s*$/,
                           info : "Enter your personal e-mail ID. (Ex ansu20cs@cmrit.ac.in)"
                         },
                         {
                           label : "Parents Phone",
                           type : "tel",
-                          regex : /^[6-9][0-9]{9}$/,
+                          regex : /^[6-9][0-9]{9}\s*$/,
                           info : "Do not enter +91, the mobile number must be 10 digits, check again after typing"
                         },
                         {
