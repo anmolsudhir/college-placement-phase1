@@ -11,18 +11,22 @@ import Select from "@/components/inputs/select/Select"
 import Address from "@/components/inputs/address/Address"
 
 
-function InputCard({theme, element}) {
+function InputCard({theme, element, idx, validateInput}) {
   const [active, setActive] = useState(false)
   const [hover, setHover] = useState(false)
+
+  const handleIV = (validity) => {
+    validateInput(idx, validity)
+  }
 
   const arr = [
     {
       type : 'text',
-      comp : <Text theme={theme} element={element}/>
+      comp : <Text handleIV={handleIV} theme={theme} element={element}/>
     },
     {
       type : 'tel',
-      comp : <TeleInput theme={theme} element={element} ></TeleInput>
+      comp : <TeleInput handleIV={handleIV} theme={theme} element={element} ></TeleInput>
     },
     {
       type : 'radio',
@@ -30,15 +34,15 @@ function InputCard({theme, element}) {
     },
     {
       type : 'date',
-      comp : <Date element={element} theme={theme} />
+      comp : <Date handleIV={handleIV} element={element} theme={theme} />
     },
     {
       type : 'mail',
-      comp : <MailInput theme={theme} element={element}></MailInput>
+      comp : <MailInput handleIV={handleIV} theme={theme} element={element}></MailInput>
     },
     {
       type : 'number',
-      comp : <NumberInp theme={theme} element={element}></NumberInp>
+      comp : <NumberInp handleIV={handleIV} theme={theme} element={element}></NumberInp>
     },
     {
       type : 'select',
@@ -46,11 +50,11 @@ function InputCard({theme, element}) {
     },
     {
       type : 'res',
-      comp : <Text theme={theme} element={element}/>
+      comp : <Text handleIV={handleIV} theme={theme} element={element}/>
     },
     {
       type : 'addr',
-      comp : <Address theme={theme} element={element}></Address>
+      comp : <Address handleIV={handleIV} theme={theme} element={element}></Address>
     }
   ]
 

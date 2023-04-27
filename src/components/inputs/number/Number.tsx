@@ -2,12 +2,17 @@ import { Label } from "../Label";
 import { Input, InputDiv } from "./styles";
 import { useState } from "react";
 
-export default function NumberInp({theme, element}){
+export default function NumberInp({theme, element, handleIV}){
     const [isValid, setIsValid] = useState(true)
     const handleValidation = (e) => {
-        if(e.target.value.match(element.regex))
+        if(e.target.value.match(element.regex)){
             setIsValid(true)
-        else setIsValid(false)
+            handleIV(true)
+        }
+        else {
+            setIsValid(false)
+            handleIV(false)
+        }
     }
 
     return (

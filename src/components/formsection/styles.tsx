@@ -14,12 +14,11 @@ export const FormContainer = styled.div`
     }
 `
 
-export const ProgressBar = styled.div`
+export const ProgressBar = styled.div.attrs((props) => ({style : { width : `${props.width}%`}}))`
     z-index: 100;
     position: absolute;
     top: 6rem;
     left: 0;
     height: 0.1rem;
     background-color: #72BFFE;
-    width: ${props => `${props.width}%`};
 `

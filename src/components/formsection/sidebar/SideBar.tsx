@@ -4,10 +4,7 @@ import SideBarElemComp from "./SideBarElemComp";
 
 export default function SideBar({theme, handleScroll, mobile, handleMobile}){
     const content = info.map((element, idx) => <SideBarElemComp theme={theme} idx={idx} handleScroll={handleScroll} key={element[0].header} label={element[0].header} content = {element[0].content}></SideBarElemComp>)
-    const handleDrag = (e) => {
-        e.preventDefault()
-        console.log("Drag")
-    }
+
     return(
         <>
         <SideBarContainer $mobile={mobile} $theme={theme}>

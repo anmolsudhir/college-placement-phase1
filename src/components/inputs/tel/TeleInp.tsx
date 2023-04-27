@@ -3,12 +3,17 @@ import { Input, InputDiv, Phone} from "./styles";
 import { useState } from "react";
 import { Invalid } from "../Invalid";
 
-export default function TeleInput({theme, element}){
+export default function TeleInput({theme, element, handleIV}){
     const [isValid, setIsValid] = useState(true)
     const handleValidation = (e) => {
-        if(e.target.value.match(element.regex))
+        if(e.target.value.match(element.regex)){
             setIsValid(true)
-        else setIsValid(false)
+            handleIV(true)
+        }
+        else {
+            setIsValid(false)
+            handleIV(false)
+        }
     }
 
     return (

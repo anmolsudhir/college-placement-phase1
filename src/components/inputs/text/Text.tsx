@@ -3,12 +3,17 @@ import { TextInput } from "./styles";
 import { Label } from "../Label";
 import { Invalid } from "../Invalid";
 
-export default function Text({theme, element}){
+export default function Text({theme, element, handleIV}){
     const [isValid, setIsValid] = useState(true)
     const handleValidation = (e) => {
-        if(e.target.value.match(element.regex))
+        if(e.target.value.match(element.regex)){
             setIsValid(true)
-        else setIsValid(false)
+            handleIV(true)
+        }
+        else {
+            setIsValid(false)
+            handleIV(false)
+        }
     }
 
     return (

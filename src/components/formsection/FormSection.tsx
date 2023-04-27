@@ -2,8 +2,6 @@ import { useRef, useEffect, useState } from "react";
 import SideBar from "./sidebar/SideBar";
 import FormSectionContent from "./formsectioncontent/FormSectionContent";
 import { FormContainer, ProgressBar} from "./styles";
-import FormSlide from "./formsectioncontent/formslide/FormSlide";
-import info from "@/assests/info/info";
 
 export default function FormSection({theme, mobile, handleMobile}){
 
@@ -46,13 +44,11 @@ export default function FormSection({theme, mobile, handleMobile}){
             behavior : "smooth"
         })
   }
-
-    const slides = info.map((elem, idx) => <FormSlide theme={theme} refv={refv} idx={idx} key={idx*2} props={elem}></FormSlide>)
     return(
         <FormContainer $theme={theme}>
             <ProgressBar width={scrollPosition}/>
             <SideBar handleMobile={handleMobile} mobile={mobile} handleScroll={handleScroll} theme={theme}/>
-            <FormSectionContent compref={componentRef} slides={slides} theme={theme} />
+            <FormSectionContent compref={componentRef} refv={refv} theme={theme} />
         </FormContainer>
     )
 }

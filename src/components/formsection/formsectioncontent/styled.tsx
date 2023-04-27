@@ -17,3 +17,12 @@ export const FormSectionContentDiv = styled.div`
         padding-right: 1rem;
     }
 `
+
+export const ButtonDiv = styled.div`
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1rem 0 3rem 0;
+`
