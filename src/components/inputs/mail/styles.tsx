@@ -18,7 +18,6 @@ export const Trail = styled.div`
     transition: all 0.15s ease;
     box-sizing: inherit;
     background-color: ${props => props.$theme === 'light' ? '#ccdf88' : '#526317'};
-    /* color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'}; */
     font-weight: 100;
     outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
     color: #999999;

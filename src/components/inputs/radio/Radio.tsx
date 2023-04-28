@@ -2,12 +2,14 @@ import { Label } from "../Label";
 import { RadioDiv, RadioLabel, RadioOption } from "./styles";
 import { useState } from "react";
 
-export default function Radio({theme, element}){
+export default function Radio({theme, element, handleSelect}){
 
     const [selectedOption, setSelectedOption] = useState(element.list ? element.list[0] : '');
 
     const handleOptionChange = (e) => {
-        setSelectedOption(e);
+        console.log(e)
+        setSelectedOption(e)
+        handleSelect(e)
     };
 
     const options = element.list?.map((elem, idx : number) =>  

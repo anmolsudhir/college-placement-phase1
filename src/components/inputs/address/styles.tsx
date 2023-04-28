@@ -11,10 +11,10 @@ export const AddressArea = styled.textarea.attrs(props => ({rows : 6, placeholde
     border-radius: 0.5rem;
     transition: all 0.15s ease;
     box-sizing: inherit;
-    background-color: ${props => props.$theme === 'light' ? '#ccdf88' : '#526317'};
     color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
-    outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
+    background-color: ${props => props.$theme === 'light' ? `${props.$isValid ? '#ccdf88' : '#dfd188'} ` : `${props.$isValid ? '#526317' : '#635e17'} `};
+    outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#afc36a solid 1px' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#404d12 solid 1px' : '#fa6c2a solid 1px'} `};
 
     &:active{
         outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};

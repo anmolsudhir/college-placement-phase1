@@ -14,7 +14,6 @@ export default function FormSlide({theme, props, refv, idx, validateSlide}){
 
   const validateInputs = (indx, validity) => {
     inputArr[indx] = validity
-    console.log("Input : ", inputArr)
     if(inputArr.every((elem) => elem === true)){
       validateSlide(idx, true)
     }

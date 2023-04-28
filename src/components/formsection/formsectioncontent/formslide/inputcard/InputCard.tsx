@@ -9,6 +9,7 @@ import MailInput from "@/components/inputs/mail/Mail"
 import NumberInp from "@/components/inputs/number/Number"
 import Select from "@/components/inputs/select/Select"
 import Address from "@/components/inputs/address/Address"
+import Result from "@/components/inputs/result/Result"
 
 
 function InputCard({theme, element, idx, validateInput}) {
@@ -30,7 +31,7 @@ function InputCard({theme, element, idx, validateInput}) {
     },
     {
       type : 'radio',
-      comp : <Radio theme={theme} element={element}></Radio>
+      comp : <Radio handleSelect={() => true} theme={theme} element={element}></Radio>
     },
     {
       type : 'date',
@@ -50,7 +51,7 @@ function InputCard({theme, element, idx, validateInput}) {
     },
     {
       type : 'res',
-      comp : <Text handleIV={handleIV} theme={theme} element={element}/>
+      comp : <Result handleIV={handleIV} theme={theme} element={element}/>
     },
     {
       type : 'addr',

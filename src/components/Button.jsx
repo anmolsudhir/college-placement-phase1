@@ -27,9 +27,9 @@ export const Button = styled.button.attrs(props => (
         }
         ` : `
         ${props.$theme === 'light' ? `
-                background-color:#b8cd64;
+                background-color:#a4be46;
                 &:hover{
-                    background-color: #a4be46;
+                    background-color: #99b338;
                     transform: translateY(-10%);
                 }
             `: `

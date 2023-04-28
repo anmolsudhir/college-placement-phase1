@@ -1,6 +1,7 @@
 import { Label } from "../Label";
 import { AddressArea } from "./styles";
 import { useState } from "react";
+import { Invalid } from "../Invalid";
 
 export default function Address({theme, element, handleIV}){
 
@@ -18,7 +19,8 @@ export default function Address({theme, element, handleIV}){
     return (
         <>
             <Label $theme={theme}>{element.label}</Label>
-            <AddressArea onChange={handleValidation} $theme={theme} $placeholder={element.label}></AddressArea>
+            <AddressArea $isValid={isValid} onChange={handleValidation} $theme={theme} $placeholder={element.label}></AddressArea>
+            {!isValid && <Invalid $theme={theme}>Invalid Input. Please check with info given at the top right corner</Invalid>}
         </>
     )
 }
