@@ -14,7 +14,7 @@ const info = [
                         {
                           label : "USN",
                           type : "text",
-                          regex : /^\d[A-Z]{2}[0-9]{2}[A-Z]{2}[A-Z]?[0-9]{3}\s*$/,
+                          regex : /^(1CR)(1[0-9]|2[0-3])[A-Z]{2}[A-Z]?[0-9]{3}\s*$/,
                           validable : true,
                           info : "Write Full USN in CAPITAL letters. (Ex 1CR19CS001)"
                         },
@@ -55,7 +55,7 @@ const info = [
                         {
                           label : "Personal Mail",
                           type : "mail",
-                          regex : /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\s*$/,
+                          regex : /^[a-z]{3}\.(1cr)(1[0-9]|2[0-3])[a-z]{2}[0-9]{3}\.[a-z]+(\.[a-z]+)*(@gmail.com)\s*$/,
                           validable : true,
                           info : "Enter your college e-mail ID. It must be of form branch.usn.name@gmail.com"
                         },

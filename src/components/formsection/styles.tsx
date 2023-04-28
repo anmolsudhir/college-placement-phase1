@@ -21,4 +21,8 @@ export const ProgressBar = styled.div.attrs((props) => ({style : { width : `${pr
     left: 0;
     height: 0.1rem;
     background-color: #72BFFE;
+
+    @media (max-width : 720px){
+        top : 5rem;
+    }
 `

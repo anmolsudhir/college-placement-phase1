@@ -65,6 +65,7 @@ export const SideBarHeader = styled.div`
     transition: all 0.15s ease;
     font-size: clamp(0px, 0.9vw, medium);
     font-weight: 200;
+    cursor: pointer;
 
     ${props => props.$theme === 'dark' ? `
         background-color: #1c1c1c;
@@ -86,8 +87,7 @@ export const SideBarElem = styled.div`
     box-sizing: inherit;
 
     &:hover{
-        ${SideBarHeader} {
-            cursor: pointer;
+        .header {
             border-radius: 1rem 1rem 0 0;
             ${props => props.$theme === 'light' ? `
                 background-color: #c5d77f;
@@ -100,7 +100,7 @@ export const SideBarElem = styled.div`
             `}
         }
     }
-    `
+`
 
 export const ContentContainer = styled.div`
     transition: animation 0.25s ease;

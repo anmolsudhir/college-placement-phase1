@@ -17,6 +17,10 @@ export const TopBarContainer = styled.div`
     backdrop-filter: blur(10px);
     box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+
+    @media (max-width : 720px) {
+        height: 5rem;
+    }
 `;
 
 export const LogoContainer = styled.div`
