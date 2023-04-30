@@ -9,7 +9,7 @@ export default function Result({theme, element, handleIV}){
     const [isPercentage, setIsPercentage] = useState(false)
     const [hasRendered, setHasRendered] = useState(false)
     const [value, setValue] = useState('')
-    const [regex, setRegex] = useState(/.*/)
+    const [regex, setRegex] = useState(/(^[0-9]\.[0-9]|10.0)\s*$/)
     
     useEffect(() => {
         if(hasRendered){
@@ -32,7 +32,7 @@ export default function Result({theme, element, handleIV}){
             setIsPercentage(false)
         }
         else {
-            setRegex(/^[0-9]{2}\.[0-9]+$/)
+            setRegex(/^[0-9]{2}\.[0-9]+\s*$/)
             setIsPercentage(true)
         }
     }
@@ -43,7 +43,6 @@ export default function Result({theme, element, handleIV}){
     }
 
     const handleValidation = (e) => {
-        console.log(e.target.value)
         setValue(e.target.value)
         if(e.target.value.match(regex)){
             setIsValid(true)
@@ -58,7 +57,7 @@ export default function Result({theme, element, handleIV}){
     return ( 
         <>
             <Label $theme={theme} className='label'>{element.label}</Label>
-            <Radio handleSelect={handleSelect} theme={theme} element={ele}></Radio>
+            <Radio handleHidden={(e) => {}} handleSelect={handleSelect} theme={theme} element={ele}></Radio>
             <ResultDiv>
                 <ResultInput $isValid={isValid} onChange={handleValidation} $theme={theme} $placeholder={element.label}></ResultInput>
                 {isPercentage && <Precentage $theme={theme}>%</Precentage>}

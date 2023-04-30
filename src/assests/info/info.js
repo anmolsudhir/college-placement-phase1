@@ -55,7 +55,7 @@ const info = [
                         {
                           label : "Personal Mail",
                           type : "mail",
-                          regex : /^[a-z]{3}\.(1cr)(1[0-9]|2[0-3])[a-z]{2}[0-9]{3}\.[a-z]+(\.[a-z]+)*(@gmail.com)\s*$/,
+                          regex : /^[a-z]{3}\.(1cr)(1[0-9]|2[0-3])[a-z]{2}[0-9]{3}\.[a-z]+(\.[a-z]+)*\s*$/,
                           validable : true,
                           info : "Enter your college e-mail ID. It must be of form branch.usn.name@gmail.com"
                         },
@@ -67,7 +67,21 @@ const info = [
                           info : "Enter your personal e-mail ID. (Ex ansu20cs@cmrit.ac.in)"
                         },
                         {
-                          label : "Parents Phone",
+                          label : "Parent's Phone",
+                          type : "tel",
+                          regex : /^[6-9][0-9]{9}\s*$/,
+                          validable : true,
+                          info : "Do not enter +91, the mobile number must be 10 digits, check again after typing"
+                        },
+                        {
+                          label : "Mentors Name",
+                          type : "text",
+                          regex : /^[A-Za-z]+[A-Za-z\s]*$/,
+                          validable : true,
+                          info : "Write Full Name of you mentor letters with spaces between first name and last name and it must be as per 10th marks card"
+                        },
+                        {
+                          label : "Mentors's Phone",
                           type : "tel",
                           regex : /^[6-9][0-9]{9}\s*$/,
                           validable : true,
@@ -98,7 +112,7 @@ const info = [
                         {
                           label : "Pursuing Degree",
                           type : "select",
-                          list : ['BTech','MBA', 'MTech'],
+                          list : ['BE','MBA', 'MTech', 'MCA'],
                           info : "Select your current degree from the dropdown below"
                         },
                         {
@@ -127,32 +141,48 @@ const info = [
                           info : "Enter 10th result (Enter CGPA or Percentage as mentioned in your 10th markscard)"
                         },
                         {
-                          label : "12th Result",
+                          label : "12th / PUC Result",
+                          type : "res",
+                          validable : true,
+                          regex : /.+/,
+                          info : "Enter 12th result (Enter CGPA or Percentage as mentioned in your 12th markscard)"
+                        },
+                        {
+                          label : "Pursuing Degree Result",
+                          type : "res",
+                          validable : true,
+                          regex : /.+/,
+                          info : "Enter pursuing degree result (Enter CGPA or Percentage)"
+                        },
+                        {
+                          label : "PG Specialization",
+                          hidden : true,
+                          type : "select",
+                          list : ['None','Management/HR', 'Management/Finance', 'Finance/HR'],
+                          info : 'Select your PG Specialization',
+                        },
+                        {
+                          label : "UG Degree",
+                          hidden : true,
+                          type : "select",
+                          list : ['BCA','BCom', 'BE', 'BBA'],
+                          info : 'Select your UG Degree',
+                        },
+                        {
+                          label : "UG Specialization",
+                          hidden : true,
+                          type : "select",
+                          list : ['Computer Science','Computer Application', 'BE', 'BBA', 'Other'],
+                          info : 'Select your UG Specialization',
+                        },
+                        {
+                          label : "UG Result",
+                          hidden : true,
                           type : "res",
                           validable : true,
                           regex : /.+/,
                           info : "Enter 10th result (Enter CGPA or Percentage as mentioned in your 10th markscard)"
                         },
-                        // {
-                        //   label : "PG Specialization",
-                        //   type : "alnum"
-                        // },
-                        // {
-                        //   label : "UG Degree",
-                        //   type : "alnum"
-                        // },
-                        // {
-                        //   label : "UG Specialization",
-                        //   type : "alnum"
-                        // },
-                        // {
-                        //   label : "UG Result",
-                        //   type : "alnum"
-                        // },
-                        // {
-                        //   label : "Pursuing Degree Resull",
-                        //   type : "alnum"
-                        // },
                       ]
                     }
                   ], 
@@ -177,6 +207,7 @@ const info = [
                           label : "Type of job interested in",
                           type : "select",
                           list : ["IT", "Core"],
+                          hidden : true,
                           info : "Enter the Type of job"
                         }
                       ]

@@ -1,14 +1,23 @@
 import { Label } from "../Label";
 import { SelectGroup, Option } from "./styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Select({theme, element}){
-
+export default function Select({theme, element, handleHidden}){
+  const [hasRendered, setHasRendered] = useState(false)
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
+
+  useEffect(() => {
+    if(hasRendered && element.label === 'Pursuing Degree'){
+        if(selectedOption === 'BE')
+            handleHidden(true)
+        else handleHidden(false)
+    }
+    else setHasRendered(true)
+  }, [selectedOption])
 
 
     const options = element.list?.map((elem, idx) => <Option key={idx*Math.random()} $value={elem}>{elem}</Option>)

@@ -8,7 +8,7 @@ export const FormSectionContentDiv = styled.div`
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
-    padding: 7rem 4rem 0rem 4rem;
+    padding: 5rem 6rem 0rem 6rem;
     box-sizing: border-box;
     transition: all 0.25s ease;
 

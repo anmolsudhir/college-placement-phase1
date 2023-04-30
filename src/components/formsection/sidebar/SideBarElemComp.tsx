@@ -17,14 +17,14 @@ export default function SideBarElemComp({theme, handleScroll, idx, label, conten
         handleScroll(idx, index)
     }
 
-    const cont = content.map((elem, index) => <Content $theme={theme} key={elem.label} onClick={() => {setScrollPosition(index)}}>{elem.label}</Content>)
+    const cont = content.map((elem, index) => !elem.hidden && <Content $theme={theme} key={elem.label} onClick={() => {setScrollPosition(index)}}>{elem.label}</Content>)
 
     return (
         <>
-        <SideBarElem onClick={() => (setHover(!hover))} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  $theme={theme}>
+        <SideBarElem onClick={() => (setHover(!hover))}  $theme={theme}>
             <SideBarHeader className={hover && 'header'} $theme={theme}>
                 {label}
-                {!hover && <Image style={{pointerEvents:'none'}} src={theme === 'light' ? '/expand_more_FILL0_wght100_GRAD-25_opsz48.svg' : '/down-arrow.png'} alt='arrow' width={20} height={20} ></Image>}
+                {<Image style={{pointerEvents:'none'}} src={theme === 'light' ? '/expand_more_FILL0_wght100_GRAD-25_opsz48.svg' : '/down-arrow.png'} alt='arrow' width={20} height={20} ></Image>}
             </SideBarHeader>
             {hover && <ContentContainer $theme={theme}>
                 {cont}

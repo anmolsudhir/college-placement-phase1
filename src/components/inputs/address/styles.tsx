@@ -7,22 +7,22 @@ export const AddressArea = styled.textarea.attrs(props => ({rows : 6, placeholde
     resize: none;
     font-size: clamp(1rem, 2vw, 1rem);
     border: none;
-    padding: 1rem;
-    border-radius: 0.5rem;
     transition: all 0.15s ease;
     box-sizing: inherit;
     color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
-    background-color: ${props => props.$theme === 'light' ? `${props.$isValid ? '#ccdf88' : '#dfd188'} ` : `${props.$isValid ? '#526317' : '#635e17'} `};
-    outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#afc36a solid 1px' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#404d12 solid 1px' : '#fa6c2a solid 1px'} `};
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    background-color: ${props => props.$theme === 'light' ? `${props.$isValid ? 'transparent' : '#fff0f0'} ` : `${props.$isValid ? 'transparent' : '#1f1414'} `};
+    outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#b9b9b9 solid 0.1rem' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#555555 solid 1px' : 'red solid 1px'} `};
+
+    &:focus{
+        outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#97b42e solid 2px' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#97b42e solid 1px' : 'red solid 1px'} `};
+    }
 
     &:active{
         outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
         border: none;
-    }
-
-    &:focus{
-        box-shadow: 0 0 5px 1px ${props => props.$theme === 'light' ? 'rgba(174, 208, 53, 0.1)' : 'rgba(62, 75, 16, 0.1)'};
     }
 
     &::placeholder{

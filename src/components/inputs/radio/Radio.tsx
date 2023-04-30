@@ -1,15 +1,20 @@
 import { Label } from "../Label";
 import { RadioDiv, RadioLabel, RadioOption } from "./styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Radio({theme, element, handleSelect}){
+export default function Radio({theme, element, handleSelect, handleHidden}){
 
     const [selectedOption, setSelectedOption] = useState(element.list ? element.list[0] : '');
 
+    useEffect(() => {
+        if(element.label === "Are you Interested in CMRIT Placement")
+            handleHidden(false)
+    },[])
+
     const handleOptionChange = (e) => {
-        console.log(e)
         setSelectedOption(e)
         handleSelect(e)
+        e === 'Yes' ? handleHidden(false) : handleHidden(true)
     };
 
     const options = element.list?.map((elem, idx : number) =>  

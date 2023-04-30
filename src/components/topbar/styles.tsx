@@ -1,26 +1,22 @@
 import styled from 'styled-components'
 
 export const TopBarContainer = styled.div`
-    --dark : rgba(50, 50, 50, 0.1);
-    --light : rgba(220, 220, 220, 0.1);
+    --dark : rgba(25, 25, 25, 0.5);
+    --light : rgba(255, 255, 255, 0.5);
     z-index: 100;
     position: absolute;
     top:0;
     width: 100%;
-    height: 6rem;
+    height: 5rem;
     background-color: ${(props : any) => props.$theme === 'light' ? "var(--light)": 'var(--dark)'};   
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 0.5%;
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 0px 10px 1px rgba(130, 130, 130, 0.1);
     box-sizing: border-box;
-
-    @media (max-width : 720px) {
-        height: 5rem;
-    }
 `;
 
 export const LogoContainer = styled.div`
@@ -38,18 +34,27 @@ export const ThemeBtn = styled.div`
     justify-content: center;
     cursor: pointer;
     margin: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
+    border: 0.1rem solid ${(props : any) => props.$theme === 'light' ? '#cbcbcb;' : '#3e3e3e'};
     box-sizing: inherit;
-    background-color: ${(props : any) => props.$theme === 'light' ? 'rgba(220, 220, 220, 1)' : 'rgba(28, 28, 28, 1)'};
-    box-shadow: 0 0 1.5rem 0.5rem ${(props : any) => props.$theme === 'light' ? 'rgba(47, 47, 47, 0.25)' : 'rgba(0, 0, 0, 0.2)'};
     transition: all 0.25s ease;
     &:hover{    
         transform: ${(props : any) => props.$theme === 'light' ? `rotate(45deg)` : `rotate(-45deg)`};
+        background-color : ${(props : any) => props.$theme === 'light' ? '#cbcbcb' : '#3e3e3e'};
+    }
+
+    &:active{  
+        background-color : ${(props : any) => props.$theme === 'light' ? '#cbcbcb' : '#3e3e3e'};
+    }
+
+    &:focus{  
+        background-color : #cbcbcb
     }
 
     @media screen and (max-width : 720px){
         &:hover{    
             transform: none;
+            background-color : transparent;
         }
         margin : 0.5rem 0.5rem;
         height:auto;
@@ -79,7 +84,6 @@ export const MenuBtn = styled.div`
     border-radius: 0.5rem;
     box-sizing: inherit;
     background-color: ${(props : any) => props.$theme === 'light' ? 'rgba(220, 220, 220, 1)' : 'rgba(28, 28, 28, 1)'};
-    box-shadow: 0 0 1.5rem 0.5rem ${(props : any) => props.$theme === 'light' ? 'rgba(47, 47, 47, 0.25)' : 'rgba(0, 0, 0, 0.2)'};
     @media screen and (max-width : 720px){
         display: flex;
         margin : 0.5rem 1rem;

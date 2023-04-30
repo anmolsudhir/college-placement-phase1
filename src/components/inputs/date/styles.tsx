@@ -10,22 +10,18 @@ export const DateDiv = styled.input.attrs(
     width: 100%;
     font-size: clamp(1rem, 2vw, 1rem);
     border: none;
-    padding: 1rem;
-    border-radius: 0.5rem;
     transition: all 0.15s ease;
     box-sizing: inherit;
-    background-color: ${props => props.$theme === 'light' ? '#ccdf88' : '#526317'};
+    background-color: transparent;
     color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
-    outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
-
-    &:active{
-        outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
-        border: none;
-    }
+    border-radius: 0.2rem;
+    padding: 0.4rem;
+    background-color: transparent;
+    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 0.1rem' : '#555555 solid 1px'};
 
     &:focus{
-        box-shadow: 0 0 5px 1px ${props => props.$theme === 'light' ? 'rgba(174, 208, 53, 0.1)' : 'rgba(62, 75, 16, 0.1)'};
+        outline: #97b42e solid 2px;
     }
 
     &::placeholder{

@@ -10,18 +10,17 @@ export const InputDiv = styled.div`
 
 export const Phone = styled.div`
     border-width: 0.1rem 0.1rem 0.1rem 0.1rem;
-    margin: 1rem 0.5rem 0rem 0;
+    margin: 1rem 0.25rem 0rem 0;
     font-size: clamp(1rem, 2vw, 1rem);
     border: none;
-    padding: 1rem;
-    border-radius: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
     transition: all 0.15s ease;
     box-sizing: inherit;
-    background-color: ${props => props.$theme === 'light' ? '#ccdf88' : '#526317'};
-    /* color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'}; */
+    color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
-    outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
-    color: #999999;
+    background-color: ${props => props.$theme === 'light' ? 'transparent' : 'transparent'};
+    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 0.1rem'  : '#555555 solid 1px' };
 
     @media screen and (max-width:720px) {
         font-weight: 400;
@@ -40,22 +39,18 @@ export const Input = styled.input.attrs(props => (
     width: 100%;
     font-size: clamp(1rem, 2vw, 1rem);
     border: none;
-    padding: 1rem;
-    border-radius: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
     transition: all 0.15s ease;
     box-sizing: inherit;
     background-color: ${props => props.$theme === 'light' ? `${props.$isValid ? '#ccdf88' : '#dfd188'} ` : `${props.$isValid ? '#526317' : '#635e17'} `};
     color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
-    outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#afc36a solid 1px' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#404d12 solid 1px' : '#fa6c2a solid 1px'} `};
-
-    &:active{
-        outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
-        border: none;
-    }
+    background-color: ${props => props.$theme === 'light' ? `${props.$isValid ? 'transparent' : '#fff0f0'} ` : `${props.$isValid ? 'transparent' : '#1f1414'} `};
+    outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#b9b9b9 solid 0.1rem' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#555555 solid 1px' : 'red solid 1px'} `};
 
     &:focus{
-        box-shadow: 0 0 5px 1px ${props => props.$theme === 'light' ? 'rgba(174, 208, 53, 0.1)' : 'rgba(62, 75, 16, 0.1)'};
+        outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#97b42e solid 2px' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#97b42e solid 1px' : 'red solid 1px'} `};
     }
 
     &::placeholder{

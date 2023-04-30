@@ -18,7 +18,14 @@ export const RadioDiv = styled.div`
     background-color: ${props => props.$theme === 'light' ? '#ccdf88' : '#526317'};
     color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
-    outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
+    border-radius: 0.2rem;
+    padding: 0.1rem;
+    background-color: transparent;
+    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 0.1rem'  : '#555555 solid 1px' };
+
+    &:focus{
+        outline: ${props => props.$theme === 'light' ? '#97b42e solid 2px'  : '#97b42e solid 1px' };
+    }
 
     @media screen and (max-width:720px) {
         font-weight: 400;
@@ -31,7 +38,7 @@ export const RadioLabel = styled.label`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0.5rem 0.5rem;
+  padding: 0.4rem 0.4rem;
   border-radius: 0.25rem;
   width: 100%;
   transition: all 0.25s ease;
@@ -50,6 +57,6 @@ export const RadioOption = styled.input.attrs(props => (
 
   &:checked + ${RadioLabel} {
     color: white;
-    background: ${props => props.$theme === 'light' ? 'rgb(157, 175, 88)' : 'rgb(113, 130, 37)'};
+    background: ${props => props.$theme === 'light' ? 'rgb(177, 200, 86)' : 'rgb(118, 137, 44)'};
   }
 `

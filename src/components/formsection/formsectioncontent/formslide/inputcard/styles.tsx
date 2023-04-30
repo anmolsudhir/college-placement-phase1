@@ -2,27 +2,31 @@ import styled from 'styled-components'
 
 export const InputCardElem = styled.div`
     position: relative;
-    margin: 1rem;
+    //margin: 0.1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: flex-start;
     width: 100%;
     height: 100%;
-    border-radius: 1rem;
+    border-radius: 0.3rem;
     padding: 1rem;
-    box-shadow: 0 0 0.75rem 0.1rem ${props => props.$theme === 'light' ? 'rgba(127, 157, 19, 0.5)' : 'rgba(15, 15, 15, 0.5)'}; 
-    background-color: ${props => props.$theme === 'light' ? '#c5d77f' : '#5f7117'};
+    background-color: transparent;
     color: ${props => props.$theme === 'light' ? 'rgb(54, 54, 54)' : 'rgb(230, 230, 230);'};
     transition: all 0.15s ease;
     box-sizing: inherit;
+    border: 0.1rem solid transparent;
+    cursor: pointer;
     &:hover{
-        //cursor: pointer;
         .label{
             cursor: pointer;
             font-weight: 500;
-            transform: translateX(0.2rem);
         }
+        border: 0.1rem solid rgba(150, 150, 150, 0.2);
+    }
+
+    &:focus{
+        border: 0.1rem solid rgba(150, 150, 150, 0.2);
     }
 `
 
@@ -32,7 +36,7 @@ export const InputLabel = styled.div`
     font-weight: 350;
     margin-left: 0.2rem;
     transition: all 0.25s ease;
-    color: ${props => props.$theme === 'light' ? '#6c6c6c' : '#bbbbbb'};
+    color: ${props => props.$theme === 'light' ? '#4c4c4c' : '#bbbbbb'};
 
     @media screen and (max-width : 720px){
         font-size: clamp(1rem, 5vw, 2rem);
@@ -50,17 +54,17 @@ export const InfoDiv = styled.div`
     cursor : default;
     align-items: flex-start;
     justify-content: flex-end;
-    transition: all 0.15s ease;
-    backdrop-filter : blur(50px);
-    border-radius: 1rem;
+    backdrop-filter : blur(20px);
+    border-radius: 0.2rem;
     box-sizing: inherit;
     ${props => props.$active ? `
         right : 0;
         top : 0;
         box-shadow: 0 0 0.35rem 0.05rem rgba(0, 0, 0, 0.1);
-        width : 85%;
+        width : 100%;
+        height : 100%;
         padding : 1rem;
-        background-color : rgba(255, 255, 255, 0.25);
+        background-color : ${props.$theme === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.1)'};
     ` : `
         padding : 0;
     `}
@@ -74,7 +78,7 @@ export const InfoText = styled.div`
     position: relative;
     width : 100%;
     height: 100%;
-    color: ${props => props.$theme === 'light' ? '#6c6c6c' : '#2b2b2b'};
+    color: ${props => props.$theme === 'light' ? '#303030' : '#d4d4d4'};
     font-weight: 100;
     padding: 0 0.5rem 0 0;
     box-sizing: inherit;

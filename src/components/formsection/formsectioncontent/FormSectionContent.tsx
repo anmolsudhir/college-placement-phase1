@@ -11,8 +11,10 @@ export default function FormSectionContent({theme, refv, compref}){
 
     const validateSlides = (idx, validity) => {
         slideArr[idx] = validity
-        if(slideArr.every((elem) => elem === true))
+        console.log("slide :",slideArr)
+        if(slideArr.every((elem) => elem === true)){
             setAreSlidesValid(true)
+        }
         else setAreSlidesValid(false)
     }
     const slides = info.map((elem, idx) => <FormSlide validateSlide={validateSlides} theme={theme} refv={refv} idx={idx} key={idx*2} props={elem}></FormSlide>)

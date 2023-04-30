@@ -8,5 +8,5 @@ export const Container =styled.div`
     padding: 0;
     height: 100vh;
     width: 100vw;
-    background-color: ${(props : any) => props.$theme === 'light' ? '#F1F1F1' : '#0f0f0f'};
+    background-color: ${(props : any) => props.$theme === 'light' ? '#F1F1F1' : '#1c1c1c'};
 `

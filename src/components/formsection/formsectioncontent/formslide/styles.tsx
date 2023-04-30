@@ -1,7 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const FormSlideDiv = styled.div`
-    margin: 1%;
+    margin: 1rem 0rem;
     flex: 0 0 auto;
     display: flex;
     flex-direction: row;
@@ -9,9 +9,9 @@ export const FormSlideDiv = styled.div`
     justify-content: space-between;
     width: 100%;
     padding: 3rem;
-    border-radius: 1rem;
-    transition : all 0.15s ease;
-    background-color: ${props => props.$theme === 'light' ? 'rgb(220,220,220)' : 'rgb(28,28,28)'};
+    border: 0.1rem solid ${props => props.$theme === 'light' ? 'rgb(220,220,220)' : 'rgb(56, 56, 56)'};
+    border-radius: 0.3rem;
+    background-color: ${props => props.$theme === 'light' ? 'transparent' : 'rgb(28,28,28)'};
     box-sizing: inherit;
     transition: all 0.25s ease;
 
@@ -33,7 +33,7 @@ export const SlideHeader = styled.div`
     text-align:left;
     justify-content: flex-end;
     align-items: flex-end;
-    color:rgb(150, 150, 150);
+    color:rgb(100, 100, 100);
 
     @media screen and (max-width:1150px){
         width: 100%;

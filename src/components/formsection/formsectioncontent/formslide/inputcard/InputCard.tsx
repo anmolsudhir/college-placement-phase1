@@ -12,12 +12,12 @@ import Address from "@/components/inputs/address/Address"
 import Result from "@/components/inputs/result/Result"
 
 
-function InputCard({theme, element, idx, validateInput}) {
+function InputCard({theme, element, idx, validateInput, handleHidden}) {
   const [active, setActive] = useState(false)
   const [hover, setHover] = useState(false)
 
-  const handleIV = (validity) => {
-    validateInput(idx, validity)
+  const handleIV = (validity, hidden) => {
+    validateInput(idx, validity, hidden)
   }
 
   const arr = [
@@ -31,7 +31,7 @@ function InputCard({theme, element, idx, validateInput}) {
     },
     {
       type : 'radio',
-      comp : <Radio handleSelect={() => true} theme={theme} element={element}></Radio>
+      comp : <Radio handleHidden={handleHidden} handleSelect={() => {}} theme={theme} element={element}></Radio>
     },
     {
       type : 'date',
@@ -47,7 +47,7 @@ function InputCard({theme, element, idx, validateInput}) {
     },
     {
       type : 'select',
-      comp : <Select theme={theme} element={element} />
+      comp : <Select handleHidden={handleHidden} theme={theme} element={element} />
     },
     {
       type : 'res',

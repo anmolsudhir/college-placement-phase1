@@ -3,7 +3,7 @@ import info from "@/assests/info/info";
 import SideBarElemComp from "./SideBarElemComp";
 
 export default function SideBar({theme, handleScroll, mobile, handleMobile}){
-    const content = info.map((element, idx) => <SideBarElemComp theme={theme} idx={idx} handleScroll={handleScroll} key={element[0].header} label={element[0].header} content = {element[0].content}></SideBarElemComp>)
+    const content = info.map((element, idx) =>  <SideBarElemComp theme={theme} idx={idx} handleScroll={handleScroll} key={element[0].header} label={element[0].header} content = {element[0].content}></SideBarElemComp>)
 
     return(
         <>

@@ -5,7 +5,7 @@ import { Container } from './styles'
 
 export default function Form (){
 
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('dark')
   const [mobile, setMobile] = useState(false)
 
   const handleTheme = () => {
@@ -16,8 +16,8 @@ export default function Form (){
     setMobile(mobile ? false : true)
   }
 
-  return  <Container $theme={theme}>
+  return  (<Container $theme={theme}>
             <TopBar handleMobile={handleMobile} handleTheme={handleTheme} theme={theme}/>
             <FormSection handleMobile={handleMobile} mobile={mobile} theme={theme}/>
-          </Container>
+          </Container>)
 }
