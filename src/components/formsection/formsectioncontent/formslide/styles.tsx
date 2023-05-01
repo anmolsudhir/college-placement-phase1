@@ -13,7 +13,7 @@ export const FormSlideDiv = styled.div`
     border-radius: 0.3rem;
     background-color: ${props => props.$theme === 'light' ? 'transparent' : 'rgb(28,28,28)'};
     box-sizing: inherit;
-    transition: all 0.25s ease;
+    transition: all 0.15s ease;
 
     @media screen and (max-width:720px){
         padding: 1rem;

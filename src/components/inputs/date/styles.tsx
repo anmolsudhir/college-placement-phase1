@@ -35,7 +35,8 @@ export const DateDiv = styled.input.attrs(
     }
 
     &::-webkit-calendar-picker-indicator {
-        border-radius: 50%;
+        background-color : ${props => props.$theme === 'dark' && '#eaeaea'};
+        border-radius: 0.1rem;
         padding: 5px;
         cursor: pointer;
     }

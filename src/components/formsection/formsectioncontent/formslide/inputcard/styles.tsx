@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
-export const InputCardElem = styled.div`
+export const InputCardElem = styled.div.attrs({tabindex:0})`
     position: relative;
-    //margin: 0.1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -18,10 +17,6 @@ export const InputCardElem = styled.div`
     border: 0.1rem solid transparent;
     cursor: pointer;
     &:hover{
-        .label{
-            cursor: pointer;
-            font-weight: 500;
-        }
         border: 0.1rem solid rgba(150, 150, 150, 0.2);
     }
 
@@ -39,7 +34,7 @@ export const InputLabel = styled.div`
     color: ${props => props.$theme === 'light' ? '#4c4c4c' : '#bbbbbb'};
 
     @media screen and (max-width : 720px){
-        font-size: clamp(1rem, 5vw, 2rem);
+        font-size: 0.2rem;
     }
 `
 
@@ -84,46 +79,5 @@ export const InfoText = styled.div`
     box-sizing: inherit;
     @media screen and (max-width:720px){
         font-weight: 300;
-    }
-`
-
-export const Input = styled.input.attrs(props => (
-    {
-        type : props.$type,
-        placeholder : props.$placeholder
-    }
-))`
-    border-width: 0.1rem 0.1rem 0.1rem 0.1rem;
-    margin: 2rem 0 1rem 0;
-    width: 100%;
-    font-size: clamp(1rem, 2vw, 1rem);
-    border: none;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    transition: all 0.15s ease;
-    box-sizing: inherit;
-    background-color: ${props => props.$theme === 'light' ? '#ccdf88' : '#526317'};
-    color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
-    font-weight: 100;
-    outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
-
-    &:active{
-        outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
-        border: none;
-    }
-
-    &:focus{
-        box-shadow: 0 0 5px 1px ${props => props.$theme === 'light' ? 'rgba(174, 208, 53, 0.1)' : 'rgba(62, 75, 16, 0.1)'};
-    }
-
-    &::placeholder{
-        color: #999999;
-        font-weight: 200;
-    }
-
-    @media screen and (max-width:720px) {
-        font-weight: 400;
-        padding: 0.75rem;
-        margin: 1rem 0;
     }
 `

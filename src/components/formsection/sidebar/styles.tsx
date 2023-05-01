@@ -10,6 +10,7 @@ export const SideBarContainer = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     border: solid;
+    border-width: 0 0.1rem 0 0;
     border-color: ${(props : any) => props.$theme === 'light' ? '#DCDCDC' : '#2f2f2f'};
     background-color: ${(props : any) => props.$theme === 'light' ? '#f1f1f1' : '#1c1c1c'};
     padding: 7rem 1rem 0 1rem;
@@ -72,7 +73,8 @@ export const SideBarHeader = styled.div`
 
     @media screen and (max-width:720px){
         font-weight: 350;
-        font-size : 1rem
+        font-size : 1rem;
+        margin: 1rem 0;
     }
 `
 
@@ -82,15 +84,9 @@ export const SideBarElem = styled.div`
     width: 100%;
     box-sizing: inherit;
 
-    /* &:hover{
-        .header {
-            ${props => props.$theme === 'light' ? `
-                color: #5d5d5d;
-            ` : `
-                color: #c4c4c4;
-            `}
-        }
-    } */
+    &:hover > ${SideBarHeader} {
+        color : #97b42e;
+    }
 `
 
 export const ContentContainer = styled.div`

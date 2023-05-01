@@ -10,32 +10,40 @@ export const Button = styled.button.attrs(props => (
     width: auto;
     border: none;
     font-size: 1rem;
-    color: white;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     transition: all 0.2s ease;
     padding : 0 1rem;
 
     ${props => props.$disabled ? `
         cursor : default;
+        cursor : default;
+        color : #676e4c;
+        background-color : transparent;
         ${props.$theme === 'light' ? `
-            background-color:#bdca8a;
-            color: #ededed;
+                border: 0.1rem solid #c3d38a;
+                color: #c3d38a;
             ` : `
-            background-color:#5f6a34;
-            color: #a7a7a7;
+                border: 0.1rem solid #5d6248;
+                color: #5d6248;
             `
         }
         ` : `
         ${props.$theme === 'light' ? `
-                background-color:#a4be46;
+                border: 0.15rem solid rgb(153, 184, 32);
+                background-color : transparent;
+                color: rgb(138, 169, 15);
                 &:hover{
-                    background-color: #99b338;
+                    background-color:rgb(153, 184, 32);
+                    color: white;
                     transform: translateY(-10%);
                 }
             `: `
-                background-color:#5f7117;
+                border: 0.15rem solid rgb(123, 151, 11);
+                background-color : transparent;
+                color: rgb(123, 151, 11);
                 &:hover{
-                    background-color: #4e610a;
+                    background-color:rgb(123, 151, 11);
+                    color: white;
                     transform: translateY(-10%);
                 }
             `
@@ -49,6 +57,8 @@ export const Button = styled.button.attrs(props => (
             transform : none;
         }
         &:active{
+            background-color:rgb(118, 137, 44);
+            color: white;
             transform : ${props => props.$disabled ? 'scale(100%)' : 'scale(103%)'};
         }
     }

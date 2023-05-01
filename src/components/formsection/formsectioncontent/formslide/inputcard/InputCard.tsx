@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { InfoDiv, InfoText, Input, InputCardElem, InputLabel } from "./styles"
+import { InfoDiv, InfoText, InputCardElem, InputLabel } from "./styles"
 import Image from "next/image"
 import Text from "@/components/inputs/text/Text"
 import TeleInput from "@/components/inputs/tel/TeleInp"

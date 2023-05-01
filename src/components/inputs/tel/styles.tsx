@@ -43,7 +43,6 @@ export const Input = styled.input.attrs(props => (
     border-radius: 0.2rem;
     transition: all 0.15s ease;
     box-sizing: inherit;
-    background-color: ${props => props.$theme === 'light' ? `${props.$isValid ? '#ccdf88' : '#dfd188'} ` : `${props.$isValid ? '#526317' : '#635e17'} `};
     color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
     background-color: ${props => props.$theme === 'light' ? `${props.$isValid ? 'transparent' : '#fff0f0'} ` : `${props.$isValid ? 'transparent' : '#1f1414'} `};

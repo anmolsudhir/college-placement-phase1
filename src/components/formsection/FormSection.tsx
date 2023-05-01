@@ -40,7 +40,7 @@ export default function FormSection({theme, mobile, handleMobile}){
   function handleScroll(slideIdx, cardIdx) {
         const child = refv[slideIdx].current.children[1].children[cardIdx]
         componentRef.current.scrollTo({
-            top : (child.offsetTop - 110),
+            top : (child.offsetTop - 75),
             behavior : "smooth"
         })
   }

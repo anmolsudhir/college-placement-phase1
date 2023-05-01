@@ -15,7 +15,7 @@ export const TopBarContainer = styled.div`
     justify-content: space-between;
     padding: 0.5%;
     backdrop-filter: blur(5px);
-    box-shadow: 0px 0px 10px 1px rgba(130, 130, 130, 0.1);
+    box-shadow: 0px 0px 10px 1px ${props => props.$theme === 'light' ? 'rgba(130, 130, 130, 0.1)' : 'rgba(0, 0, 0, 0.2)'};
     box-sizing: border-box;
 `;
 
@@ -35,15 +35,11 @@ export const ThemeBtn = styled.div`
     cursor: pointer;
     margin: 0.5rem 1rem;
     border-radius: 0.25rem;
-    border: 0.1rem solid ${(props : any) => props.$theme === 'light' ? '#cbcbcb;' : '#3e3e3e'};
+    border: 0.07rem solid ${(props : any) => props.$theme === 'light' ? '#cbcbcb;' : '#3e3e3e'};
     box-sizing: inherit;
     transition: all 0.25s ease;
     &:hover{    
         transform: ${(props : any) => props.$theme === 'light' ? `rotate(45deg)` : `rotate(-45deg)`};
-        background-color : ${(props : any) => props.$theme === 'light' ? '#cbcbcb' : '#3e3e3e'};
-    }
-
-    &:active{  
         background-color : ${(props : any) => props.$theme === 'light' ? '#cbcbcb' : '#3e3e3e'};
     }
 
@@ -83,7 +79,9 @@ export const MenuBtn = styled.div`
     margin: 0.5rem 1rem;
     border-radius: 0.5rem;
     box-sizing: inherit;
-    background-color: ${(props : any) => props.$theme === 'light' ? 'rgba(220, 220, 220, 1)' : 'rgba(28, 28, 28, 1)'};
+    border-radius: 0.25rem;
+    border: 0.07rem solid ${(props : any) => props.$theme === 'light' ? '#cbcbcb;' : '#3e3e3e'};
+    background-color: transparent;
     @media screen and (max-width : 720px){
         display: flex;
         margin : 0.5rem 1rem;

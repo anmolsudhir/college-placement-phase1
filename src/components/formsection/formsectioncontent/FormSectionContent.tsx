@@ -11,7 +11,6 @@ export default function FormSectionContent({theme, refv, compref}){
 
     const validateSlides = (idx, validity) => {
         slideArr[idx] = validity
-        console.log("slide :",slideArr)
         if(slideArr.every((elem) => elem === true)){
             setAreSlidesValid(true)
         }
