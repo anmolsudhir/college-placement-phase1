@@ -5,14 +5,6 @@ import {Content, ContentContainer, SideBarElem, SideBarHeader} from './styles'
 export default function SideBarElemComp({theme, handleScroll, idx, label, content}){
     const [hover, setHover] = useState(false)
 
-    const handleMouseEnter = () => {
-        setHover(true)
-        
-    }
-    const handleMouseLeave = () => {
-        setHover(false)
-    }
-
     const setScrollPosition = (index) => {
         handleScroll(idx, index)
     }

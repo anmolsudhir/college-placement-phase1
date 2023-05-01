@@ -1,23 +1,14 @@
-import { useState } from 'react'
 import TopBar from '@/components/topbar/TopBar'
 import FormSection from '@/components/formsection/FormSection'
 import { Container } from './styles'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store/store'
 
 export default function Form (){
-
-  const [theme, setTheme] = useState('dark')
-  const [mobile, setMobile] = useState(false)
-
-  const handleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
-
-  const handleMobile = () => {
-    setMobile(mobile ? false : true)
-  }
+  const theme = useSelector((state : RootState) => state.theme.theme)
 
   return  (<Container $theme={theme}>
-            <TopBar handleMobile={handleMobile} handleTheme={handleTheme} theme={theme}/>
-            <FormSection handleMobile={handleMobile} mobile={mobile} theme={theme}/>
+            <TopBar/>
+            <FormSection/>
           </Container>)
 }

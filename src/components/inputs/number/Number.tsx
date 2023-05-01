@@ -2,8 +2,11 @@ import { Label } from "../Label";
 import { Input, InputDiv } from "./styles";
 import { useState } from "react";
 import { Invalid } from "../Invalid";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
-export default function NumberInp({theme, element, handleIV}){
+export default function NumberInp({ element, handleIV}){
+    const theme = useSelector((state : RootState) => state.theme.theme)
     const [isValid, setIsValid] = useState(true)
     const handleValidation = (e) => {
         if(e.target.value.match(element.regex)){

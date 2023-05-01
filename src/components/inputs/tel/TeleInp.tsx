@@ -2,8 +2,11 @@ import { Label } from "../Label";
 import { Input, InputDiv, Phone} from "./styles";
 import { useState } from "react";
 import { Invalid } from "../Invalid";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
 
-export default function TeleInput({theme, element, handleIV}){
+export default function TeleInput({ element, handleIV}){
+    const theme = useSelector((state : RootState) => state.theme.theme)
     const [isValid, setIsValid] = useState(true)
     const handleValidation = (e) => {
         if(e.target.value.match(element.regex)){

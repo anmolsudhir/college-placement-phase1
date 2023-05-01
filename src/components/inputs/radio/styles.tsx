@@ -19,9 +19,9 @@ export const RadioDiv = styled.div`
     color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
     border-radius: 0.2rem;
-    padding: 0.1rem;
+    padding: 0.15rem;
     background-color: transparent;
-    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 0.1rem'  : '#555555 solid 1px' };
+    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 1px'  : '#555555 solid 1px' };
 
     &:focus{
         outline: ${props => props.$theme === 'light' ? '#97b42e solid 2px'  : '#97b42e solid 1px' };
@@ -29,7 +29,6 @@ export const RadioDiv = styled.div`
 
     @media screen and (max-width:720px) {
         font-weight: 400;
-        padding: 0.25rem;
     }
 `
 
@@ -39,7 +38,7 @@ export const RadioLabel = styled.label`
   justify-content: center;
   cursor: pointer;
   padding: 0.4rem 0.4rem;
-  border-radius: 0.25rem;
+  border-radius: 0.15rem;
   width: 100%;
   transition: all 0.25s ease;
 `

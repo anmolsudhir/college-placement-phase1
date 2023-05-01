@@ -13,15 +13,10 @@ export const SelectGroup = styled.select`
     border-radius: 0.2rem;
     padding: 0.5rem;
     background-color: transparent;
-    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 0.1rem' : '#555555 solid 1px'};
+    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 1px' : '#555555 solid 1px'};
 
     &:focus{
         outline: ${props => props.$theme === 'light' ? '#97b42e solid 2px' : '#97b42e solid 1px'};
-    }
-
-    &:active{
-        outline: ${props => props.$theme === 'light' ? '#afc36a solid 1px' : '#404d12 solid 1px'};
-        border: none;
     }
 
     @media screen and (max-width:720px) {

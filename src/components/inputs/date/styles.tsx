@@ -18,7 +18,7 @@ export const DateDiv = styled.input.attrs(
     border-radius: 0.2rem;
     padding: 0.4rem;
     background-color: transparent;
-    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 0.1rem' : '#555555 solid 1px'};
+    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 1px' : '#555555 solid 1px'};
 
     &:focus{
         outline: #97b42e solid 2px;

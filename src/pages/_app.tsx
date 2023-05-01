@@ -1,14 +1,18 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
-import Head from 'next/head'
+import { store, wrapper } from '@/store/store';
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { Provider } from 'react-redux';
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <title>CMRIT Placement Portral</title>
       </Head>
       <Component {...pageProps} />
-    </>
-  )
-}
+    </Provider>
+  );
+};
+
+export default wrapper.withRedux(App);

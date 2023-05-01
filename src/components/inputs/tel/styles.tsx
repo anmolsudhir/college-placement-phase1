@@ -20,7 +20,7 @@ export const Phone = styled.div`
     color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
     background-color: ${props => props.$theme === 'light' ? 'transparent' : 'transparent'};
-    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 0.1rem'  : '#555555 solid 1px' };
+    outline: ${props => props.$theme === 'light' ? '#b9b9b9 solid 1px'  : '#555555 solid 1px' };
 
     @media screen and (max-width:720px) {
         font-weight: 400;
@@ -46,7 +46,7 @@ export const Input = styled.input.attrs(props => (
     color: ${props => props.$theme === 'light' ? '#777777' : '#bbbbbb'};
     font-weight: 100;
     background-color: ${props => props.$theme === 'light' ? `${props.$isValid ? 'transparent' : '#fff0f0'} ` : `${props.$isValid ? 'transparent' : '#1f1414'} `};
-    outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#b9b9b9 solid 0.1rem' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#555555 solid 1px' : 'red solid 1px'} `};
+    outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#b9b9b9 solid 1px' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#555555 solid 1px' : 'red solid 1px'} `};
 
     &:focus{
         outline: ${props => props.$theme === 'light' ? `${props.$isValid ? '#97b42e solid 2px' : '#ff0000 solid 1px'} ` : `${props.$isValid ? '#97b42e solid 1px' : 'red solid 1px'} `};

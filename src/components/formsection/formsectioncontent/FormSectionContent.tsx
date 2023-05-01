@@ -4,8 +4,11 @@ import info from "@/assests/info/info";
 import { useState } from "react";
 import {Button} from '@/components/Button'
 import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
-export default function FormSectionContent({theme, refv, compref}){
+export default function FormSectionContent({ refv, compref}){
+    const theme = useSelector((state : RootState) => state.theme.theme)
     const [areSlidesValid, setAreSlidesValid] = useState(false)
     let slideArr = useMemo(() => (info.map(() => false)), [])
 
@@ -16,7 +19,7 @@ export default function FormSectionContent({theme, refv, compref}){
         }
         else setAreSlidesValid(false)
     }
-    const slides = info.map((elem, idx) => <FormSlide validateSlide={validateSlides} theme={theme} refv={refv} idx={idx} key={idx*2} props={elem}></FormSlide>)
+    const slides = info.map((elem, idx) => <FormSlide validateSlide={validateSlides} refv={refv} idx={idx} key={idx*2} props={elem}></FormSlide>)
 
     return <FormSectionContentDiv ref={compref}  $theme={theme}>
             {slides}

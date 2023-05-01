@@ -3,7 +3,7 @@ import SideBar from "./sidebar/SideBar";
 import FormSectionContent from "./formsectioncontent/FormSectionContent";
 import { FormContainer, ProgressBar} from "./styles";
 
-export default function FormSection({theme, mobile, handleMobile}){
+export default function FormSection({}){
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const componentRef = useRef(null);
@@ -45,10 +45,10 @@ export default function FormSection({theme, mobile, handleMobile}){
         })
   }
     return(
-        <FormContainer $theme={theme}>
+        <FormContainer>
             <ProgressBar width={scrollPosition}/>
-            <SideBar handleMobile={handleMobile} mobile={mobile} handleScroll={handleScroll} theme={theme}/>
-            <FormSectionContent compref={componentRef} refv={refv} theme={theme} />
+            <SideBar handleScroll={handleScroll}/>
+            <FormSectionContent compref={componentRef} refv={refv} />
         </FormContainer>
     )
 }

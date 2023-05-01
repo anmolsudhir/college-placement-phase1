@@ -1,8 +1,11 @@
 import { FormSlideDiv, InputContainer, SlideHeader } from "./styles";
 import InputCard from "./inputcard/InputCard";
 import {useState, useEffect, useMemo } from "react";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
 
-export default function FormSlide({theme, props, refv, idx, validateSlide}){
+export default function FormSlide({props, refv, idx, validateSlide}){
+  const theme = useSelector((state : RootState) => state.theme.theme)
 
   let inputArr = useMemo(() => (props[0].content.map((elem) => elem.validable ? false : true)), [])
   const [isHidden, setIsHidden] = useState(true)
@@ -48,8 +51,8 @@ export default function FormSlide({theme, props, refv, idx, validateSlide}){
     setIsHidden(e) 
   }
 
-  let elems = props[0].content.map((elem, index) => !elem.hidden && <InputCard handleHidden={handleHidden} idx={index} validateInput={validateInputs} theme = {theme} key={`${elem.label}${idx}`} element={elem}></InputCard>)
-  let hiddenElems = props[0].content.map((elem, index) => elem.hidden && <InputCard handleHidden={handleHidden} idx={index} validateInput={validateInputs} theme = {theme} key={`${elem.label}${idx}`} element={elem}></InputCard>)
+  let elems = props[0].content.map((elem, index) => !elem.hidden && <InputCard handleHidden={handleHidden} idx={index} validateInput={validateInputs} key={`${elem.label}${idx}`} element={elem}></InputCard>)
+  let hiddenElems = props[0].content.map((elem, index) => elem.hidden && <InputCard handleHidden={handleHidden} idx={index} validateInput={validateInputs} key={`${elem.label}${idx}`} element={elem}></InputCard>)
 
   return (
     <FormSlideDiv $theme={theme} ref={refv[idx]}>

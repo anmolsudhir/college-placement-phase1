@@ -2,8 +2,11 @@ import { useState } from "react";
 import { TextInput } from "./styles";
 import { Label } from "../Label";
 import { Invalid } from "../Invalid";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
-export default function Text({theme, element, handleIV}){
+export default function Text({ element, handleIV}){
+    const theme = useSelector((state : RootState) => state.theme.theme)
     const [isValid, setIsValid] = useState(true)
     const handleValidation = (e) => {
         if(e.target.value.match(element.regex)){

@@ -3,8 +3,11 @@ import Radio from "../radio/Radio";
 import { Precentage, ResultDiv, ResultInput } from "./styles";
 import { useEffect, useState } from "react";
 import { Invalid } from "../Invalid";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
 
-export default function Result({theme, element, handleIV}){
+export default function Result({ element, handleIV}){
+    const theme = useSelector((state : RootState) => state.theme.theme)
     const [isValid, setIsValid] = useState(true)
     const [isPercentage, setIsPercentage] = useState(false)
     const [hasRendered, setHasRendered] = useState(false)
@@ -57,7 +60,7 @@ export default function Result({theme, element, handleIV}){
     return ( 
         <>
             <Label $theme={theme} className='label'>{element.label}</Label>
-            <Radio handleHidden={(e) => {}} handleSelect={handleSelect} theme={theme} element={ele}></Radio>
+            <Radio handleHidden={(e) => {}} handleSelect={handleSelect} element={ele}></Radio>
             <ResultDiv>
                 <ResultInput $isValid={isValid} onChange={handleValidation} $theme={theme} $placeholder={element.label}></ResultInput>
                 {isPercentage && <Precentage $theme={theme}>%</Precentage>}

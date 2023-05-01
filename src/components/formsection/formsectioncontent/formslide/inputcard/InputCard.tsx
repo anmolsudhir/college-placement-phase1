@@ -10,9 +10,12 @@ import NumberInp from "@/components/inputs/number/Number"
 import Select from "@/components/inputs/select/Select"
 import Address from "@/components/inputs/address/Address"
 import Result from "@/components/inputs/result/Result"
+import { useSelector } from "react-redux"
+import { RootState } from "@/store/store"
 
 
-function InputCard({theme, element, idx, validateInput, handleHidden}) {
+function InputCard({element, idx, validateInput, handleHidden}) {
+  const theme = useSelector((state : RootState) => state.theme.theme)
   const [active, setActive] = useState(false)
   const [hover, setHover] = useState(false)
 
@@ -23,39 +26,39 @@ function InputCard({theme, element, idx, validateInput, handleHidden}) {
   const arr = [
     {
       type : 'text',
-      comp : <Text handleIV={handleIV} theme={theme} element={element}/>
+      comp : <Text handleIV={handleIV} element={element}/>
     },
     {
       type : 'tel',
-      comp : <TeleInput handleIV={handleIV} theme={theme} element={element} ></TeleInput>
+      comp : <TeleInput handleIV={handleIV} element={element} ></TeleInput>
     },
     {
       type : 'radio',
-      comp : <Radio handleHidden={handleHidden} handleSelect={() => {}} theme={theme} element={element}></Radio>
+      comp : <Radio handleHidden={handleHidden} handleSelect={() => {}} element={element}></Radio>
     },
     {
       type : 'date',
-      comp : <Date handleIV={handleIV} element={element} theme={theme} />
+      comp : <Date handleIV={handleIV} element={element} />
     },
     {
       type : 'mail',
-      comp : <MailInput handleIV={handleIV} theme={theme} element={element}></MailInput>
+      comp : <MailInput handleIV={handleIV} element={element}></MailInput>
     },
     {
       type : 'number',
-      comp : <NumberInp handleIV={handleIV} theme={theme} element={element}></NumberInp>
+      comp : <NumberInp handleIV={handleIV} element={element}></NumberInp>
     },
     {
       type : 'select',
-      comp : <Select handleHidden={handleHidden} theme={theme} element={element} />
+      comp : <Select handleHidden={handleHidden} element={element} />
     },
     {
       type : 'res',
-      comp : <Result handleIV={handleIV} theme={theme} element={element}/>
+      comp : <Result handleIV={handleIV} element={element}/>
     },
     {
       type : 'addr',
-      comp : <Address handleIV={handleIV} theme={theme} element={element}></Address>
+      comp : <Address handleIV={handleIV} element={element}></Address>
     }
   ]
 
