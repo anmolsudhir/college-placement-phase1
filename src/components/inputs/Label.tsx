@@ -8,6 +8,6 @@ export const Label = styled.label.attrs({className : 'label'})`
     color: ${props => props.$theme === 'light' ? '#6c6c6c' : '#bbbbbb'};
 
     @media screen and (max-width : 720px){
-        font-size: clamp(1rem, 5vw, 2rem);
+        font-size: clamp(1rem, 2vw, 2rem);
     }
 `

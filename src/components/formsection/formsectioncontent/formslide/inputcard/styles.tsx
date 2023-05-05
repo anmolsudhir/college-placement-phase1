@@ -23,6 +23,8 @@ export const InputCardElem = styled.div.attrs({tabindex:0})`
     &:focus{
         border: 0.1rem solid rgba(150, 150, 150, 0.2);
     }
+
+    
 `
 
 export const InputLabel = styled.div`

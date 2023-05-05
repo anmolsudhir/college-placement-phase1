@@ -13,13 +13,9 @@ export const FormSlideDiv = styled.div`
     border-radius: 0.3rem;
     background-color: ${props => props.$theme === 'light' ? 'transparent' : 'rgb(28,28,28)'};
     box-sizing: inherit;
-    //transition: all 0.15s ease;
-
-    @media screen and (max-width:720px){
-        padding: 1rem;
-    }
 
     @media screen and (max-width:1150px){
+        padding : 1rem;
         flex-direction: column;
     }
 `
@@ -34,11 +30,12 @@ export const SlideHeader = styled.div`
     justify-content: flex-end;
     align-items: flex-end;
     color:rgb(100, 100, 100);
+    box-sizing: inherit;
 
     @media screen and (max-width:1150px){
         width: 100%;
-        margin: 0.5rem;
-        padding: 0.5rem;
+        margin: 1rem;
+        padding: 1rem;
     }
 `
 

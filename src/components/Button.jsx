@@ -48,18 +48,17 @@ export const Button = styled.button.attrs(props => (
                 }
             `
         }
+        @media (max-width:720px){
+                    transition : transform 0.25s ease;
+                    &:hover{
+                        transform : none;
+                    }
+                    &:active{
+                        background-color:rgb(118, 137, 44);
+                        color: white;
+                        transform : ${props => props.$disabled ? 'scale(100%)' : 'scale(103%)'};
+                    }
+                }
         `
-    }
-
-    @media (max-width:720px){
-        transition : transform 0.25s ease;
-        &:hover{
-            transform : none;
-        }
-        &:active{
-            background-color:rgb(118, 137, 44);
-            color: white;
-            transform : ${props => props.$disabled ? 'scale(100%)' : 'scale(103%)'};
-        }
     }
 `

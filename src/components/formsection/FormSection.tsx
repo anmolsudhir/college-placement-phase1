@@ -33,7 +33,7 @@ export default function FormSection({}){
     componentRef.current.addEventListener("scroll", updateScrollPosition);
     let temp = componentRef
     return () => {
-      temp.current.removeEventListener("scroll", updateScrollPosition);
+      temp.current?.removeEventListener("scroll", updateScrollPosition);
     };
   }, []);
 

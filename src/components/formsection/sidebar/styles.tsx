@@ -62,7 +62,7 @@ export const SideBarHeader = styled.div`
     border-radius: 0.1rem;
     box-sizing: inherit;
     transition: all 0.15s ease;
-    font-size: clamp(0px, 1vw, 10rem);
+    font-size: clamp(1rem, 1vw, 10rem);
     font-weight: 100;
     cursor: pointer;
 

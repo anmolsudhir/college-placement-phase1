@@ -1,22 +1,38 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { createWrapper } from "next-redux-wrapper";
+import {HYDRATE, createWrapper } from "next-redux-wrapper";
 import theme from "../features/themeSlice";
 import mobile from "@/features/mobileSlice";
+import colors from "@/features/colorSlice";
 
 const combinedReducer = combineReducers({
     theme,
     mobile,
+    colors,
 });
 
-export const store = configureStore({
-    reducer : combinedReducer,
-})
+const masterReducer = (state, action) => {
+    if(action.type === HYDRATE){
+        const nextState = {
+            ...state,
+            // colors : {
+            //     ...(state.colors)
+            // }
+        };
+        return nextState;
+    }
 
-export const makeStore = () => store
+    else return combinedReducer(state, action)
+}
+
+export const store = configureStore({
+    reducer : masterReducer,
+});
+
+export const makeStore = () => store;
 
 
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 
-export const wrapper = createWrapper(makeStore);
+export const wrapper = createWrapper(makeStore, {debug : true});
