@@ -23,6 +23,10 @@ export const LandingDiv = styled.div`
   border-width: 0 1px 0 0;
   border-color: ${props => props.$colors.border.light};
   box-sizing: inherit;
+
+  @media screen and (max-width:1150px){
+    display: none;
+  }
 `
 
 export const LoginDiv = styled.div`
@@ -34,6 +38,10 @@ export const LoginDiv = styled.div`
   box-sizing: inherit;
   padding: 5rem 8rem;
   background-color: #dde0d8;
+  @media screen and (max-width:1150px){
+    width: 100%;
+    padding: 0 3rem;
+  }
 `;
 
 export const LogoDiv = styled.div`
@@ -91,9 +99,12 @@ export const InputDiv = styled.div`
   box-sizing: inherit;
   background-color: ${props => props.$colors.background.light};
   transition: height 5s ease-in-out;
+  @media screen and (max-width:1150px){
+    padding: 3rem 1rem;
+  }
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled.button.attrs(props => ({id : props.$id}))`
     cursor: pointer;
     height : 3rem;
     width: 100%;

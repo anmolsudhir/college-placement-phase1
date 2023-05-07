@@ -62,6 +62,9 @@ export const InfoDiv = styled.div`
         height : 100%;
         padding : 1rem;
         background-color : ${props.$theme === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.1)'};
+        @media screen and (max-width:720px) {
+            width:100%;
+        }
     ` : `
         padding : 0;
     `}

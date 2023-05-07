@@ -5,11 +5,11 @@ export const Invalid = styled.div`
     box-sizing: inherit;
     color : red;
     margin: 0.45rem 0 0 0.15rem;
-    font-size: 0.9rem;
-    font-weight: 350;
+    font-size: 0.75rem;
+    font-weight: 100;
 
     @media (max-width:720px) {
-        font-size: 0.9rem;
-        font-weight: 400;
+        font-size: 0.8rem;
+        font-weight: 300;
     }
 `
