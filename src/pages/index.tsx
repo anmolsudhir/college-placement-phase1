@@ -7,13 +7,16 @@ import { InfoDiv, InfoText } from '@/components/formsection/formsectioncontent/f
 import TeleInput from '@/components/inputs/tel/TeleInp'
 import Text from '@/components/inputs/text/Text'
 import { addObj } from '@/redux/features/formSlice'
-import { useState } from 'react'
-import createFirebaseApp from '@/firebase/auth/initFirebase'
-import createReCAPTCHA from '@/firebase/auth/phone/reCAPCHA'
-import { getAuth, signInWithPhoneNumber } from "firebase/auth";
-import firebase from 'firebase/app'
-import "firebase/auth"
-import "firebase/firestore"
+import { useEffect, useState } from 'react'
+import auth from '@/firebase/auth/initFirebase'
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+
+declare global {
+  interface Window {
+    recaptchaVerifier: RecaptchaVerifier;
+    confirmationResult : any;
+  }
+}
 
 export default function Home() {
   const theme = useSelector((state : RootState) => state.theme.theme)
@@ -26,17 +29,16 @@ export default function Home() {
   const [active, setActive] = useState(false)
   const dispatch = useDispatch()
 
-// Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  };
-
-    firebase.initializeApp(firebaseConfig)
+  useEffect(() => {
+    if(typeof window !== 'undefined')
+      window.recaptchaVerifier = new RecaptchaVerifier('submit-btn', {
+        'size': 'invisible',
+        'callback': (response) => {
+          console.log(response)
+        }
+      }, auth);
+    console.log(window.recaptchaVerifier)
+  }, [])
 
   const mailElem ={
     label : "Cmrit mail",
@@ -63,23 +65,17 @@ export default function Home() {
   }
 
   const verifyMobile = () => {
-    createReCAPTCHA('submit-btn');
-    const phoneNumber = obj.formObject?.tel;
+    const phoneNumber = "+91" + obj.formObject?.tel;
     const appVerifier = window.recaptchaVerifier;
-    const firebaseApp = createFirebaseApp()
-    const auth = getAuth();
-    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-      .then((confirmationResult) => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        //window.confirmationResult = confirmationResult;
-        // ...
-        console.log('message sent', confirmationResult)
-      }).catch((error) => {
-        // Error; SMS not sent
-        // ...
-        console.log(error)
-      });
+    if(typeof window !== 'undefined')
+      signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+        .then((confirmationResult) => {
+          window.confirmationResult = confirmationResult;
+          console.log("sent code", confirmationResult)
+        }).catch((error) => {
+          console.log(error, "It happened")
+        });
+    else console.log("window undefined")
   }
 
   const checkPassword = async () => {
@@ -90,7 +86,6 @@ export default function Home() {
   }
 
   const handleSubmission = async() => {
-    console.log(obj)
     if(mailValid && telValid && passwordValid){
       try{ 
         await checkPassword();
@@ -101,7 +96,6 @@ export default function Home() {
         setisPWValid(true);
       }
     }
-    else console.log('soryy')
   }
 
   return (
