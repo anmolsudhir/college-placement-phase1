@@ -3,7 +3,7 @@ import Radio from "../radio/Radio";
 import { Precentage, ResultDiv, ResultInput } from "./styles";
 import { useEffect, useState } from "react";
 import { Invalid } from "../Invalid";
-import { RootState } from "@/store/store";
+import { RootState } from "@/redux/store/store";
 import { useSelector } from "react-redux";
 
 export default function Result({ element, handleIV}){

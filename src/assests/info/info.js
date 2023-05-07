@@ -57,14 +57,14 @@ const info = [
                           type : "mail",
                           regex : /^[a-z]{2,3}\.(1cr)(1[0-9]|2[0-3])[a-z]{2}[0-9]{3}\.[a-z]+(\.[a-z]+)*\s*$/,
                           validable : true,
-                          info : "Enter your college e-mail ID. It must be of form branch.usn.name@gmail.com"
+                          info : "Enter your personal e-mail ID. It must be of form branch.usn.name@gmail.com"
                         },
                         {
                           label : "College Mail",
                           type : "mail",
                           regex : /^[a-z]{4,6}[0-9]{2}[a-z]{2}\s*$/,
                           validable : true,
-                          info : "Enter your personal e-mail ID. (Ex ansu20cs@cmrit.ac.in)"
+                          info : "Enter your College e-mail ID. (Ex ansu20cs@cmrit.ac.in)"
                         },
                         {
                           label : "Parent's Phone",

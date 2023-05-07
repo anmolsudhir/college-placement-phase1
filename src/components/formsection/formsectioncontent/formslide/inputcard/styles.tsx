@@ -57,8 +57,8 @@ export const InfoDiv = styled.div`
     ${props => props.$active ? `
         right : 0;
         top : 0;
-        box-shadow: 0 0 0.35rem 0.05rem rgba(0, 0, 0, 0.1);
-        width : 100%;
+        box-shadow: 0 0 0.35rem 0.05rem rgba(0, 0, 0, 0.3);
+        width : ${props.$width};
         height : 100%;
         padding : 1rem;
         background-color : ${props.$theme === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.1)'};

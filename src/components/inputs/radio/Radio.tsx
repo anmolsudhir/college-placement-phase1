@@ -1,7 +1,7 @@
 import { Label } from "../Label";
 import { RadioDiv, RadioLabel, RadioOption } from "./styles";
 import { useEffect, useState } from "react";
-import { RootState } from "@/store/store";
+import { RootState } from "@/redux/store/store";
 import { useSelector } from "react-redux";
 
 export default function Radio({ element, handleSelect, handleHidden}){

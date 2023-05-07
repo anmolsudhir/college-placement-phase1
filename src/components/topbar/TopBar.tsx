@@ -1,9 +1,9 @@
-import { changeTheme } from '@/features/themeSlice';
+import { changeTheme } from '@/redux/features/themeSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { RootState } from '@/redux/store/store';
 import {LogoContainer, LogoText, MenuBtn, ThemeBtn, TopBarContainer} from './styles'
 import Image from 'next/image';
-import { changeMobile } from '@/features/mobileSlice';
+import { changeMobile } from '@/redux/features/mobileSlice';
 
 export default function TopBar({ }){
     const dispatch = useDispatch()

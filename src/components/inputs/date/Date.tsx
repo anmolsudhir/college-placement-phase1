@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Label } from "../Label";
 import { DateDiv } from "./styles";
-import { RootState } from "@/store/store";
+import { RootState } from "@/redux/store/store";
 import { useSelector } from "react-redux";
 
 export default function({ element, handleIV}){

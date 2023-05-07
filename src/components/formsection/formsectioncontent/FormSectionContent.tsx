@@ -5,7 +5,7 @@ import { useState } from "react";
 import {Button} from '@/components/Button'
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { RootState } from "@/redux/store/store";
 
 export default function FormSectionContent({ refv, compref}){
     const theme = useSelector((state : RootState) => state.theme.theme)

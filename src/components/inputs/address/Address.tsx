@@ -3,7 +3,7 @@ import { AddressArea } from "./styles";
 import { useState } from "react";
 import { Invalid } from "../Invalid";
 import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { RootState } from "@/redux/store/store";
 
 export default function Address({ element, handleIV}){
     const theme = useSelector((state : RootState) => state.theme.theme)

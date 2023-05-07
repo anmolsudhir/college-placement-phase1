@@ -11,7 +11,7 @@ import Select from "@/components/inputs/select/Select"
 import Address from "@/components/inputs/address/Address"
 import Result from "@/components/inputs/result/Result"
 import { useSelector } from "react-redux"
-import { RootState } from "@/store/store"
+import { RootState } from "@/redux/store/store"
 
 
 function InputCard({element, idx, validateInput, handleHidden}) {
@@ -64,7 +64,7 @@ function InputCard({element, idx, validateInput, handleHidden}) {
 
   return (
     <InputCardElem onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} $theme={theme}>
-      {hover && <InfoDiv $theme={theme} onMouseDown={(e) => e.preventDefault()} onClick={() => setActive(!active)} onMouseLeave={() => setActive(false)} $active={active}>
+      {hover && <InfoDiv $width={"100%"} $theme={theme} onMouseDown={(e) => e.preventDefault()} onClick={() => setActive(!active)} onMouseLeave={() => setActive(false)} $active={active}>
         {active && <InfoText $theme={theme}>{element.info}</InfoText>}
         <Image style={{cursor : "pointer"}} src={theme === 'light' ? '/information-button-dark.png' :'/information-button.png'} alt="info" width={15} height={15}/>
       </InfoDiv>}

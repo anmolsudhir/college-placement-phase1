@@ -1,7 +1,7 @@
 import { FormSlideDiv, InputContainer, SlideHeader } from "./styles";
 import InputCard from "./inputcard/InputCard";
 import {useState, useEffect, useMemo } from "react";
-import { RootState } from "@/store/store";
+import { RootState } from "@/redux/store/store";
 import { useSelector } from "react-redux";
 
 export default function FormSlide({props, refv, idx, validateSlide}){

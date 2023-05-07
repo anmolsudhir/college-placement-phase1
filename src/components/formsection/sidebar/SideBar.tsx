@@ -2,8 +2,8 @@ import {  Modal, SideBarContainer} from "./styles";
 import info from "@/assests/info/info";
 import SideBarElemComp from "./SideBarElemComp";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/store/store";
-import { changeMobile } from "@/features/mobileSlice";
+import { RootState } from "@/redux/store/store";
+import { changeMobile } from "@/redux/features/mobileSlice";
 
 export default function SideBar({handleScroll}){
     const theme = useSelector((state : RootState) => state.theme.theme)

@@ -1,4 +1,4 @@
-import { store, wrapper } from '@/store/store';
+import { store, wrapper } from '@/redux/store/store';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';

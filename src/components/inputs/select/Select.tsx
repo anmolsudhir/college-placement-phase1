@@ -2,7 +2,7 @@ import { Label } from "../Label";
 import { SelectGroup, Option } from "./styles";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { RootState } from "@/redux/store/store";
 
 export default function Select({element, handleHidden}){
   const theme = useSelector((state : RootState) => state.theme.theme)
