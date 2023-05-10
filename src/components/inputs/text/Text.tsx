@@ -23,7 +23,7 @@ export default function Text({ element, handleIV, handleConstruction}){
         <>
             <Label $theme={theme} className='label'>{element.label}</Label>
             <TextInput $type={element.type} onChange={(e) => {handleValidation(e); handleConstruction(element.type,e.target.value)}} $isValid={isValid} $theme = {theme} $placeholder={element.label}/>
-            {!isValid && <Invalid $theme={theme}>Invalid Input. Please check with info given at the top right corner</Invalid>}
+            {!isValid && <Invalid $theme={theme}>{element.errorInfo ? element.errorInfo : "Invalid Input. Please check with info given at the top right corner"}</Invalid>}
         </>
     )
 }

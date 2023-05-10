@@ -90,36 +90,61 @@ export const InputDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height : auto;
+  height: auto;
   padding: 3rem;
   border: 1px solid;
   border-radius: 0.3rem;
   border-color: #c4c4c4;
   box-shadow: 0 0 0.75rem 0.2rem rgba(0, 0, 0, 0.1);
   box-sizing: inherit;
-  background-color: ${props => props.$colors.background.light};
+  background-color: ${(props) => props.$colors.background.light};
   transition: height 5s ease-in-out;
-  @media screen and (max-width:1150px){
+
+  @media screen and (max-width: 1150px) {
     padding: 3rem 1rem;
   }
 `;
 
-export const SubmitButton = styled.button.attrs(props => ({id : props.$id}))`
-    cursor: pointer;
-    height : 3rem;
-    width: 100%;
-    border: none;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    transition: all 0.1s ease;
-    padding : 0 1rem;
-    cursor : pointer;
-    border: 0.15rem solid ${props => props.$colors.primary.light};
-    background-color: ${props => props.$colors.primary.light};
-    color: white;
-    &:hover{
-        transform: scale(101%);
-        border: 0.15rem solid ${props => props.$colors.primary.dark};
-        background-color: ${props => props.$colors.primary.dark};
+export const SubmitButton = styled.button.attrs(props => (
+  { 
+    id: props.$id,
+    disabled : props.$disabled,
+  }
+))`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 100%;
+  border: none;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.1s ease;
+  padding: 0 1rem;
+  cursor: pointer;
+  border: 0.15rem solid ${(props) => props.$colors.primary.light};
+  background-color: ${(props) => props.$colors.primary.light};
+  color: white;
+  &:hover {
+    transform: scale(101%);
+    border: 0.15rem solid ${(props) => props.$colors.primary.dark};
+    background-color: ${(props) => !props.$disabled && props.$colors.primary.dark};
+  }
+
+  @media (max-width: 720px) {
+    &:hover {
+      transform: none;
+      border: none;
+      background-color: none;
     }
-`
+
+    &:active{
+      transform: scale(103%);
+      border: 0.15rem solid ${(props) => props.$colors.primary.dark};
+      background-color: ${(props) => props.$colors.primary.dark};
+    }
+  }
+`;
+
+export default {};

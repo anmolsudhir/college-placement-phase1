@@ -10,3 +10,5 @@ export const Container =styled.div`
     width: 100vw;
     background-color: ${(props : any) => props.$theme === 'light' ? '#F1F1F1' : '#1c1c1c'};
 `
+
+export default {};
