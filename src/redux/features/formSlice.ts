@@ -12,13 +12,15 @@ export const formSlice  =createSlice({
     reducers : {
         addObj : (state, action) => {
             state.formObject = {
-                // ...state,
                 ...(state.formObject),
                 ...(action.payload)
             }
+        },
+        clearObj : (state) => {
+            state.formObject = {};
         }
     }
 });
 
-export const {addObj} = formSlice.actions
+export const {addObj, clearObj} = formSlice.actions
 export default formSlice.reducer

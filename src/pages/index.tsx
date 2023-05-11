@@ -18,7 +18,7 @@ import {
 } from "@/components/formsection/formsectioncontent/formslide/inputcard/styles";
 import TeleInput from "@/components/inputs/tel/TeleInp";
 import Text from "@/components/inputs/text/Text";
-import { addObj } from "@/redux/features/formSlice";
+import { addObj, clearObj } from "@/redux/features/formSlice";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from 'axios'
@@ -39,7 +39,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    dispatch(addObj({}))
+    dispatch(clearObj())
   }, [])
 
   const mailElem = {
@@ -165,8 +165,8 @@ export default function Home() {
               style={{ cursor: "pointer" }}
               src={active ? "/cancel.png" : "/information-button-dark.png"}
               alt="info"
-              width={15}
-              height={15}
+              width={active ? 10 : 15}
+              height={active ? 10 : 15}
             />
           </InfoDiv>
           <div style={{ width: "100%", margin: "0 0 1rem 0" }}>
@@ -209,16 +209,14 @@ export default function Home() {
               handleConstruction={handleConstruction}
             ></Text>
           </div>
-          <div
-            style={{ width: "100%", margin: "1rem 0" }}
-          >
-              <SubmitButton
-                $disabled={loading}
-                onClick={isSIgnUp ? handleSignUp : handleLogin}
-                $colors={colors}
-              >
-                {loading ? <Spinner></Spinner> : (isSIgnUp ? "Sign Up" : "Login")}
-              </SubmitButton>
+          <div style={{ width: "100%", margin: "1rem 0" }}>
+            <SubmitButton
+              $disabled={loading}
+              onClick={isSIgnUp ? handleSignUp : handleLogin}
+              $colors={colors}
+            >
+              {loading ? <Spinner></Spinner> : isSIgnUp ? "Sign Up" : "Login"}
+            </SubmitButton>
           </div>
           {isPWValid && (
             <span

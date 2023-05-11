@@ -18,4 +18,6 @@ const userSchema = new mongoose.Schema<IUser>({
   registration: { type: String, required: true, default : "init" },
 }); 
 
-export default mongoose.model('User', userSchema)
+const User = mongoose.model<IUser>('User', userSchema)
+
+export default User

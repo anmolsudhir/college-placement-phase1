@@ -11,6 +11,7 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import Link from "next/link";
 import Text from "@/components/inputs/text/Text";
 import Spinner from "@/components/Spinner";
+import Slider from "@/components/Slider/slider";
 
 declare global {
   interface Window {
@@ -28,6 +29,8 @@ export default function Verify(){
     const [email, setEmail] = useState("");
     const [disabled, setDisabled] = useState(false);
     const [loading, setLoading] = useState(false)
+    const [mobStatus, setMobStatus] = useState("25%")
+    const [mailStatus, setMailStatus] = useState("0%");
     const obj = useSelector((state: RootState) => state.form);
 
     const router = useRouter();
@@ -43,11 +46,11 @@ export default function Verify(){
     useEffect(() => {
       if (typeof window !== "undefined")
         window.recaptchaVerifier = new RecaptchaVerifier(
-          "submit-btn",
+          "recaptcha-placeholder",
           {
             size: "invisible",
             callback: (response) => {
-              console.log(response);
+              //console.log(response);
             },
           },
           auth
@@ -66,7 +69,8 @@ export default function Verify(){
         signInWithPhoneNumber(auth, phoneNumber, appVerifier)
           .then((confirmationResult) => {
             window.confirmationResult = confirmationResult;
-            console.log("sent code", confirmationResult);
+            //console.log("sent code", confirmationResult);
+            setMobStatus("50%")
             setSentOPT(true);
             setDisabled(true)
             setLoading(false);
@@ -80,16 +84,19 @@ export default function Verify(){
 
     const confirmPhone = () => {
         setLoading(true)
+        setMobStatus("75%")
         if (typeof window !== "undefined"){
             console.log(window.confirmationResult);
             const confirmation = window.confirmationResult
             confirmation.confirm(phone)
             .then((msg) => {
-                console.log(msg)
+                setMobStatus("100%");
                 setSentOPT(false)
                 setMobileVerified(true)
                 setLoading(false);
+                setTimeout(() => setMailStatus("25%"), 500)
             })
+            .catch((err) => {})
         }
     }
 
@@ -111,6 +118,7 @@ export default function Verify(){
 
     return (
       <Container $colors={colors}>
+        <div id="recaptcha-placeholder"></div>
         <InputDiv $colors={colors}>
           <Link href={"/"}>
             <Back style={{ cursor: "pointer" }}>
@@ -123,6 +131,19 @@ export default function Verify(){
               ></Image>
             </Back>
           </Link>
+          <Slider
+            nBars={[
+              {
+                label: "Verify Mobile",
+                //status: mobileVerified ? "100%" : "25%",
+                status : mobStatus
+              },
+              { label: "Verify Mail", 
+                //status: mobileVerified ? "25%" : "0%" 
+                status : mailStatus
+              },
+            ]}
+          ></Slider>
           <span
             style={{
               display: "flex",
@@ -177,7 +198,10 @@ export default function Verify(){
                 <Text
                   element={elem}
                   handleConstruction={(type, e) => setPhone(e)}
-                  handleIV={(valid) => {setDisabled(!valid); console.log(valid)}}
+                  handleIV={(valid) => {
+                    setDisabled(!valid);
+                    console.log(!valid);
+                  }}
                 ></Text>
                 <span
                   style={{
@@ -219,7 +243,7 @@ export default function Verify(){
                 <Text
                   element={elem}
                   handleConstruction={(type, e) => setEmail(e)}
-                  handleIV={(valid) => setDisabled(valid)}
+                  handleIV={(valid) => setDisabled(!valid)}
                 ></Text>
                 <span
                   style={{
@@ -246,16 +270,16 @@ export default function Verify(){
               $colors={colors}
               onClick={sentOPT ? getInput : verifyEmail}
             >
-              {loading ? '' : (sentOPT ? "Submit" : "Send OTP")}
+              {loading ? "" : sentOPT ? "Submit" : "Send OTP"}
             </SubmitButton>
           ) : (
             <SubmitButton
               $id={"submit-btn"}
               $colors={colors}
               onClick={sentOPT ? confirmPhone : sendPhoneOTP}
-              $disabled={loading}
+              $disabled={loading || disabled}
             >
-              {loading ? <Spinner></Spinner> : (sentOPT ? "Submit" : "Send OTP")}
+              {loading ? <Spinner></Spinner> : sentOPT ? "Submit" : "Send OTP"}
             </SubmitButton>
           )}
         </InputDiv>

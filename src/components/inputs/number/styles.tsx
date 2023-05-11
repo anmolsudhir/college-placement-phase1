@@ -12,6 +12,7 @@ export const Input = styled.input.attrs(props => (
     {
         type : props.$type,
         placeholder : props.$placeholder,
+        onWheel : (e) => {}
     }
 ))`
     border-width: 0.1rem 0.1rem 0.1rem 0.1rem;
