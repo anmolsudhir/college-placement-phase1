@@ -22,7 +22,7 @@ import { addObj } from "@/redux/features/formSlice";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from 'axios'
-import { Spinner } from "@/components/Spinner";
+import Spinner from "@/components/Spinner";
 
 export default function Home() {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -64,7 +64,7 @@ export default function Home() {
 
   const handleConstruction = (type, e) => {
     type === "password" && setisPWValid(false);
-    const payload: any = JSON.parse(`{"${type}":"${e}"}`);
+    const payload: any = JSON.parse(`{"${type}":"${e.trim()}"}`);
     dispatch(addObj(payload));
   };
 
@@ -94,7 +94,7 @@ export default function Home() {
       event.preventDefault();
       const link = `/verify?id=12345&last=${obj.formObject.tel?.substring(
         obj.formObject.tel.length - 4
-      )}&first=${obj.formObject.mail}`;
+      )}&first=${obj.formObject.mail[0]}`;
 
       try{
         const res = await axios.post('/api/signup', {...(obj.formObject)})

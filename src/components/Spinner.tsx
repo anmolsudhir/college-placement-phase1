@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Spinner = styled.div`
+const Spinner = styled.div`
   width: 1.5rem;
   height: 1.5rem;
   border: 0.15rem solid #fff;
@@ -15,3 +15,5 @@ export const Spinner = styled.div`
     }
   }
 `;
+
+export default Spinner;

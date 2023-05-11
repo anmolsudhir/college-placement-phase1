@@ -105,12 +105,10 @@ export const InputDiv = styled.div`
   }
 `;
 
-export const SubmitButton = styled.button.attrs(props => (
-  { 
-    id: props.$id,
-    disabled : props.$disabled,
-  }
-))`
+export const SubmitButton = styled.button.attrs((props) => ({
+  id: props.$id || "undef-class",
+  disabled: props.$disabled,
+}))`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -122,14 +120,21 @@ export const SubmitButton = styled.button.attrs(props => (
   border-radius: 0.25rem;
   transition: all 0.1s ease;
   padding: 0 1rem;
-  cursor: pointer;
+  cursor: ${props => !props.$disabled ? "pointer" : "default"};
   border: 0.15rem solid ${(props) => props.$colors.primary.light};
   background-color: ${(props) => props.$colors.primary.light};
   color: white;
   &:hover {
     transform: scale(101%);
-    border: 0.15rem solid ${(props) => props.$colors.primary.dark};
-    background-color: ${(props) => !props.$disabled && props.$colors.primary.dark};
+    border: 0.15rem solid
+      ${(props) =>
+        !props.$disabled
+          ? props.$colors.primary.dark
+          : props.$colors.primary.light};
+    background-color: ${(props) =>
+      !props.$disabled
+        ? props.$colors.primary.dark
+        : props.$colors.primary.light};
   }
 
   @media (max-width: 720px) {
@@ -139,7 +144,7 @@ export const SubmitButton = styled.button.attrs(props => (
       background-color: none;
     }
 
-    &:active{
+    &:active {
       transform: scale(103%);
       border: 0.15rem solid ${(props) => props.$colors.primary.dark};
       background-color: ${(props) => props.$colors.primary.dark};

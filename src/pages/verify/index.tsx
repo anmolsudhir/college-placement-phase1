@@ -10,7 +10,7 @@ import auth from "@/firebase/auth/initFirebase";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import Link from "next/link";
 import Text from "@/components/inputs/text/Text";
-import { Spinner } from "@/components/Spinner";
+import Spinner from "@/components/Spinner";
 
 declare global {
   interface Window {
@@ -53,8 +53,6 @@ export default function Verify(){
           auth
         );
     }, []);
-
-    //setMobileVerified(!mobileVerified)
 
     const getInput = () => {
 
@@ -237,7 +235,7 @@ export default function Verify(){
                     boxSizing: "border-box",
                   }}
                 >
-                  {`OTP sent to ${first[0]}********@cmrit.ac.in`}
+                  {`OTP sent to ${first}********@cmrit.ac.in`}
                 </span>
               </>
             )}
