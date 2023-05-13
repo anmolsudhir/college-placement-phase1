@@ -15,20 +15,24 @@ export default function Slider({nBars}) {
             justifyContent: "center",
           }}
         >
-          {nBars.map((elem) => (
+          {nBars.map((elem, idx) => (
             <>
-              <Labels $colors={colors} />
-              <Bars $colors={colors}>
+              <Labels key={`point_${elem.label}_${idx}`} $colors={colors} />
+              <Bars key={`bars_${elem.label}_${idx}`} $colors={colors}>
                 <Fluid
+                  key={`fluid_${elem.label}_${idx}`}
                   $colors={colors}
                   $width={elem.status}
                 ></Fluid>
-                <span style={{
-                    fontWeight:"300",
-                    width:"100%",
-                    marginTop:"0.5rem"
-                }}>
-                    {elem.label}
+                <span
+                  key={`label_${elem.label}_${idx}`}
+                  style={{
+                    fontWeight: "300",
+                    width: "100%",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  {elem.label}
                 </span>
               </Bars>
             </>

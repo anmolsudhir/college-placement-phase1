@@ -5,13 +5,14 @@ import { RootState } from "@/redux/store/store";
 import { InputDiv } from "./styles";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { SubmitButton } from "../styles";
+import { Error, SubmitButton } from "../styles";
 import auth from "@/firebase/auth/initFirebase";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import Link from "next/link";
 import Text from "@/components/inputs/text/Text";
 import Spinner from "@/components/Spinner";
 import Slider from "@/components/Slider/slider";
+import axios from "axios";
 
 declare global {
   interface Window {
@@ -19,7 +20,6 @@ declare global {
     confirmationResult: any;
   }
 }
-
 
 export default function Verify(){
     const colors = useSelector((state : RootState) => state.colors)
@@ -31,6 +31,8 @@ export default function Verify(){
     const [loading, setLoading] = useState(false)
     const [mobStatus, setMobStatus] = useState("25%")
     const [mailStatus, setMailStatus] = useState("0%");
+    const [error, setError] = useState({state : false, message : "An error occured"})
+    const [isVerifiedSession, setIsVerifiedSession] = useState(true)
     const obj = useSelector((state: RootState) => state.form);
 
     const router = useRouter();
@@ -55,11 +57,21 @@ export default function Verify(){
           },
           auth
         );
+      
+        axios
+          .post("/api/signup/verify-session", obj.formObject)
+          .then(() => {
+            setIsVerifiedSession(true)
+          })
+          .catch((err) => { 
+            console.log(err);
+            setIsVerifiedSession(false);
+            setError({state : true, message : err.response.data.message})
+          });
     }, []);
 
-    const getInput = () => {
-
-    }
+  if(isVerifiedSession){
+      const getInput = () => {};
 
     const sendPhoneOTP = () => {
       setLoading(true)
@@ -78,6 +90,7 @@ export default function Verify(){
           .catch((error) => {
             console.log(error, "It happened");
             setLoading(false);
+            setError({state : true, message : "Could Not Send OTP"})
           });
       else console.log("window undefined");
     };
@@ -85,6 +98,7 @@ export default function Verify(){
     const confirmPhone = () => {
         setLoading(true)
         setMobStatus("75%")
+        setError({state : false, message : "Error"})
         if (typeof window !== "undefined"){
             console.log(window.confirmationResult);
             const confirmation = window.confirmationResult
@@ -96,7 +110,10 @@ export default function Verify(){
                 setLoading(false);
                 setTimeout(() => setMailStatus("25%"), 500)
             })
-            .catch((err) => {})
+            .catch((err) => {
+                setLoading(false)
+                setError({ state: true, message: "Sorry, wrong OTP. Please check again!" });
+            })
         }
     }
 
@@ -136,11 +153,12 @@ export default function Verify(){
               {
                 label: "Verify Mobile",
                 //status: mobileVerified ? "100%" : "25%",
-                status : mobStatus
+                status: mobStatus,
               },
-              { label: "Verify Mail", 
-                //status: mobileVerified ? "25%" : "0%" 
-                status : mailStatus
+              {
+                label: "Verify Mail",
+                //status: mobileVerified ? "25%" : "0%"
+                status: mailStatus,
               },
             ]}
           ></Slider>
@@ -200,7 +218,7 @@ export default function Verify(){
                   handleConstruction={(type, e) => setPhone(e)}
                   handleIV={(valid) => {
                     setDisabled(!valid);
-                    console.log(!valid);
+                    setError({state : false, message : ""});
                   }}
                 ></Text>
                 <span
@@ -213,7 +231,7 @@ export default function Verify(){
                     fontWeight: "100",
                     textAlign: "center",
                     fontSize: "0.75rem",
-                    margin: "1rem 0",
+                    margin: "1rem 0 0 0",
                     boxSizing: "border-box",
                   }}
                 >
@@ -245,6 +263,24 @@ export default function Verify(){
                   handleConstruction={(type, e) => setEmail(e)}
                   handleIV={(valid) => setDisabled(!valid)}
                 ></Text>
+                {error.state && (
+                  <span
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "flex-end",
+                      color: "#f00",
+                      width: "100%",
+                      fontWeight: "100",
+                      textAlign: "center",
+                      margin: "0rem 0",
+                      fontSize: "0.75rem",
+                      boxSizing: "border-box",
+                    }}
+                  >
+                    {error.message}
+                  </span>
+                )}
                 <span
                   style={{
                     display: "flex",
@@ -254,7 +290,7 @@ export default function Verify(){
                     width: "100%",
                     fontWeight: "100",
                     textAlign: "center",
-                    margin: "1rem 0",
+                    margin: "1rem 0 0 0",
                     fontSize: "0.75rem",
                     boxSizing: "border-box",
                   }}
@@ -264,25 +300,47 @@ export default function Verify(){
               </>
             )}
           </Content>
-          {mobileVerified ? (
-            <SubmitButton
-              $id={"submit-btn"}
-              $colors={colors}
-              onClick={sentOPT ? getInput : verifyEmail}
-            >
-              {loading ? "" : sentOPT ? "Submit" : "Send OTP"}
-            </SubmitButton>
-          ) : (
-            <SubmitButton
-              $id={"submit-btn"}
-              $colors={colors}
-              onClick={sentOPT ? confirmPhone : sendPhoneOTP}
-              $disabled={loading || disabled}
-            >
-              {loading ? <Spinner></Spinner> : sentOPT ? "Submit" : "Send OTP"}
-            </SubmitButton>
-          )}
+          <div style={{ width: "100%", margin: "1rem 0" }}>
+            {mobileVerified ? (
+              <SubmitButton
+                $id={"submit-btn"}
+                $colors={colors}
+                onClick={sentOPT ? getInput : verifyEmail}
+              >
+                {loading ? "" : sentOPT ? "Submit" : "Send OTP"}
+              </SubmitButton>
+            ) : (
+              <SubmitButton
+                $id={"submit-btn"}
+                $colors={colors}
+                onClick={sentOPT ? confirmPhone : sendPhoneOTP}
+                $disabled={loading || disabled}
+              >
+                {loading ? (
+                  <Spinner></Spinner>
+                ) : sentOPT ? (
+                  "Submit"
+                ) : (
+                  "Send OTP"
+                )}
+              </SubmitButton>
+            )}
+          </div>
+          {error.state && <Error $colors={colors}>{error.message}</Error>}
         </InputDiv>
       </Container>
     );
+  }
+
+  else return <div style={
+    {
+      height:"100%",
+      width:"100%",
+      boxSizing:"border-box"
+    }
+  }>
+    <Error $colors={colors}>
+      {error.message}
+    </Error>
+  </div>
 }

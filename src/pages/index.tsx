@@ -8,6 +8,9 @@ import {
   SubmitButton,
   TextDiv,
   LandingDiv,
+  SwitchDiv,
+  LoginLogoDiv,
+  Error,
 } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
@@ -23,6 +26,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from 'axios'
 import Spinner from "@/components/Spinner";
+import crypto from 'crypto'
 
 export default function Home() {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -34,7 +38,8 @@ export default function Home() {
   const [isPWValid, setisPWValid] = useState(false);
   const [active, setActive] = useState(false);
   const [isSIgnUp, setIsSignUp] = useState(true);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [errorObj, setErrorObj] = useState({status : false, message : ""})
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -43,7 +48,7 @@ export default function Home() {
   }, [])
 
   const mailElem = {
-    label: "Cmrit mail",
+    label: "Cmrit E-Mail",
     regex: /^[a-z]{4,6}[0-9]{2}[a-z]{2}\s*$/,
     type: "mail",
   };
@@ -96,11 +101,18 @@ export default function Home() {
         obj.formObject.tel.length - 4
       )}&first=${obj.formObject.mail[0]}`;
 
+      //const verificationId = crypto.randomBytes(64).toString('hex')
+
       try{
-        const res = await axios.post('/api/signup', {...(obj.formObject)})
+        const res = await axios.post('/api/signup', obj.formObject)
+        console.log(res)
+        dispatch(addObj({verificationToken : res.data.verificationToken}))
+        console.log(obj.formObject)
         router.push(link)
       } catch(err){
-        console.log(err)
+        setLoading(false)
+        setErrorObj({status : true, message : err.response.data.message})
+        // console.log(err, "HEHE")
       }
     }
   };
@@ -134,6 +146,14 @@ export default function Home() {
       </LandingDiv>
       <LoginDiv>
         <InputDiv $colors={colors}>
+          <LoginLogoDiv>
+            <Image
+              src={"/cmr-logo-full.png"}
+              height={50}
+              width={50}
+              alt="logo"
+            ></Image>
+          </LoginLogoDiv>
           <InfoDiv
             $width={"70%"}
             $theme={theme}
@@ -201,7 +221,11 @@ export default function Home() {
             </div>
           )}
           <div
-            style={{ width: "100%", margin: "1rem 0", boxSizing: "border-box" }}
+            style={{
+              width: "100%",
+              margin: "1rem 0 0.35rem 0",
+              boxSizing: "border-box",
+            }}
           >
             <Text
               element={password}
@@ -218,7 +242,22 @@ export default function Home() {
               {loading ? <Spinner></Spinner> : isSIgnUp ? "Sign Up" : "Login"}
             </SubmitButton>
           </div>
-          {isPWValid && (
+          {!isSIgnUp && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "flex-start",
+                color: "gray",
+                width: "100%",
+                fontWeight: "500",
+                fontSize: "0.75rem",
+              }}
+            >
+              <span style={{ cursor: "pointer" }}>Forgotten Your Password?</span>
+            </div>
+          )}
+          {(!isSIgnUp && isPWValid) && (
             <span
               style={{
                 display: "flex",
@@ -235,6 +274,14 @@ export default function Home() {
               Invalid Password
             </span>
           )}
+          {
+            (isSIgnUp && errorObj.status) && 
+            <Error $colors={colors}>
+              {errorObj.message}
+            </Error>
+          }
+        </InputDiv>
+        <SwitchDiv $colors={colors}>
           {isSIgnUp ? (
             <span
               style={{
@@ -246,7 +293,7 @@ export default function Home() {
                 height: "auto",
                 width: "100%",
                 fontWeight: "100",
-                fontSize: "0.75rem",
+                fontSize: "0.9rem",
               }}
             >
               <div
@@ -259,7 +306,6 @@ export default function Home() {
               <div
                 onClick={() => setIsSignUp(!isSIgnUp)}
                 style={{
-                  textDecoration: "underline",
                   cursor: "pointer",
                   marginLeft: "0.2rem",
                   fontWeight: "700",
@@ -279,7 +325,7 @@ export default function Home() {
                 height: "auto",
                 width: "100%",
                 fontWeight: "100",
-                fontSize: "0.75rem",
+                fontSize: "0.9rem",
               }}
             >
               <div
@@ -292,7 +338,6 @@ export default function Home() {
               <div
                 onClick={() => setIsSignUp(!isSIgnUp)}
                 style={{
-                  textDecoration: "underline",
                   cursor: "pointer",
                   marginLeft: "0.2rem",
                   fontWeight: "700",
@@ -302,7 +347,7 @@ export default function Home() {
               </div>
             </span>
           )}
-        </InputDiv>
+        </SwitchDiv>
       </LoginDiv>
     </Container>
   );
