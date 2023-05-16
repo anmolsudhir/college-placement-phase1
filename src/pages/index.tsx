@@ -26,7 +26,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from 'axios'
 import Spinner from "@/components/Spinner";
-import crypto from 'crypto'
 
 export default function Home() {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -73,23 +72,23 @@ export default function Home() {
     dispatch(addObj(payload));
   };
 
-  const checkPassword = async () => {
-    if (obj.formObject.password && obj.formObject.password === "88888888") {
-      return Promise.resolve(true);
-    }
-    return Promise.reject(false);
-  };
-
   const handleLogin = async () => {
-    if (mailValid && telValid) {
+    setLoading(true)
+    if (mailValid && passwordValid) {
       console.log("Hi");
       try {
-        await checkPassword();
-        setisPWValid(false);
-      } catch (error) {
-        console.log(error);
-        setisPWValid(true);
+        const res = await axios.post("/api/login", obj.formObject);
+        setLoading(false)
+        console.log(res.data)
+        router.push('/register')
+      } catch (err) {
+        console.log(err);
+        setErrorObj({status : true, message : err.response.data.message})
+        setLoading(false);
       }
+    }else{
+      console.log("Not HI")
+      setLoading(false)
     }
   };
 
@@ -275,7 +274,7 @@ export default function Home() {
             </span>
           )}
           {
-            (isSIgnUp && errorObj.status) && 
+            (errorObj.status) && 
             <Error $colors={colors}>
               {errorObj.message}
             </Error>
@@ -304,7 +303,7 @@ export default function Home() {
                 Already have an account?
               </div>
               <div
-                onClick={() => setIsSignUp(!isSIgnUp)}
+                onClick={() => {setIsSignUp(!isSIgnUp); setErrorObj({status : false, message : ""})}}
                 style={{
                   cursor: "pointer",
                   marginLeft: "0.2rem",
@@ -336,7 +335,7 @@ export default function Home() {
                 Don't have an account?
               </div>
               <div
-                onClick={() => setIsSignUp(!isSIgnUp)}
+                onClick={() => {setIsSignUp(!isSIgnUp); setErrorObj({status : false, message : ""})}}
                 style={{
                   cursor: "pointer",
                   marginLeft: "0.2rem",

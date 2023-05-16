@@ -6,3 +6,4 @@ npm i axios
 npm i mongoose
 npm i bcrypt
 npm i jsonwebtoken
+npm i nodemailer

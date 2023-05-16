@@ -24,6 +24,7 @@ declare global {
 export default function Verify(){
     const colors = useSelector((state : RootState) => state.colors)
     const [mobileVerified, setMobileVerified] = useState(false);
+    const [mailOTPState, setMailOTPState] = useState("")
     const [sentOPT, setSentOPT] = useState(false);
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
@@ -33,6 +34,7 @@ export default function Verify(){
     const [mailStatus, setMailStatus] = useState("0%");
     const [error, setError] = useState({state : false, message : "An error occured"})
     const [isVerifiedSession, setIsVerifiedSession] = useState(true)
+    let mailOTP;
     const obj = useSelector((state: RootState) => state.form);
 
     const router = useRouter();
@@ -71,7 +73,6 @@ export default function Verify(){
     }, []);
 
   if(isVerifiedSession){
-      const getInput = () => {};
 
     const sendPhoneOTP = () => {
       setLoading(true)
@@ -86,6 +87,7 @@ export default function Verify(){
             setSentOPT(true);
             setDisabled(true)
             setLoading(false);
+            setError({ state: false, message: "" });
           })
           .catch((error) => {
             console.log(error, "It happened");
@@ -100,11 +102,15 @@ export default function Verify(){
         setMobStatus("75%")
         setError({state : false, message : "Error"})
         if (typeof window !== "undefined"){
-            console.log(window.confirmationResult);
+            //console.log(window.confirmationResult);
             const confirmation = window.confirmationResult
             confirmation.confirm(phone)
             .then((msg) => {
                 setMobStatus("100%");
+                setError({
+                  state: false,
+                  message: "",
+                });
                 setSentOPT(false)
                 setMobileVerified(true)
                 setLoading(false);
@@ -117,20 +123,63 @@ export default function Verify(){
         }
     }
 
-    const verifyEmail = () => {
-      const phoneNumber = "+91" + obj.formObject?.tel;
-      const appVerifier = window.recaptchaVerifier;
-      if (typeof window !== "undefined")
-        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-          .then((confirmationResult) => {
-            window.confirmationResult = confirmationResult;
-            console.log("sent code", confirmationResult);
-            setSentOPT(true)
-          })
-          .catch((error) => {
-            console.log(error, "It happened");
+    const generateOTP = () => {
+      let digits = '0123456789';
+      let OTP = '';
+      for (let i = 0; i < 6; i++ ) {
+        OTP += digits[Math.floor(Math.random() * 10)];
+      }
+      return OTP;
+    }
+
+    const sendMailOTP = async() => {
+      setLoading(true);
+      const emailAddress = obj.formObject?.mail;
+      mailOTP = generateOTP()
+      setMailOTPState(mailOTP)
+      try{
+        await axios.post('/api/signup/sendmail-otp', {emailAddress, mailOTP})
+        setMailStatus("50%");
+        setSentOPT(true);
+        setDisabled(true);
+        setLoading(false);
+        setError({ state: false, message: "" });
+      } catch(err) {
+        //console.log(err)
+        setLoading(false);
+        setError({ state: true, message: "Could Not Send OTP" });
+      }
+    };
+
+    const confirmMail = async () => {
+      setLoading(true);
+      setMailStatus("75%");
+      setError({ state: false, message: "Error" });
+      if (email === mailOTPState) {
+        setMailStatus("100%");
+        setError({
+          state: false,
+          message: "",
+        });
+        try {
+          await axios.post("/api/signup/create-user", obj.formObject);
+          setTimeout(() => router.push("/register"), 3000);
+        } catch {
+          setLoading(false)
+          setDisabled(true)
+          setError({
+            state: true,
+            message: `Could not create user with email ${obj.fromObject?.mail}. Please try again after some time`,
           });
-      else console.log("window undefined");
+          setTimeout(() => router.push("/"), 5000);
+        }
+      } else {
+        setLoading(false);
+        setError({
+          state: true,
+          message: "Sorry, wrong OTP. Please check again!",
+        });
+      }
     };
 
     return (
@@ -218,7 +267,7 @@ export default function Verify(){
                   handleConstruction={(type, e) => setPhone(e)}
                   handleIV={(valid) => {
                     setDisabled(!valid);
-                    setError({state : false, message : ""});
+                    setError({ state: false, message: "" });
                   }}
                 ></Text>
                 <span
@@ -261,26 +310,11 @@ export default function Verify(){
                 <Text
                   element={elem}
                   handleConstruction={(type, e) => setEmail(e)}
-                  handleIV={(valid) => setDisabled(!valid)}
+                  handleIV={(valid) => {
+                    setDisabled(!valid);
+                    setError({ state: false, message: "" });
+                  }}
                 ></Text>
-                {error.state && (
-                  <span
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "flex-end",
-                      color: "#f00",
-                      width: "100%",
-                      fontWeight: "100",
-                      textAlign: "center",
-                      margin: "0rem 0",
-                      fontSize: "0.75rem",
-                      boxSizing: "border-box",
-                    }}
-                  >
-                    {error.message}
-                  </span>
-                )}
                 <span
                   style={{
                     display: "flex",
@@ -305,9 +339,16 @@ export default function Verify(){
               <SubmitButton
                 $id={"submit-btn"}
                 $colors={colors}
-                onClick={sentOPT ? getInput : verifyEmail}
+                onClick={sentOPT ? confirmMail : sendMailOTP}
+                $disabled={loading || disabled}
               >
-                {loading ? "" : sentOPT ? "Submit" : "Send OTP"}
+                {loading ? (
+                  <Spinner></Spinner>
+                ) : sentOPT ? (
+                  "Submit"
+                ) : (
+                  "Send OTP"
+                )}
               </SubmitButton>
             ) : (
               <SubmitButton
@@ -332,15 +373,20 @@ export default function Verify(){
     );
   }
 
-  else return <div style={
-    {
-      height:"100%",
-      width:"100%",
-      boxSizing:"border-box"
-    }
-  }>
-    <Error $colors={colors}>
-      {error.message}
-    </Error>
-  </div>
+  else return (
+    <Container $colors={colors}>
+      <div
+        style={{
+          height: "100%",
+          width: "80%",
+          boxSizing: "border-box",
+          display:"flex",
+          alignItems:"center",
+          justifyContent:"center"
+        }}
+      >
+        <Error $colors={colors}>{error.message}</Error>
+      </div>
+    </Container>
+  );
 }
