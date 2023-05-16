@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import User from "@/mongodb/User/user";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import cookie from "cookie"
 
 
 mongoose.connect('mongodb://localhost:27017/test')
@@ -23,8 +24,28 @@ export default async function handler(req : NextApiRequest, res :NextApiResponse
               email : user.email,
               phone : user.phone,
           }
-          const authToken = await jwt.sign(payload, process.env.NEXT_PUBLIC_AUTH_SECRET)
-          res.status(200).send({message : "Logged in", authToken})
+          try{
+            const authToken = await jwt.sign(payload, process.env.NEXT_PUBLIC_AUTH_SECRET)
+            res.statusCode = 200;
+            res.setHeader(
+              "Set-cookie",
+              cookie.serialize("authToken", authToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV !== "development",
+                maxAge: 60 * 60,
+                sameSite: "strict",
+                path: "/",
+              })
+            );
+            res.json({ message: "Logged in", authToken });}
+          catch(err){
+            console.log(err)
+            res
+              .status(404)
+              .send({
+                message: `Could Not create authentication token for user ${user.email}`,
+              });
+          }
         }
       });
     else {
