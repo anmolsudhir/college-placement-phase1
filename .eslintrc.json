@@ -4,10 +4,6 @@
     "eslint:recommended"
   ],
   "rules" : {
-    "no-console":0,
-    "indent": [
-        2,
-        "tab"
-    ]
+    "no-console" : 1
   }
 }
