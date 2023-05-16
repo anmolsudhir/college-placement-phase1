@@ -1,0 +1,15 @@
+*{
+  font-family: 'Roboto', sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body{
+  margin: 0;
+}
+
+#__next{
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+}

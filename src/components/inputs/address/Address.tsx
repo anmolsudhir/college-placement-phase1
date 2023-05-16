@@ -1,0 +1,29 @@
+import { Label } from "../Label";
+import { AddressArea } from "./styles";
+import { useState } from "react";
+import { Invalid } from "../Invalid";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+
+export default function Address({ element, handleIV}){
+    const theme = useSelector((state : RootState) => state.theme.theme)
+
+    const [isValid, setIsValid] = useState(true)
+    const handleValidation = (e) => {
+        if(e.target.value.match(element.regex)){
+            setIsValid(true)
+            handleIV(true)
+        }
+        else { 
+            setIsValid(false)
+            handleIV(false)
+        }
+    }
+    return (
+        <>
+            <Label $theme={theme}>{element.label}</Label>
+            <AddressArea $isValid={isValid} onChange={handleValidation} $theme={theme} $placeholder={element.label}></AddressArea>
+            {!isValid && <Invalid $theme={theme}>Invalid Input. Please check with info given at the top right corner</Invalid>}
+        </>
+    )
+}
