@@ -182,10 +182,10 @@ export default function Home() {
             )}
             <Image
               style={{ cursor: "pointer" }}
-              src={active ? "/cancel.png" : "/information-button-dark.png"}
+              src={active ? "/cross.png" : "/information-button-dark.png"}
               alt="info"
-              width={active ? 10 : 15}
-              height={active ? 10 : 15}
+              width={15}
+              height={15}
             />
           </InfoDiv>
           <div style={{ width: "100%", margin: "0 0 1rem 0" }}>
@@ -251,6 +251,7 @@ export default function Home() {
                 width: "100%",
                 fontWeight: "500",
                 fontSize: "0.75rem",
+                
               }}
             >
               <span style={{ cursor: "pointer" }}>Forgotten Your Password?</span>
@@ -332,7 +333,7 @@ export default function Home() {
                   fontWeight: "300",
                 }}
               >
-                Don't have an account?
+                {"Don't have an account?"}
               </div>
               <div
                 onClick={() => {setIsSignUp(!isSIgnUp); setErrorObj({status : false, message : ""})}}

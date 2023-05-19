@@ -1,9 +1,10 @@
 import { useRef, useEffect, useState } from "react";
-import SideBar from "./sidebar/SideBar";
 import FormSectionContent from "./formsectioncontent/FormSectionContent";
 import { FormContainer, ProgressBar} from "./styles";
+import PageContents from "../pagecontent/PageContents";
+import info from "@/assests/info/info";
 
-export default function FormSection({}){
+export default function FormSection(){
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const componentRef = useRef(null);
@@ -44,11 +45,14 @@ export default function FormSection({}){
             behavior : "smooth"
         })
   }
-    return(
-        <FormContainer>
-            <ProgressBar width={scrollPosition}/>
-            <SideBar handleScroll={handleScroll}/>
-            <FormSectionContent compref={componentRef} refv={refv} />
-        </FormContainer>
-    )
+    return (
+      <FormContainer>
+        <ProgressBar width={scrollPosition} />
+        <FormSectionContent
+          compref={componentRef}
+          refv={refv}
+        />
+        <PageContents handleScroll={handleScroll} info={info}></PageContents>
+      </FormContainer>
+    );
 }

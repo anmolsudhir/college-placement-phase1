@@ -21,12 +21,16 @@ export default function FormSectionContent({ refv, compref}){
     }
     const slides = info.map((elem, idx) => <FormSlide validateSlide={validateSlides} refv={refv} idx={idx} key={idx*2} props={elem}></FormSlide>)
 
-    return <FormSectionContentDiv ref={compref}  $theme={theme}>
-            {slides}
-            <ButtonDiv>
-                <Button $theme={theme} $disabled={!areSlidesValid}>
-                    Continue To Verification
-                </Button>
-            </ButtonDiv>
+    return (
+      <>
+        <FormSectionContentDiv ref={compref} $theme={theme}>
+          {slides}
+          <ButtonDiv>
+            <Button $theme={theme} $disabled={!areSlidesValid}>
+              Continue To Verification
+            </Button>
+          </ButtonDiv>
         </FormSectionContentDiv>
+      </>
+    );
 }

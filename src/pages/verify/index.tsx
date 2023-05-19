@@ -38,7 +38,7 @@ export default function Verify(){
     const obj = useSelector((state: RootState) => state.form);
 
     const router = useRouter();
-    const {id, last, first } = router.query;
+    const { last, first } = router.query;
 
     const elem = {
       label: "Enter 6-Digit OTP" ,
@@ -53,9 +53,7 @@ export default function Verify(){
           "recaptcha-placeholder",
           {
             size: "invisible",
-            callback: (response) => {
-              //console.log(response);
-            },
+            callback: () => {},
           },
           auth
         );
@@ -105,7 +103,7 @@ export default function Verify(){
             //console.log(window.confirmationResult);
             const confirmation = window.confirmationResult
             confirmation.confirm(phone)
-            .then((msg) => {
+            .then(() => {
                 setMobStatus("100%");
                 setError({
                   state: false,
@@ -116,7 +114,7 @@ export default function Verify(){
                 setLoading(false);
                 setTimeout(() => setMailStatus("25%"), 500)
             })
-            .catch((err) => {
+            .catch(() => {
                 setLoading(false)
                 setError({ state: true, message: "Sorry, wrong OTP. Please check again!" });
             })

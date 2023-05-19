@@ -13,7 +13,7 @@ export const SideBarContainer = styled.div`
     border-width: 0 0.1rem 0 0;
     border-color: ${(props : any) => props.$theme === 'light' ? '#DCDCDC' : '#2f2f2f'};
     background-color: ${(props : any) => props.$theme === 'light' ? '#f1f1f1' : '#1c1c1c'};
-    padding: 7rem 1rem 0 1rem;
+    padding: 5rem 1rem 0 1rem;
     overflow: auto;
     box-sizing: border-box;
     @media screen and (max-width : 720px) {
