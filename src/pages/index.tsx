@@ -26,6 +26,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from 'axios'
 import Spinner from "@/components/Spinner";
+import { changeThemeAbs } from "@/redux/features/themeSlice";
 
 export default function Home() {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -44,6 +45,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(clearObj())
+    dispatch(changeThemeAbs('light'))
   }, [])
 
   const mailElem = {
@@ -75,10 +77,11 @@ export default function Home() {
   const handleLogin = async () => {
     setLoading(true)
     if (mailValid && passwordValid) {
-      console.log("Hi");
+      console.log("Hi from handleLogin");
       try {
         const res = await axios.post("/api/login", obj.formObject);
         setLoading(false)
+        setErrorObj({status : false, message : ""})
         console.log(res.data)
         router.push('/register')
       } catch (err) {

@@ -35,7 +35,7 @@ export const LoginDiv = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 50%;
-  height: 100%;
+  max-height: 100%;
   box-sizing: inherit;
   padding: 5rem 8rem;
   background-color: #dde0d8;
@@ -112,6 +112,7 @@ export const Footer = styled.div`
 `;
 
 export const InputDiv = styled.div`
+  overflow: auto;
   position: relative;
   margin: 1rem 0rem 0.5rem 0;
   flex: 0 0 auto;
@@ -131,9 +132,6 @@ export const InputDiv = styled.div`
 
   @media screen and (max-width: 1150px) {
     padding: 2rem 1rem;
-  }
-  @media (max-height: 650px) {
-    margin-top: 20rem;
   }
 `;
 
@@ -199,16 +197,7 @@ export const SubmitButton = styled.button.attrs((props) => ({
   background-color: ${(props) => props.$colors.primary.light};
   color: white;
   &:hover {
-    transform: ${props => !props.$disabled && "scale(101%)"};
-    border: 0.15rem solid
-      ${(props) =>
-        !props.$disabled
-          ? props.$colors.primary.dark
-          : props.$colors.primary.light};
-    background-color: ${(props) =>
-      !props.$disabled
-        ? props.$colors.primary.dark
-        : props.$colors.primary.light};
+    transform: ${props => !props.$disabled && "scale(103%)"};
   }
 
   @media (max-width: 720px) {

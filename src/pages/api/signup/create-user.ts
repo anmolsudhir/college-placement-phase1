@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import User from "@/mongodb/User/user";
 import mongoose from "mongoose";
-import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt'
 
 mongoose
