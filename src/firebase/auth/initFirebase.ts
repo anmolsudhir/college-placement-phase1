@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { getApp, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getApps } from "firebase/app";
 import "firebase/auth"
 import "firebase/firestore"
 
@@ -20,7 +19,6 @@ try{
   getApp('[DEFAULT]')
 }
 catch(error){
-  console.log(error)
   app = initializeApp(firebaseConfig)
 }
 

@@ -66,7 +66,7 @@ function InputCard({element, idx, validateInput, handleHidden}) {
     <InputCardElem onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} $theme={theme}>
       {hover && <InfoDiv $width={"100%"} $theme={theme} onMouseDown={(e) => e.preventDefault()} onClick={() => setActive(!active)} onMouseLeave={() => setActive(false)} $active={active}>
         {active && <InfoText $theme={theme}>{element.info}</InfoText>}
-        <Image style={{cursor : "pointer"}} src={theme === 'light' ? (active ? '/cancel.png' : '/information-button-dark.png') :(active ? '/cancel.png' : '/information-button.png')} alt="info" width={15} height={15}/>
+        <Image style={{cursor : "pointer"}} src={theme === 'light' ? (active ? '/cross.png' : '/information-button-dark.png') :(active ? '/cancel.png' : '/information-button.png')} alt="info" width={15} height={15}/>
       </InfoDiv>}
       {arr.find((e) => e.type === element.type) && arr.find((e) => e.type === element.type).comp}
     </InputCardElem>

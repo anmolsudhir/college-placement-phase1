@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  box-sizing: inherit;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -33,14 +33,29 @@ export const LoginDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 50%;
-  height: 100%;
+  max-height: 100%;
   box-sizing: inherit;
   padding: 5rem 8rem;
   background-color: #dde0d8;
-  @media screen and (max-width:1150px){
+  @media screen and (max-width: 1150px) {
     width: 100%;
     padding: 0 3rem;
+  }
+  @media (max-width: 300px) {
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (max-width: 300px) {
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (max-height: 650px) {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 `;
 
@@ -53,6 +68,21 @@ export const LogoDiv = styled.div`
   align-items: center;
   justify-content: center;
 `
+
+export const LoginLogoDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 0 0 1rem 0;
+  box-sizing: inherit;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width:1150px){
+    display : flex
+  }
+`;
 
 export const TextDiv = styled.div`
   width: 100%;
@@ -82,8 +112,9 @@ export const Footer = styled.div`
 `;
 
 export const InputDiv = styled.div`
+  overflow: auto;
   position: relative;
-  margin: 1rem 0rem;
+  margin: 1rem 0rem 0.5rem 0;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -98,12 +129,53 @@ export const InputDiv = styled.div`
   box-shadow: 0 0 0.75rem 0.2rem rgba(0, 0, 0, 0.1);
   box-sizing: inherit;
   background-color: ${(props) => props.$colors.background.light};
-  transition: height 5s ease-in-out;
 
   @media screen and (max-width: 1150px) {
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
   }
 `;
+
+export const SwitchDiv = styled.div`
+  overflow: auto;
+  position: relative;
+  margin: 0 0 1rem 0;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  padding: 2rem;
+  border: 1px solid;
+  border-radius: 0.3rem;
+  border-color: #c4c4c4;
+  box-shadow: 0 0 0.75rem 0.2rem rgba(0, 0, 0, 0.1);
+  box-sizing: inherit;
+  background-color: ${(props) => props.$colors.background.light};
+`;
+
+export const Error = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: #f00 solid;
+  border-width: 0.05rem;
+  width: 100%;
+  height : auto;
+  padding: 0.5rem;
+  box-sizing: inherit;
+  border-radius: 0.2rem;
+  font-weight: 100;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #b90101;
+  background-color: ${props => props.$colors.error.light};
+
+  @media (max-width : 720px) {
+    font-weight: 300;
+  }
+`
 
 export const SubmitButton = styled.button.attrs((props) => ({
   id: props.$id || "undef-class",
@@ -125,16 +197,7 @@ export const SubmitButton = styled.button.attrs((props) => ({
   background-color: ${(props) => props.$colors.primary.light};
   color: white;
   &:hover {
-    transform: scale(101%);
-    border: 0.15rem solid
-      ${(props) =>
-        !props.$disabled
-          ? props.$colors.primary.dark
-          : props.$colors.primary.light};
-    background-color: ${(props) =>
-      !props.$disabled
-        ? props.$colors.primary.dark
-        : props.$colors.primary.light};
+    transform: ${props => !props.$disabled && "scale(103%)"};
   }
 
   @media (max-width: 720px) {
@@ -151,5 +214,3 @@ export const SubmitButton = styled.button.attrs((props) => ({
     }
   }
 `;
-
-export default {};

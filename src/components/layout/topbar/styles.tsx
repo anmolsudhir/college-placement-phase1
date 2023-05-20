@@ -7,7 +7,7 @@ export const TopBarContainer = styled.div`
     position: absolute;
     top:0;
     width: 100%;
-    height: 5rem;
+    height: 4rem;
     background-color: ${(props : any) => props.$theme === 'light' ? "var(--light)": 'var(--dark)'};   
     display: flex;
     flex-direction: row;
@@ -24,23 +24,23 @@ export const LogoContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-end;
+    justify-content: flex-start;
     box-sizing: inherit;
 `
 export const ThemeBtn = styled.div`
-    width: clamp(3rem, 3rem + 0vh , 3rem);
-    height: 3rem;
+    width: clamp(2.5rem, 2.5rem + 0vh , 2.5rem);
+    height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin: 0.5rem 1rem;
-    border-radius: 0.25rem;
+    margin: 0.5rem 0.5rem;
+    border-radius: 50%;
     border: 0.07rem solid ${(props : any) => props.$theme === 'light' ? '#cbcbcb;' : '#3e3e3e'};
     box-sizing: inherit;
     transition: all 0.25s ease;
     &:hover{    
-        transform: ${(props : any) => props.$theme === 'light' ? `rotate(45deg)` : `rotate(-45deg)`};
-        background-color : ${(props : any) => props.$theme === 'light' ? '#cbcbcb' : '#3e3e3e'};
+        background-color : ${(props : any) => props.$theme === 'light' ? '#ebebeb' : '#131313'};
     }
 
     &:focus{  
@@ -62,29 +62,30 @@ export const LogoText = styled.span`
     user-select: none;
     margin-left: 1%;
     color:#99BF14;
-    font-weight: 500;
-    font-size: clamp(0.1rem, 2.5rem + 0vw, 2.5rem);
+    font-weight: 300;
+    font-size: clamp(0.1rem, 1.5rem + 0vw, 1.5rem);
     @media screen and (max-width : 720px){
         display: none;
     }
 `
 
 export const MenuBtn = styled.div`
-    width: 3rem;
-    height: 55%;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  width: clamp(2.5rem, 2.5rem + 0vh, 2.5rem);
+  height: 2.5rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+  border-radius: 0.5rem;
+  box-sizing: inherit;
+  border-radius: 50%;
+  border: 0.07rem solid
+    ${(props: any) => (props.$theme === "light" ? "#cbcbcb;" : "#3e3e3e")};
+  background-color: transparent;
+  @media screen and (max-width: 720px) {
+    display: flex;
     margin: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    box-sizing: inherit;
-    border-radius: 0.25rem;
-    border: 0.07rem solid ${(props : any) => props.$theme === 'light' ? '#cbcbcb;' : '#3e3e3e'};
-    background-color: transparent;
-    @media screen and (max-width : 720px){
-        display: flex;
-        margin : 0.5rem 1rem;
-        height:auto;
-    }
-`
+    height: auto;
+  }
+`;

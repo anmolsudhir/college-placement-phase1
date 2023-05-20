@@ -13,6 +13,10 @@ const initialState = {
     light: "#b9b9b9",
     dark: "#555555",
   },
+  error: {
+    light: "#fff0f0",
+    dark: "#1f1414",
+  },
 };
 
 export const colorSlice = createSlice({

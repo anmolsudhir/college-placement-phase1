@@ -8,6 +8,9 @@ import {
   SubmitButton,
   TextDiv,
   LandingDiv,
+  SwitchDiv,
+  LoginLogoDiv,
+  Error,
 } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
@@ -18,11 +21,12 @@ import {
 } from "@/components/formsection/formsectioncontent/formslide/inputcard/styles";
 import TeleInput from "@/components/inputs/tel/TeleInp";
 import Text from "@/components/inputs/text/Text";
-import { addObj } from "@/redux/features/formSlice";
+import { addObj, clearObj } from "@/redux/features/formSlice";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from 'axios'
 import Spinner from "@/components/Spinner";
+import { changeThemeAbs } from "@/redux/features/themeSlice";
 
 export default function Home() {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -34,16 +38,18 @@ export default function Home() {
   const [isPWValid, setisPWValid] = useState(false);
   const [active, setActive] = useState(false);
   const [isSIgnUp, setIsSignUp] = useState(true);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [errorObj, setErrorObj] = useState({status : false, message : ""})
   const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
-    dispatch(addObj({}))
+    dispatch(clearObj())
+    dispatch(changeThemeAbs('light'))
   }, [])
 
   const mailElem = {
-    label: "Cmrit mail",
+    label: "Cmrit E-Mail",
     regex: /^[a-z]{4,6}[0-9]{2}[a-z]{2}\s*$/,
     type: "mail",
   };
@@ -68,23 +74,24 @@ export default function Home() {
     dispatch(addObj(payload));
   };
 
-  const checkPassword = async () => {
-    if (obj.formObject.password && obj.formObject.password === "88888888") {
-      return Promise.resolve(true);
-    }
-    return Promise.reject(false);
-  };
-
   const handleLogin = async () => {
-    if (mailValid && telValid) {
-      console.log("Hi");
+    setLoading(true)
+    if (mailValid && passwordValid) {
+      console.log("Hi from handleLogin");
       try {
-        await checkPassword();
-        setisPWValid(false);
-      } catch (error) {
-        console.log(error);
-        setisPWValid(true);
+        const res = await axios.post("/api/login", obj.formObject);
+        setLoading(false)
+        setErrorObj({status : false, message : ""})
+        console.log(res.data)
+        router.push('/register')
+      } catch (err) {
+        console.log(err);
+        setErrorObj({status : true, message : err.response.data.message})
+        setLoading(false);
       }
+    }else{
+      console.log("Not HI")
+      setLoading(false)
     }
   };
 
@@ -96,11 +103,18 @@ export default function Home() {
         obj.formObject.tel.length - 4
       )}&first=${obj.formObject.mail[0]}`;
 
+      //const verificationId = crypto.randomBytes(64).toString('hex')
+
       try{
-        const res = await axios.post('/api/signup', {...(obj.formObject)})
+        const res = await axios.post('/api/signup', obj.formObject)
+        console.log(res)
+        dispatch(addObj({verificationToken : res.data.verificationToken}))
+        console.log(obj.formObject)
         router.push(link)
       } catch(err){
-        console.log(err)
+        setLoading(false)
+        setErrorObj({status : true, message : err.response.data.message})
+        // console.log(err, "HEHE")
       }
     }
   };
@@ -134,6 +148,14 @@ export default function Home() {
       </LandingDiv>
       <LoginDiv>
         <InputDiv $colors={colors}>
+          <LoginLogoDiv>
+            <Image
+              src={"/cmr-logo-full.png"}
+              height={50}
+              width={50}
+              alt="logo"
+            ></Image>
+          </LoginLogoDiv>
           <InfoDiv
             $width={"70%"}
             $theme={theme}
@@ -163,7 +185,7 @@ export default function Home() {
             )}
             <Image
               style={{ cursor: "pointer" }}
-              src={active ? "/cancel.png" : "/information-button-dark.png"}
+              src={active ? "/cross.png" : "/information-button-dark.png"}
               alt="info"
               width={15}
               height={15}
@@ -201,7 +223,11 @@ export default function Home() {
             </div>
           )}
           <div
-            style={{ width: "100%", margin: "1rem 0", boxSizing: "border-box" }}
+            style={{
+              width: "100%",
+              margin: "1rem 0 0.35rem 0",
+              boxSizing: "border-box",
+            }}
           >
             <Text
               element={password}
@@ -209,18 +235,32 @@ export default function Home() {
               handleConstruction={handleConstruction}
             ></Text>
           </div>
-          <div
-            style={{ width: "100%", margin: "1rem 0" }}
-          >
-              <SubmitButton
-                $disabled={loading}
-                onClick={isSIgnUp ? handleSignUp : handleLogin}
-                $colors={colors}
-              >
-                {loading ? <Spinner></Spinner> : (isSIgnUp ? "Sign Up" : "Login")}
-              </SubmitButton>
+          <div style={{ width: "100%", margin: "1rem 0" }}>
+            <SubmitButton
+              $disabled={loading}
+              onClick={isSIgnUp ? handleSignUp : handleLogin}
+              $colors={colors}
+            >
+              {loading ? <Spinner></Spinner> : isSIgnUp ? "Sign Up" : "Login"}
+            </SubmitButton>
           </div>
-          {isPWValid && (
+          {!isSIgnUp && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "flex-start",
+                color: "gray",
+                width: "100%",
+                fontWeight: "500",
+                fontSize: "0.75rem",
+                
+              }}
+            >
+              <span style={{ cursor: "pointer" }}>Forgotten Your Password?</span>
+            </div>
+          )}
+          {(!isSIgnUp && isPWValid) && (
             <span
               style={{
                 display: "flex",
@@ -237,6 +277,14 @@ export default function Home() {
               Invalid Password
             </span>
           )}
+          {
+            (errorObj.status) && 
+            <Error $colors={colors}>
+              {errorObj.message}
+            </Error>
+          }
+        </InputDiv>
+        <SwitchDiv $colors={colors}>
           {isSIgnUp ? (
             <span
               style={{
@@ -248,7 +296,7 @@ export default function Home() {
                 height: "auto",
                 width: "100%",
                 fontWeight: "100",
-                fontSize: "0.75rem",
+                fontSize: "0.9rem",
               }}
             >
               <div
@@ -259,9 +307,8 @@ export default function Home() {
                 Already have an account?
               </div>
               <div
-                onClick={() => setIsSignUp(!isSIgnUp)}
+                onClick={() => {setIsSignUp(!isSIgnUp); setErrorObj({status : false, message : ""})}}
                 style={{
-                  textDecoration: "underline",
                   cursor: "pointer",
                   marginLeft: "0.2rem",
                   fontWeight: "700",
@@ -281,7 +328,7 @@ export default function Home() {
                 height: "auto",
                 width: "100%",
                 fontWeight: "100",
-                fontSize: "0.75rem",
+                fontSize: "0.9rem",
               }}
             >
               <div
@@ -289,12 +336,11 @@ export default function Home() {
                   fontWeight: "300",
                 }}
               >
-                Don't have an account?
+                {"Don't have an account?"}
               </div>
               <div
-                onClick={() => setIsSignUp(!isSIgnUp)}
+                onClick={() => {setIsSignUp(!isSIgnUp); setErrorObj({status : false, message : ""})}}
                 style={{
-                  textDecoration: "underline",
                   cursor: "pointer",
                   marginLeft: "0.2rem",
                   fontWeight: "700",
@@ -304,7 +350,7 @@ export default function Home() {
               </div>
             </span>
           )}
-        </InputDiv>
+        </SwitchDiv>
       </LoginDiv>
     </Container>
   );
