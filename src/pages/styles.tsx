@@ -48,7 +48,7 @@ export const LoginDiv = styled.div`
     padding: 0 0.5rem;
   }
 
-  @media (max-width: 300px) {
+  @media (max-width: 360px) {
     width: 100%;
     padding: 0 0.5rem;
   }
@@ -129,9 +129,27 @@ export const InputDiv = styled.div`
   box-shadow: 0 0 0.75rem 0.2rem rgba(0, 0, 0, 0.1);
   box-sizing: inherit;
   background-color: ${(props) => props.$colors.background.light};
+  ${props => props.$error && `animation : animate 0.25s ease;`}
 
   @media screen and (max-width: 1150px) {
     padding: 2rem 1rem;
+  }
+  @keyframes animate {
+    0% {
+      transform: translateX(-1%);
+    }
+    25% {
+      transform: translateX(1%);
+    }
+    50% {
+      transform: translateX(-1%);
+    }
+    75% {
+      transform: translateX(1%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 `;
 
@@ -153,6 +171,10 @@ export const SwitchDiv = styled.div`
   box-shadow: 0 0 0.75rem 0.2rem rgba(0, 0, 0, 0.1);
   box-sizing: inherit;
   background-color: ${(props) => props.$colors.background.light};
+
+  @media (max-width: 720px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 export const Error = styled.div`

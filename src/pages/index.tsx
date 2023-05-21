@@ -52,12 +52,14 @@ export default function Home() {
     label: "Cmrit E-Mail",
     regex: /^[a-z]{4,6}[0-9]{2}[a-z]{2}\s*$/,
     type: "mail",
+    objName : "mail",
   };
 
   const telElem = {
     label: "Personal Phone Number",
     regex: /^[6-9][0-9]{9}\s*$/,
     type: "tel",
+    objName: "tel",
   };
 
   let passText = isSIgnUp ? "Set Password" : "Enter Password"
@@ -66,15 +68,11 @@ export default function Home() {
     label: passText,
     regex: /.{8,}/,
     type: "password",
-  };
-
-  const handleConstruction = (type, e) => {
-    type === "password" && setisPWValid(false);
-    const payload: any = JSON.parse(`{"${type}":"${e.trim()}"}`);
-    dispatch(addObj(payload));
+    objName: "password",
   };
 
   const handleLogin = async () => {
+    setErrorObj({status : false, message : ""})
     setLoading(true)
     if (mailValid && passwordValid) {
       console.log("Hi from handleLogin");
@@ -97,13 +95,13 @@ export default function Home() {
 
   const handleSignUp = async (event) => {
     if (mailValid && telValid && passwordValid) {
+      setErrorObj({status : false, message : ""});
       setLoading(true)
       event.preventDefault();
       const link = `/verify?id=12345&last=${obj.formObject.tel?.substring(
         obj.formObject.tel.length - 4
       )}&first=${obj.formObject.mail[0]}`;
 
-      //const verificationId = crypto.randomBytes(64).toString('hex')
 
       try{
         const res = await axios.post('/api/signup', obj.formObject)
@@ -114,7 +112,6 @@ export default function Home() {
       } catch(err){
         setLoading(false)
         setErrorObj({status : true, message : err.response.data.message})
-        // console.log(err, "HEHE")
       }
     }
   };
@@ -147,7 +144,7 @@ export default function Home() {
         <Footer $colors={colors}>CMRIT Placement Cell, Bengaluru 2023</Footer>
       </LandingDiv>
       <LoginDiv>
-        <InputDiv $colors={colors}>
+        <InputDiv $colors={colors} $error={errorObj.status}>
           <LoginLogoDiv>
             <Image
               src={"/cmr-logo-full.png"}
@@ -209,16 +206,15 @@ export default function Home() {
           <div style={{ width: "100%", margin: "1rem 0" }}>
             <MailInput
               element={mailElem}
-              handleIV={(valid) => setMailValid(valid)}
-              handleConstruction={handleConstruction}
+              handleIV={(valid) => {setMailValid(valid); setErrorObj({status : false, message : ""})}}
             ></MailInput>
           </div>
           {isSIgnUp && (
             <div style={{ width: "100%", margin: "1rem 0" }}>
               <TeleInput
                 element={telElem}
-                handleIV={(valid) => setTelValid(valid)}
-                handleConstruction={handleConstruction}
+                handleIV={(valid) => {setTelValid(valid);
+                setErrorObj({ status: false, message: "" });}}
               ></TeleInput>
             </div>
           )}
@@ -231,8 +227,8 @@ export default function Home() {
           >
             <Text
               element={password}
-              handleIV={(valid) => setPWValid(valid)}
-              handleConstruction={handleConstruction}
+              handleIV={(valid) => {setPWValid(valid);
+              setErrorObj({ status: false, message: "" });}}
             ></Text>
           </div>
           <div style={{ width: "100%", margin: "1rem 0" }}>
@@ -254,7 +250,7 @@ export default function Home() {
                 width: "100%",
                 fontWeight: "500",
                 fontSize: "0.75rem",
-                
+                marginBottom : "1rem"
               }}
             >
               <span style={{ cursor: "pointer" }}>Forgotten Your Password?</span>

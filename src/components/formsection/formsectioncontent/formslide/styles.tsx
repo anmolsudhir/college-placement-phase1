@@ -14,7 +14,7 @@ export const FormSlideDiv = styled.div`
     background-color: ${props => props.$theme === 'light' ? 'transparent' : 'rgb(28,28,28)'};
     box-sizing: inherit;
 
-    @media screen and (max-width:1150px){
+    @media screen and (max-width:1300px){
         padding : 1rem;
         flex-direction: column;
     }
@@ -32,7 +32,7 @@ export const SlideHeader = styled.div`
     color:rgb(100, 100, 100);
     box-sizing: inherit;
 
-    @media screen and (max-width:1150px){
+    @media screen and (max-width:1300px){
         width: 100%;
         margin: 1rem;
         padding: 1rem;
