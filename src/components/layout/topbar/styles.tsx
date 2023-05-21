@@ -62,6 +62,7 @@ export const LogoText = styled.span`
     user-select: none;
     margin-left: 1%;
     color:#99BF14;
+    margin-bottom: 0.25rem;
     font-weight: 300;
     font-size: clamp(0.1rem, 1.5rem + 0vw, 1.5rem);
     @media screen and (max-width : 720px){

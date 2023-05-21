@@ -51,6 +51,10 @@ export const SideBarContainer = styled.div`
             border-width: 0 0.2rem 0 0;
         `}
     }
+
+    @media (max-width : 900px) {
+        width : 15rem;
+    }
 `
 export const SideBarHeader = styled.div`
     user-select: none;
