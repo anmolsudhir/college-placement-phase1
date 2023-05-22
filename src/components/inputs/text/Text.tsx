@@ -21,8 +21,8 @@ export default function Text({ element, handleIV}){
         }
     }
 
-    const handleConstruction = (e) => {
-        const payload: any = JSON.parse(`{"${element.objName}":"${e.trim()}"}`);
+    const handleConstruction = async(e) => {
+        const payload: any = await JSON.parse(`{"${element.objName}":"${e.trim()}"}`);
         dispatch(addObj(payload));
     }
 

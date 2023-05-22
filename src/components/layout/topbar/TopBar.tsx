@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { changeMobile } from '@/redux/features/mobileSlice';
 import Link from 'next/link';
 
-export default function TopBar(){
+export default function TopBar({notMenu}){
     const dispatch = useDispatch()
     const theme = useSelector((state : RootState) => state.theme.theme)
 
@@ -33,7 +33,7 @@ export default function TopBar(){
             height={20}
           />
         </ThemeBtn>
-        <MenuBtn onClick={() => dispatch(changeMobile())} $theme={theme}>
+        {!notMenu && <MenuBtn onClick={() => dispatch(changeMobile())} $theme={theme}>
           <Image
             style={{ padding: "0.5rem" }}
             src="/menu-bar.png"
@@ -41,7 +41,7 @@ export default function TopBar(){
             width={20}
             height={20}
           />
-        </MenuBtn>
+        </MenuBtn>}
       </TopBarContainer>
     );
 }

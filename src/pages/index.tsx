@@ -94,6 +94,7 @@ export default function Home() {
   };
 
   const handleSignUp = async (event) => {
+    console.log(mailValid, telValid, passwordValid)
     if (mailValid && telValid && passwordValid) {
       setErrorObj({status : false, message : ""});
       setLoading(true)
@@ -335,7 +336,7 @@ export default function Home() {
                 {"Don't have an account?"}
               </div>
               <div
-                onClick={() => {setIsSignUp(!isSIgnUp); setErrorObj({status : false, message : ""})}}
+                onClick={() => {setIsSignUp(!isSIgnUp); setTelValid(false) ;setErrorObj({status : false, message : ""})}}
                 style={{
                   cursor: "pointer",
                   marginLeft: "0.2rem",

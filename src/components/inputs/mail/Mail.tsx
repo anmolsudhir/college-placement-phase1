@@ -22,7 +22,9 @@ export default function MailInput({ element, handleIV}){
     }
 
     const handleConstruction = (e) => {
-      const payload: any = JSON.parse(`{"${element.objName}":"${e.trim()}"}`);
+      const payload: any = JSON.parse(
+        `{"${element.objName}":"${e.trim() + trail}"}`
+      );
       dispatch(addObj(payload));
     };
 
@@ -32,7 +34,7 @@ export default function MailInput({ element, handleIV}){
         <>
             <Label $theme={theme} className='label'>{element.label}</Label>
             <InputDiv>
-                <Input $isValid={isValid} onChange={(e) => {handleValidation(e);handleConstruction(e.target.value + trail)}} $type={element.type} $placeholder = {element.label} $theme={theme}></Input>
+                <Input $isValid={isValid} onChange={(e) => {handleValidation(e);handleConstruction(e.target.value)}} $type={element.type} $placeholder = {element.label} $theme={theme}></Input>
                 <Trail $theme={theme}>{trail}</Trail>
             </InputDiv>
             {!isValid && <Invalid $theme={theme}>Invalid Input. Please check with info given at the top right corner</Invalid>}

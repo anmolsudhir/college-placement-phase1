@@ -8,7 +8,7 @@ import Layout from '@/components/layout/Layout'
 export default function Form (){
   const theme = useSelector((state : RootState) => state.theme.theme)
   return (
-    <Layout info={info} notSidebar={false}>
+    <Layout notMenu={false} info={info} notSidebar={false}>
       <Container $theme={theme}>
         <FormSection />
       </Container>
