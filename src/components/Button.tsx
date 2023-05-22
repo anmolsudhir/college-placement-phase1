@@ -11,6 +11,7 @@ export const Button = styled.button.attrs((props) => ({
   border-radius: 0.25rem;
   transition: all 0.2s ease;
   padding: 0 1rem;
+  box-sizing: border-box;
 
   ${(props) =>
     props.$disabled
@@ -33,19 +34,17 @@ export const Button = styled.button.attrs((props) => ({
         `
       : `
         &:hover{
-            transform : scale(103%);
+            transform : scale(105%);
         }
         ${
           props.$theme === "light"
             ? `
                 background-color:rgb(153, 184, 32);
                 color: white;
-                transform: translateY(-10%);
             `
             : `
                 background-color:rgb(123, 151, 11);
                 color: white;
-                transform: translateY(-10%);
             `
         }
         @media (max-width:720px){
