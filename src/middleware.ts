@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
     (!currentUser || Date.now() > JSON.parse(currentUser)?.expiredAt)
   ) {
     request.cookies.delete("currentUser");
-    const response = NextResponse.redirect(new URL("/", request.url));
+    const response = NextResponse.rewrite(new URL("/not-found", request.url));
     response.cookies.delete("currentUser");
     return response;
   }
@@ -21,7 +21,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // "/((?!api|_next/static|_next/image|favicon.ico).*)",
-    '/nothing',
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    // '/nothing',
   ],
 };
